@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CalcUni.Core.Calculators;
+using CalcUni.Core.Visualization;
 using NCalc;
 using ScottPlot;
 
@@ -16,6 +18,10 @@ namespace CalcUni
 	{
 		public temefizikForm()
 		{
+
+
+
+
 			InitializeComponent();
 			
 
@@ -26,6 +32,61 @@ namespace CalcUni
 			cmbDielektrik.SelectedIndexChanged += KapasitansCanliHesapla;
 		
 		}
+		/// <summary>
+		/// Tüm hesaplama adımlarını güvenli bir try-catch çemberinde çalıştıran merkezi kalkan metodu.
+		/// </summary>
+
+		private void SafeExecute( Action calculationStep)
+		{ try
+			{ calculationStep();
+			}
+			catch  (ArgumentOutOfRangeException ex)
+			{ // Motorun içindeki o yazdığımız "Açı 90'dan büyük olamaz" gibi hatalar buraya düşer
+
+		MessageBox.Show(ex.Message, "Fiziksel Sınır Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			catch (FormatException)
+			{
+				// Kullanıcı sayı yerine "abc" gibi harfler girerse program çökmez, buraya düşer
+				MessageBox.Show("Lütfen kutucuklara sadece geçerli sayısal değerler giriniz!", "Girdi Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			catch (Exception ex)
+			{
+				// Ne olduğunu bilmediğimiz, öngörülemeyen diğer tüm çökme hataları için son kale
+				MessageBox.Show("Beklenmeyen bir hata oluştu: " + ex.Message, "Sistem Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		private void PaneliGoster(Panel gosterilecekpanel)
 		{ gosterilecekpanel.BringToFront(); }
 
@@ -126,61 +187,19 @@ namespace CalcUni
 
 		private void btnEgikAtıs_Click(object sender, EventArgs e)
 		{
-			try
-			{
-				// 1. Inputs
-				double v0 = Convert.ToDouble(txtV0Egik.Text);
-				double launchAngle = Convert.ToDouble(txtAngleEgik.Text); // Changed from txtAci
-				double g = Convert.ToDouble(txtGravitalEgikAtıs.Text);
-				double radians = launchAngle * (Math.PI / 180.0);
-
-				// 2. Physics Calculations
-				double timeOfFlight = (2 * v0 * Math.Sin(radians)) / g;
-				double maxRange = (Math.Pow(v0, 2) * Math.Sin(2 * radians)) / g;
-				double maxHeight = (Math.Pow(v0, 2) * Math.Pow(Math.Sin(radians), 2)) / (2 * g);
-
-				// Updating Labels (Make sure to rename your labels in Designer or keep them)
-				lblTimeOfFlight.Text = $"Time of Flight: {timeOfFlight:0.00} s";
-				lblMaxRange.Text = $"Max Range: {maxRange:0.00} m";
-				lblMaxHeight.Text = $"Max Height: {maxHeight:0.00} m";
-
-				// 3. Trajectory Data Preparation
-				double vx = v0 * Math.Cos(radians);
-				double viy = v0 * Math.Sin(radians);
-
-				int pointCount = 100;
-				double[] xPoints = new double[pointCount];
-				double[] yPoints = new double[pointCount];
-				double timeStep = timeOfFlight / (pointCount - 1);
-
-				for (int i = 0; i < pointCount; i++)
+			SafeExecute
+				(() =>
 				{
-					double t = i * timeStep;
-					xPoints[i] = vx * t;
-					yPoints[i] = (viy * t) - (0.5 * g * t * t);
 
-					if (yPoints[i] < 0) yPoints[i] = 0;
-				}
+					ProjectileMotionEngine engine = new ProjectileMotionEngine();
+					engine.InitialVelocity = Convert.ToDouble(txtProjInitialVelocity.Text);
+					engine.Angle = Convert.ToDouble(txtProjAngle.Text);
+					engine.Calculate();
+					rtbProjResults.Text = engine.SolutionSteps;
+					// GRAFİĞİ ÇİZDİR!
+					ChartEngine.Draw2DChart(plotProj, engine.TrajectoryX, engine.TrajectoryY, "Eğik Atış Simülasyonu", "Menzil (m)", "Yükseklik (m)");
 
-				// 4. Plotting with English Labels
-				formPlotEgikatıs1.Plot.Clear();
-				var scatter = formPlotEgikatıs1.Plot.Add.Scatter(xPoints, yPoints);
-
-				scatter.LineWidth = 3;
-				scatter.Color = ScottPlot.Colors.RoyalBlue;
-
-				// Technical Chart Titles
-				formPlotEgikatıs1.Plot.Title("Projectile Trajectory Analysis");
-				formPlotEgikatıs1.Plot.XLabel("Horizontal Distance (m)");
-				formPlotEgikatıs1.Plot.YLabel("Height (m)");
-
-				formPlotEgikatıs1.Plot.Axes.AutoScale();
-				formPlotEgikatıs1.Refresh();
-			}
-			catch
-			{
-				MessageBox.Show("Please give all of them as a number", "input error");
-			}
+				});
 		}
 
 
@@ -652,6 +671,7 @@ namespace CalcUni
 				MessageBox.Show("Lütfen alanlara geçerli sayılar girin!", "Hata");
 			}
 		}
-	
+
+		
 	}
 	}

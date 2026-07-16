@@ -54,14 +54,12 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pnlEğikAtış = new System.Windows.Forms.Panel();
-			this.lblMaxRange = new System.Windows.Forms.Label();
-			this.lblMaxHeight = new System.Windows.Forms.Label();
-			this.lblTimeOfFlight = new System.Windows.Forms.Label();
-			this.txtAngleEgik = new System.Windows.Forms.TextBox();
-			this.txtGravitalEgikAtıs = new System.Windows.Forms.TextBox();
-			this.txtV0Egik = new System.Windows.Forms.TextBox();
+			this.rtbProjResults = new System.Windows.Forms.RichTextBox();
+			this.label24 = new System.Windows.Forms.Label();
+			this.plotProj = new ScottPlot.WinForms.FormsPlot();
+			this.txtProjAngle = new System.Windows.Forms.TextBox();
+			this.txtProjInitialVelocity = new System.Windows.Forms.TextBox();
 			this.btnEgikAtıs = new System.Windows.Forms.Button();
-			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.pnlMainFizik = new System.Windows.Forms.Panel();
@@ -220,7 +218,6 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
-			this.formPlotEgikatıs1 = new ScottPlot.WinForms.FormsPlot();
 			this.pnlSidebar.SuspendLayout();
 			this.pnlKinematik.SuspendLayout();
 			this.pnlEğikAtış.SuspendLayout();
@@ -546,15 +543,12 @@
 			// pnlEğikAtış
 			// 
 			this.pnlEğikAtış.BackColor = System.Drawing.Color.SlateGray;
-			this.pnlEğikAtış.Controls.Add(this.formPlotEgikatıs1);
-			this.pnlEğikAtış.Controls.Add(this.lblMaxRange);
-			this.pnlEğikAtış.Controls.Add(this.lblMaxHeight);
-			this.pnlEğikAtış.Controls.Add(this.lblTimeOfFlight);
-			this.pnlEğikAtış.Controls.Add(this.txtAngleEgik);
-			this.pnlEğikAtış.Controls.Add(this.txtGravitalEgikAtıs);
-			this.pnlEğikAtış.Controls.Add(this.txtV0Egik);
+			this.pnlEğikAtış.Controls.Add(this.rtbProjResults);
+			this.pnlEğikAtış.Controls.Add(this.label24);
+			this.pnlEğikAtış.Controls.Add(this.plotProj);
+			this.pnlEğikAtış.Controls.Add(this.txtProjAngle);
+			this.pnlEğikAtış.Controls.Add(this.txtProjInitialVelocity);
 			this.pnlEğikAtış.Controls.Add(this.btnEgikAtıs);
-			this.pnlEğikAtış.Controls.Add(this.label7);
 			this.pnlEğikAtış.Controls.Add(this.label8);
 			this.pnlEğikAtış.Controls.Add(this.label9);
 			this.pnlEğikAtış.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -563,56 +557,46 @@
 			this.pnlEğikAtış.Size = new System.Drawing.Size(1282, 753);
 			this.pnlEğikAtış.TabIndex = 5;
 			// 
-			// lblMaxRange
+			// rtbProjResults
 			// 
-			this.lblMaxRange.AutoSize = true;
-			this.lblMaxRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblMaxRange.Location = new System.Drawing.Point(802, 33);
-			this.lblMaxRange.Name = "lblMaxRange";
-			this.lblMaxRange.Size = new System.Drawing.Size(116, 22);
-			this.lblMaxRange.TabIndex = 18;
-			this.lblMaxRange.Text = "Max Range:";
+			this.rtbProjResults.BackColor = System.Drawing.SystemColors.ActiveCaption;
+			this.rtbProjResults.Location = new System.Drawing.Point(798, 3);
+			this.rtbProjResults.Name = "rtbProjResults";
+			this.rtbProjResults.ReadOnly = true;
+			this.rtbProjResults.Size = new System.Drawing.Size(484, 318);
+			this.rtbProjResults.TabIndex = 22;
+			this.rtbProjResults.Text = "";
 			// 
-			// lblMaxHeight
+			// label24
 			// 
-			this.lblMaxHeight.AutoSize = true;
-			this.lblMaxHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblMaxHeight.Location = new System.Drawing.Point(802, 61);
-			this.lblMaxHeight.Name = "lblMaxHeight";
-			this.lblMaxHeight.Size = new System.Drawing.Size(116, 22);
-			this.lblMaxHeight.TabIndex = 17;
-			this.lblMaxHeight.Text = "Max Height:";
+			this.label24.AutoSize = true;
+			this.label24.Location = new System.Drawing.Point(532, 11);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(58, 16);
+			this.label24.TabIndex = 21;
+			this.label24.Text = "Eğik atış";
 			// 
-			// lblTimeOfFlight
+			// plotProj
 			// 
-			this.lblTimeOfFlight.AutoSize = true;
-			this.lblTimeOfFlight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblTimeOfFlight.Location = new System.Drawing.Point(803, 90);
-			this.lblTimeOfFlight.Name = "lblTimeOfFlight";
-			this.lblTimeOfFlight.Size = new System.Drawing.Size(121, 22);
-			this.lblTimeOfFlight.TabIndex = 16;
-			this.lblTimeOfFlight.Text = "Uçuş süresi:";
+			this.plotProj.BackColor = System.Drawing.Color.LavenderBlush;
+			this.plotProj.Location = new System.Drawing.Point(314, 321);
+			this.plotProj.Name = "plotProj";
+			this.plotProj.Size = new System.Drawing.Size(552, 375);
+			this.plotProj.TabIndex = 20;
 			// 
-			// txtAngleEgik
+			// txtProjAngle
 			// 
-			this.txtAngleEgik.Location = new System.Drawing.Point(605, 106);
-			this.txtAngleEgik.Name = "txtAngleEgik";
-			this.txtAngleEgik.Size = new System.Drawing.Size(131, 22);
-			this.txtAngleEgik.TabIndex = 15;
+			this.txtProjAngle.Location = new System.Drawing.Point(605, 106);
+			this.txtProjAngle.Name = "txtProjAngle";
+			this.txtProjAngle.Size = new System.Drawing.Size(131, 22);
+			this.txtProjAngle.TabIndex = 15;
 			// 
-			// txtGravitalEgikAtıs
+			// txtProjInitialVelocity
 			// 
-			this.txtGravitalEgikAtıs.Location = new System.Drawing.Point(605, 72);
-			this.txtGravitalEgikAtıs.Name = "txtGravitalEgikAtıs";
-			this.txtGravitalEgikAtıs.Size = new System.Drawing.Size(131, 22);
-			this.txtGravitalEgikAtıs.TabIndex = 14;
-			// 
-			// txtV0Egik
-			// 
-			this.txtV0Egik.Location = new System.Drawing.Point(605, 38);
-			this.txtV0Egik.Name = "txtV0Egik";
-			this.txtV0Egik.Size = new System.Drawing.Size(131, 22);
-			this.txtV0Egik.TabIndex = 13;
+			this.txtProjInitialVelocity.Location = new System.Drawing.Point(605, 38);
+			this.txtProjInitialVelocity.Name = "txtProjInitialVelocity";
+			this.txtProjInitialVelocity.Size = new System.Drawing.Size(131, 22);
+			this.txtProjInitialVelocity.TabIndex = 13;
 			// 
 			// btnEgikAtıs
 			// 
@@ -625,17 +609,6 @@
 			this.btnEgikAtıs.Text = "Calculate";
 			this.btnEgikAtıs.UseVisualStyleBackColor = false;
 			this.btnEgikAtıs.Click += new System.EventHandler(this.btnEgikAtıs_Click);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label7.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label7.Location = new System.Drawing.Point(371, 72);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(184, 22);
-			this.label7.TabIndex = 11;
-			this.label7.Text = "Yerçekimi ivmesi(g)";
 			// 
 			// label8
 			// 
@@ -2293,17 +2266,9 @@
 			this.label13.ForeColor = System.Drawing.SystemColors.HighlightText;
 			this.label13.Location = new System.Drawing.Point(371, 35);
 			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(102, 22);
+			this.label13.Size = new System.Drawing.Size(374, 22);
 			this.label13.TabIndex = 9;
-			this.label13.Text = "ilk hız(v0):";
-			// 
-			// formPlotEgikatıs1
-			// 
-			this.formPlotEgikatıs1.BackColor = System.Drawing.Color.Crimson;
-			this.formPlotEgikatıs1.Location = new System.Drawing.Point(361, 276);
-			this.formPlotEgikatıs1.Name = "formPlotEgikatıs1";
-			this.formPlotEgikatıs1.Size = new System.Drawing.Size(552, 375);
-			this.formPlotEgikatıs1.TabIndex = 20;
+			this.label13.Text = "İnitial velocity: bunu kod kısmında yaptım";
 			// 
 			// temefizikForm
 			// 
@@ -2371,16 +2336,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblYerDeğiştirme;
         private System.Windows.Forms.Label lblSonHız;
-        private System.Windows.Forms.Label lblMaxHeight;
-		private System.Windows.Forms.Label lblTimeOfFlight;
-		private System.Windows.Forms.TextBox txtGravitalEgikAtıs;
-        private System.Windows.Forms.TextBox txtV0Egik;
+        private System.Windows.Forms.TextBox txtProjInitialVelocity;
 		private System.Windows.Forms.Button btnEgikAtıs;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtAngleEgik;
+        private System.Windows.Forms.TextBox txtProjAngle;
 		private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblMaxRange;
 		private System.Windows.Forms.Panel pnlMainFizik;
 		private ScottPlot.WinForms.FormsPlot formPlotEgikatıs;
 		private System.Windows.Forms.Button btnWorkEnergy;
@@ -2549,6 +2509,8 @@
 		private System.Windows.Forms.Button hvclikgridon;
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.ComboBox cmbRL_Durum;
-		private ScottPlot.WinForms.FormsPlot formPlotEgikatıs1;
+		private ScottPlot.WinForms.FormsPlot plotProj;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.RichTextBox rtbProjResults;
 	}
 }
