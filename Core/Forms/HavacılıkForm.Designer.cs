@@ -1,6 +1,6 @@
 ﻿namespace CalcUni
 {
-    partial class havacilikForm
+    partial class HavacılıkForm
     {
         /// <summary>
         /// Required designer variable.

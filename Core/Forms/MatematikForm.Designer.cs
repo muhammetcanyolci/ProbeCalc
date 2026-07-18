@@ -1,6 +1,6 @@
 ﻿namespace CalcUni
 {
-	partial class matematikform
+	partial class MatematikForm
 	{
 		/// <summary>
 		/// Required designer variable.

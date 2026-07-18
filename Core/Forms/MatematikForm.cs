@@ -16,12 +16,12 @@ using MathNet.Symbolics;
 
 namespace CalcUni
 {
-	public partial class matematikform : Form
+	public partial class MatematikForm : Form
 	{
 		// --- FONKSİYON İZLEME DEĞİŞKENLERİ ---
 		ScottPlot.Plottables.Crosshair fonkIsaretcisi;
 		string aktifFonksiyon = "";
-		public matematikform()
+		public MatematikForm()
 		{
 			System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 			InitializeComponent();
@@ -187,45 +187,8 @@ namespace CalcUni
 			{
 				try
 				{
-					// 2. Fonksiyonu mühendislik süzgecinden geçir (^ -> Pow, vs.)
-					string temiz = MatematikMotoru.FonksiyonuDuzenle(hamFonk);
-					NCalc.Expression e_ncalc = new NCalc.Expression(temiz);
-
-					// 3. Trigonometri Ayarı (Derece/Radyan kontrolü)
-					e_ncalc.EvaluateFunction += (name, args) =>
-					{
-						string fName = name.ToLower();
-						if (fName == "sin" || fName == "cos" || fName == "tan" || fName == "cot")
-						{
-							double deger = Convert.ToDouble(args.Parameters[0].Evaluate());
-							if (chkDerece.Checked) deger = deger * Math.PI / 180.0;
-
-							if (fName == "sin") args.Result = Math.Sin(deger);
-							else if (fName == "cos") args.Result = Math.Cos(deger);
-							else if (fName == "tan") args.Result = Math.Tan(deger);
-							else if (fName == "cot") args.Result = 1.0 / Math.Tan(deger);
-						}
-					};
-
-					// 4. Değeri Yerine Koy ve Hesapla
-					e_ncalc.Parameters["x"] = hedefX;
-					double sonuc = Convert.ToDouble(e_ncalc.Evaluate());
-
-					// 5. Sonucu Yazdır
-					if (double.IsNaN(sonuc) || double.IsInfinity(sonuc))
-					{
-						lblEvalSonuc.Text = $"f({hedefX}) = Tanımsız / Sonsuz";
-						
-					}
-					else
-					{
-						lblEvalSonuc.Text = $"f({hedefX}) = {sonuc:F4}"; // 4 basamak hassasiyet
 					
 
-						// --- OPSİYONEL: Bu noktayı grafikte de bir işaretle gösterelim mi? ---
-						formsPlotGraph.Plot.Add.Marker(hedefX, sonuc, size: 10, color: ScottPlot.Colors.Orange);
-						formsPlotGraph.Refresh();
-					}
 				}
 				catch (Exception ex)
 				{

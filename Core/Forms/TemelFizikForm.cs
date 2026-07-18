@@ -14,36 +14,38 @@ using ScottPlot;
 
 namespace CalcUni
 {
-	public partial class temefizikForm : Form
+	public partial class TemelFizikForm : Form
 	{
-		public temefizikForm()
+		public TemelFizikForm()
 		{
 
 
 
 
 			InitializeComponent();
-			
+
 
 			// Kutuları ve listeyi manuel olarak Canlı Hesaplama motoruna bağlıyoruz
 			txtKapasitansA.TextChanged += KapasitansCanliHesapla;
 			txtKapasitansD.TextChanged += KapasitansCanliHesapla;
 			txtKapasitansV.TextChanged += KapasitansCanliHesapla;
 			cmbDielektrik.SelectedIndexChanged += KapasitansCanliHesapla;
-		
+
 		}
 		/// <summary>
 		/// Tüm hesaplama adımlarını güvenli bir try-catch çemberinde çalıştıran merkezi kalkan metodu.
 		/// </summary>
 
-		private void SafeExecute( Action calculationStep)
-		{ try
-			{ calculationStep();
+		private void SafeExecute(Action calculationStep)
+		{
+			try
+			{
+				calculationStep();
 			}
-			catch  (ArgumentOutOfRangeException ex)
+			catch (ArgumentOutOfRangeException ex)
 			{ // Motorun içindeki o yazdığımız "Açı 90'dan büyük olamaz" gibi hatalar buraya düşer
 
-		MessageBox.Show(ex.Message, "Fiziksel Sınır Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				MessageBox.Show(ex.Message, "Fiziksel Sınır Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 			catch (FormatException)
 			{
@@ -90,7 +92,7 @@ namespace CalcUni
 		private void PaneliGoster(Panel gosterilecekpanel)
 		{ gosterilecekpanel.BringToFront(); }
 
-		
+
 
 		private void temefizikForm_Load(object sender, EventArgs e)
 		{
@@ -103,9 +105,9 @@ namespace CalcUni
 		}
 
 
-		private void btnEğikAtış_Click(object sender, EventArgs e)
+		private void btnProjectileMotion_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlEğikAtış);
+			PaneliGoster(pnlProjectileMotion);
 		}
 		private void btnWorkEnergy_Click(object sender, EventArgs e)
 		{
@@ -164,23 +166,28 @@ namespace CalcUni
 
 		private void btnHesaplaKinematik_Click(object sender, EventArgs e)
 		{
-			try
+			SafeExecute(() =>
 			{
-				double v0 = Convert.ToDouble(txtV0.Text);
-				double a = Convert.ToDouble(txtIvme.Text);
-				double t = Convert.ToDouble(txtZaman.Text);
+				// 1. MOTORU ÇAĞIR VE DEĞERLERİ VER
+				OneDimensionalKinematicsEngine engine = new OneDimensionalKinematicsEngine();
 
-				// v son
-				double v_son = v0 + (a * t);
-				// x
-				double x = (v0 * t) + (0.5 * a * Math.Pow(t, 2));
-				lblSonHız.Text = "The final velocity = " + v_son.ToString("0.00") + "m/s";
-				lblYerDeğiştirme.Text = "Yer değiştirme:" + x.ToString("0.00") + "m";
-			}
-			catch
-			{
-				MessageBox.Show("Please give all of them as a number", "input error");
-			}
+				engine.InitialVelocity = Convert.ToDouble(txtKinInitialVelocity.Text);
+				engine.Acceleration = Convert.ToDouble(txtKinAcceleration.Text);
+				engine.TotalTime = Convert.ToDouble(txtKinTotalTime.Text);
+
+				engine.Calculate();
+				rtbKinResults.Text = engine.SolutionSteps;
+
+				// 4. EVRENSEL GRAFİK MOTORUNU ÇAĞIR (Konum - Zaman Grafiği Çiziyoruz)
+				CalcUni.Core.Visualization.ChartEngine.Draw2DChart(
+					plotKin,
+					engine.TimePoints,      // X Ekseni: Zaman (s)
+					engine.PositionPoints,  // Y Ekseni: Konum (m)
+					"Konum - Zaman Grafiği",
+					"Zaman (Saniye)",
+					"Konum (Metre)"
+				);
+			});
 
 
 		}
@@ -205,65 +212,76 @@ namespace CalcUni
 
 
 		private void btnEnerjiHesapla_Click(object sender, EventArgs e)
-		{// 1. TextBox'lardaki yazıları sayıya çevirmeyi deniyoruz
-			if (double.TryParse(txtKutle.Text, out double m) &&
-				double.TryParse(txtH1.Text, out double h1) &&
-				double.TryParse(txtV1.Text, out double v1) &&
-				double.TryParse(txtH2.Text, out double h2))
-			{
-				try
-				{
-					// 2. Fizik motorunu (Class'ı) çağırıyoruz
-					var sonuc = FizikEngines.MekanikEnerjiHesapla(m, h1, v1, h2);
-
-					// 3. Sonuçları Label'a yazdırıyoruz
-					lblEnerjiSonuc.Text = $"--- SONUÇLAR ---\n" +
-										  $"Toplam Mekanik Enerji: {sonuc.eToplam:F2} J\n" +
-										  $"Yeni Yükseklikteki Hız (v2): {sonuc.v2:F2} m/s\n" +
-										  $"Kinetik Enerji (KE2): {sonuc.ke2:F2} J\n" +
-										  $"Potansiyel Enerji (PE2): {sonuc.pe2:F2} J";
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.Message, "Fiziksel Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen kütle, hız ve yükseklik değerlerini sayı olarak girin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-
-		}
-
-
-
-		private void btnIsHesapla_Click(object sender, EventArgs e)
 		{
-			string fonksiyon = txtFonksiyon.Text;
-
-			if (double.TryParse(txtX1.Text, out double x1) &&
-				double.TryParse(txtX2.Text, out double x2))
+			SafeExecute(() =>
 			{
-				try
-				{
-					// 1. Fizik motorundan matematiksel sonucu al
-					double yapilanIs = FizikEngines.YapilanIsiHesapla(fonksiyon, x1, x2);
-					lblIsSonuc.Text = $"Yapılan Toplam İş = {yapilanIs:F2} Joule";
+				WorkEnergyEngine engine = new WorkEnergyEngine();
 
-					// 2. Grafik Motorundan çizimi iste! (Sadece bu tek satır)
-					GrafikMotoru.AlanGrafigiCiz(formsPlotKuvvet, fonksiyon, x1, x2, "Konum (x) [Metre]", "Kuvvet F(x) [Newton]", "Kuvvet - Konum Grafiği");
-				}
-				catch
-				{
-					MessageBox.Show("Fonksiyon formatı hatalı! (Örnek: 2*Pow(x,2) + 5)", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen başlangıç ve bitiş konumlarını sayı olarak girin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+				
+				engine.InitialVelocity= Convert.ToDouble(txtEnergyInitialVelocity.Text);
+				engine.FirstHeight = Convert.ToDouble(txtEnergyFirstHeight.Text);
+				engine.FinalHeight = Convert.ToDouble(txtEnergyFinalHeight.Text);
+				engine.Mass = Convert.ToDouble(txtEnergyMass.Text);
+
+				engine.Calculate();
+
+				// Sonuçları yazdır
+				rtbWorkEnergyResults.Text = engine.SolutionSteps;
+
+				// Çoklu Enerji Grafiğini Çizdir!
+				CalcUni.Core.Visualization.ChartEngine.DrawEnergyChart(
+					plotWorkEnergy,
+					engine.ChartX,
+					engine.ChartY_Kinetic,
+					engine.ChartY_Potential,
+					engine.ChartY_Total
+				);
+			});
+
 
 		}
+		private void btnWorkCalculate_Click_1(object sender, EventArgs e)
+		{
+		
+			SafeExecute(() =>
+			{
+				WorkEnergyEngine engine = new WorkEnergyEngine();
+
+				// 1. Kullanıcının arayüze yazdığı "2x^3 + 5x" gibi metni TextBox'tan alıyoruz
+				string rawFunction = txtWorkFunction.Text; 
+
+				// 2. BAĞLANTIYI KURUYORUZ: Motorumuz o metni alıp x değerine göre çözecek!
+				engine.ForceFunction = (x) =>
+				{
+					return CalcUni.Core.Utilities.MathParser.Evaluate(rawFunction, x);
+				};
+
+			
+				engine.StartX = Convert.ToDouble(txtWorkStartX.Text);
+				engine.EndX = Convert.ToDouble(txtWorkEndX.Text);
+
+			
+				engine.Calculate();
+
+				
+				rtbWorkEnergyResults.Text = engine.SolutionSteps;
+
+				CalcUni.Core.Visualization.ChartEngine.Draw2DChart(
+					plotWorkEnergy,
+					engine.ChartX,
+					engine.ChartY_Total,
+					"Kuvvet - Konum Grafiği",
+					"Konum (Metre)",
+					"Kuvvet (Newton)"
+				);
+			});
+		}
+		
+
+
+
+
+
 
 		private void btnMomentumHesapla_Click(object sender, EventArgs e)
 		{
@@ -440,9 +458,9 @@ namespace CalcUni
 		}
 
 		private void btnElektrikIntegral_Click(object sender, EventArgs e)
-			{
-			
-		
+		{
+
+
 			string fonksiyon = txtEx.Text;
 
 			if (double.TryParse(txtElektrikX1.Text, out double x1) &&
@@ -471,13 +489,13 @@ namespace CalcUni
 			{
 				MessageBox.Show("Lütfen tüm alanları geçerli sayılarla doldurun!", "Uyarı");
 			}
-		
+
 		}
 
 		private void tbGaussYaricap_Scroll(object sender, EventArgs e)
 		{
-			
-		
+
+
 			// TrackBar 1 ile 100 arası döner. 10'a bölerek 0.1 ile 10.0 metre arası hassas "r" değeri elde ediyoruz.
 			double r = tbGaussYaricap.Value / 10.0;
 			lblGaussR_Deger.Text = $"r = {r:F1} m"; // Yanındaki label'a anlık değeri yaz
@@ -498,7 +516,7 @@ namespace CalcUni
 										 $"Toplam Akı (Φ): {sonuc.Aki:E3} N·m²/C\n" +
 										 $"Elektrik Alan (E): {sonuc.E:E3} N/C";
 
-					
+
 				}
 				catch (Exception ex)
 				{
@@ -533,7 +551,7 @@ namespace CalcUni
 											  $"Elektrik Alan (E): {sonuc.E_Vm:F2} V/m\n" +
 											  $"Depolanan Enerji (U): {sonuc.U_pJ:F2} pJ";
 
-					
+
 				}
 				catch { }
 			}
@@ -541,7 +559,7 @@ namespace CalcUni
 
 		private void btnFaradayHesapla_Click(object sender, EventArgs e)
 		{
-		
+
 			string fonksiyon = txtBx.Text;
 
 			if (double.TryParse(txtFaradayL.Text, out double L) &&
@@ -594,8 +612,8 @@ namespace CalcUni
 
 		}
 
-		
-			private void btnRL_Hesapla_Click(object sender, EventArgs e)
+
+		private void btnRL_Hesapla_Click(object sender, EventArgs e)
 		{
 			if (double.TryParse(txtRL_V.Text, out double V) &&
 				double.TryParse(txtRL_R.Text, out double R) &&
@@ -632,12 +650,12 @@ namespace CalcUni
 			{
 				MessageBox.Show("Lütfen alanlara geçerli sayılar girin!", "Uyarı");
 			}
-		
-	}
+
+		}
 
 		private void btnFaradayHesapla2_Click(object sender, EventArgs e)
 		{
-		
+
 			if (int.TryParse(txtFaradayN.Text, out int N) &&
 				double.TryParse(txtFaradayR.Text, out double r_cm) &&
 				double.TryParse(txtFaradayV2.Text, out double v))
@@ -671,7 +689,5 @@ namespace CalcUni
 				MessageBox.Show("Lütfen alanlara geçerli sayılar girin!", "Hata");
 			}
 		}
-
-		
 	}
-	}
+}

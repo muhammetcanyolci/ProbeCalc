@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CalcUni
 {
-	public partial class havacilikForm : Form
+	public partial class HavacılıkForm : Form
 	{
-		public havacilikForm()
+		public HavacılıkForm()
 		{
 			InitializeComponent();
 		}

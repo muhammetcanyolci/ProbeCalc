@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NCalc;
+using NCalc.Extensions;
 using ScottPlot.WinForms;
 
 namespace CalcUni
@@ -684,17 +685,6 @@ namespace CalcUni
 			// --- NCalc AJAN KODU (Trigonometriyi Hackliyoruz - HasResult Kaldırıldı) ---
 			ifade.EvaluateFunction += (name, args) =>
 			{
-				string fName = name.ToLower();
-				if (fName == "sin" || fName == "cos" || fName == "tan" || fName == "cot")
-				{
-					double deger = Convert.ToDouble(args.Parameters[0].Evaluate());
-					if (dereceModu) deger = deger * Math.PI / 180.0;
-
-					if (fName == "sin") args.Result = Math.Sin(deger);
-					else if (fName == "cos") args.Result = Math.Cos(deger);
-					else if (fName == "tan") args.Result = Math.Tan(deger);
-					else if (fName == "cot") args.Result = 1.0 / Math.Tan(deger);
-				}
 			};
 			// ---------------------------------------------------
 
