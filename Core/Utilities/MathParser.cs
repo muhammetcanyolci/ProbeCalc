@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using NCalc;
 
-namespace ProbeCalc.Core.Utilities // Kendi klasör yapına göre burayı ayarlayabilirsin
+namespace CalcUni.Core.Utilities // Kendi klasör yapına göre burayı ayarlayabilirsin
 {
 	/// <summary>
 	/// Kullanıcının girdiği kullanıcı dostu matematiksel metinleri (x^2, sin vs.) 

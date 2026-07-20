@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProbeCalc.Core.Base;
+using CalcUni.Core.Base;
 
-namespace ProbeCalc.Core.Calculators
+namespace CalcUni.Core.Calculators
 {  /// <summary>
    /// Eğik atış (Projectile Motion) fiziği hesaplamalarını yapan somut motor sınıfı.
    /// MechanicsEngine sınıfından miras alır.

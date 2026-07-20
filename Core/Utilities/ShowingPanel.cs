@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProbeCalc.Core.Utilities
+namespace CalcUni.Core.Utilities
 {
 	internal class ShowingPanel
 	{

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProbeCalc.Core.Interfaces
+namespace CalcUni.Core.Interfaces
 {
 	internal interface IEngine
 	{   /// <summary>

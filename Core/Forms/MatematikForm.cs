@@ -14,7 +14,7 @@ using MathNet.Symbolics;
 
 
 
-namespace ProbeCalc
+namespace CalcUni
 {
 	public partial class MatematikForm : Form
 	{

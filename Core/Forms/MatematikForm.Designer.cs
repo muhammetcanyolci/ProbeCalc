@@ -1,4 +1,4 @@
-﻿namespace ProbeCalc
+﻿namespace CalcUni
 {
 	partial class MatematikForm
 	{

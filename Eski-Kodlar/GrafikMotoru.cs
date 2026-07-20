@@ -8,7 +8,7 @@ using NCalc;
 using NCalc.Extensions;
 using ScottPlot.WinForms;
 
-namespace ProbeCalc
+namespace CalcUni
 {
 	internal class GrafikMotoru
 	{

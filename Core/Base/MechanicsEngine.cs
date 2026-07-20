@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProbeCalc.Core.Base
+namespace CalcUni.Core.Base
 {    public abstract class MechanicsEngine : PhysicsEngine
 	{
 		// ilk hızı kontrollü almak için( mechanic konularında ortak)

@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ProbeCalc.Core.Calculators;
-using ProbeCalc.Core.Visualization;
+using CalcUni.Core.Calculators;
+using CalcUni.Core.Visualization;
 using NCalc;
 using ScottPlot;
-using ProbeCalc.Core.Utilities;
-namespace ProbeCalc
+using CalcUni.Core.Utilities;
+namespace CalcUni
 {
 	public partial class TemelFizikForm : Form
 	{
@@ -179,7 +179,7 @@ namespace ProbeCalc
 				rtbKinResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
 				// 4. EVRENSEL GRAFİK MOTORUNU ÇAĞIR (Konum - Zaman Grafiği Çiziyoruz)
-				ProbeCalc.Core.Visualization.ChartEngine.Draw2DChart(
+				CalcUni.Core.Visualization.ChartEngine.Draw2DChart(
 					plotKin,
 					engine.TimePoints,      // X Ekseni: Zaman (s)
 					engine.PositionPoints,  // Y Ekseni: Konum (m)
@@ -229,7 +229,7 @@ namespace ProbeCalc
 				rtbWorkEnergyResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
 				// Çoklu Enerji Grafiğini Çizdir!
-				ProbeCalc.Core.Visualization.ChartEngine.DrawEnergyChart(
+				CalcUni.Core.Visualization.ChartEngine.DrawEnergyChart(
 					plotWorkEnergy,
 					engine.ChartX,
 					engine.ChartY_Kinetic,
@@ -253,7 +253,7 @@ namespace ProbeCalc
 				// 2. BAĞLANTIYI KURUYORUZ: Motorumuz o metni alıp x değerine göre çözecek!
 				engine.ForceFunction = (x) =>
 				{
-					return ProbeCalc.Core.Utilities.MathParser.Evaluate(rawFunction, x);
+					return CalcUni.Core.Utilities.MathParser.Evaluate(rawFunction, x);
 				};
 
 			
@@ -266,7 +266,7 @@ namespace ProbeCalc
 				
 				rtbWorkEnergyResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
-				ProbeCalc.Core.Visualization.ChartEngine.Draw2DChart(
+				CalcUni.Core.Visualization.ChartEngine.Draw2DChart(
 					plotWorkEnergy,
 					engine.ChartX,
 					engine.ChartY_Total,
