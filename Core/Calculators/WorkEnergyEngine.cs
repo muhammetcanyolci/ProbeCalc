@@ -21,7 +21,7 @@ namespace CalcUni.Core.Calculators
 		public Func<double, double> ForceFunction { get; set; }
 
 		// --- ORTAK ÇIKTILAR ---
-		public string SolutionSteps { get; private set; }
+
 		public double CalculatedWork { get; private set; }
 
 		// Grafik çizimleri için koordinat dizileri
@@ -131,6 +131,7 @@ namespace CalcUni.Core.Calculators
 
 					// 4. Riemann / Trapezoidal toplam ile İntegral (İş) alanını biriktir
 					totalWork += currentForce * step;
+					CalculatedWork = totalWork;
 				}
 
 				// Döngü bitince Raporu Hazırla (Senin o harika çıktı metnin)
@@ -142,6 +143,13 @@ namespace CalcUni.Core.Calculators
 								"Fonksiyon girilen sınırlar arasında 1000 eşit parçaya bölünerek entegre edildi.\n\n" +
 								$"Hesaplanan Net İş (W) = {Math.Round(totalWork, 4)} Joule";
 			}
+		}
+
+
+		// PhysicsEngine'in bizden zorunlu olarak istediği kısa sonuç metni
+		protected override string GetShortResultText()
+		{
+			return $"Hesaplanan Net İş (W) = {Math.Round(CalculatedWork, 4)} Joule";
 		}
 
 		public override void Reset()
@@ -158,7 +166,7 @@ namespace CalcUni.Core.Calculators
 			ChartX = null;
 			ChartY_Kinetic = null;
 			ChartY_Potential = null;
-			ChartY_Total = null;
+			ChartY_Total = null;	
 		}
 	}
 }

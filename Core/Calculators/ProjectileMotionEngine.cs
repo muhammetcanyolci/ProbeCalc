@@ -29,7 +29,7 @@ namespace CalcUni.Core.Calculators
 		public double MaxHeight { get; private set; }
 		public double Range { get; private set; }
 		// EĞİTİM MODÜLÜ ÇIKTISI
-		public string SolutionSteps { get; private set; }
+		
 
 		// 3. GRAFİK İÇİN KOORDİNAT DİZİLERİ 
 		public double[] TrajectoryX { get; private set; }
@@ -100,7 +100,10 @@ namespace CalcUni.Core.Calculators
 				if (TrajectoryY[i] < 0) TrajectoryY[i] = 0;
 			}
 		}
-		
+		protected override string GetShortResultText()
+		{
+			return $" Uçuş Süresi    : {FlightTime.ToString("F2")} saniye\n Maks Yükseklik : {MaxHeight.ToString("F2")} metre\n  Menzil (Xmax)  : {Range.ToString("F2")} metre\n";
+		}
 		public override void Reset()
 		{
 			Angle = 0;

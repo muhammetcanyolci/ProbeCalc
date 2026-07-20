@@ -217,6 +217,7 @@
 			this.label82 = new System.Windows.Forms.Label();
 			this.label83 = new System.Windows.Forms.Label();
 			this.formsPlotDonme = new ScottPlot.WinForms.FormsPlot();
+			this.chkShowSteps = new System.Windows.Forms.CheckBox();
 			this.pnlSidebar.SuspendLayout();
 			this.pnlKinematik.SuspendLayout();
 			this.pnlProjectileMotion.SuspendLayout();
@@ -249,6 +250,7 @@
 			// 
 			this.pnlSidebar.AutoScroll = true;
 			this.pnlSidebar.BackColor = System.Drawing.Color.MidnightBlue;
+			this.pnlSidebar.Controls.Add(this.chkShowSteps);
 			this.pnlSidebar.Controls.Add(this.hvclikgridon);
 			this.pnlSidebar.Controls.Add(this.btnInductance);
 			this.pnlSidebar.Controls.Add(this.btnFaraday);
@@ -2446,6 +2448,16 @@
 			this.formsPlotDonme.Size = new System.Drawing.Size(278, 190);
 			this.formsPlotDonme.TabIndex = 19;
 			// 
+			// chkShowSteps
+			// 
+			this.chkShowSteps.AutoSize = true;
+			this.chkShowSteps.Location = new System.Drawing.Point(13, 380);
+			this.chkShowSteps.Name = "chkShowSteps";
+			this.chkShowSteps.Size = new System.Drawing.Size(155, 17);
+			this.chkShowSteps.TabIndex = 30;
+			this.chkShowSteps.Text = "Hesaplama adımlarnı göster";
+			this.chkShowSteps.UseVisualStyleBackColor = true;
+			// 
 			// TemelFizikForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2688,5 +2700,6 @@
 		private System.Windows.Forms.RichTextBox rtbKinResults;
 		private ScottPlot.WinForms.FormsPlot plotKin;
 		private System.Windows.Forms.RichTextBox rtbWorkEnergyResults;
+		private System.Windows.Forms.CheckBox chkShowSteps;
 	}
 }

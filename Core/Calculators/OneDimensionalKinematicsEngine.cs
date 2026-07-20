@@ -21,7 +21,7 @@ namespace CalcUni.Core.Calculators
 		public double Displacement { get; private set; }  // Yer Değiştirme (Konum)
 
 		// 3. EĞİTİM MODÜLÜ ÇIKTISI
-		public string SolutionSteps { get; private set; }
+
 
 		// 4. GRAFİK İÇİN KOORDİNAT DİZİLERİ (Hem Konum hem Hız grafiği çizebilelim diye)
 		public double[] TimePoints { get; private set; }
@@ -66,7 +66,11 @@ namespace CalcUni.Core.Calculators
 				VelocityPoints[i] = InitialVelocity + (Acceleration * t); // Hız
 			}
 		}
-
+		protected override string GetShortResultText()
+		{
+			// Kutucuk işaretli değilse ekrana sadece bu iki satırlık net özet basılacak.
+			return $"Son Hız (Vf) = {FinalVelocity.ToString("F2")} m/s\nYer Değiştirme (Δx) = {Displacement.ToString("F2")} metre";
+		}
 		public override void Reset()
 		{
 			InitialVelocity = 0;

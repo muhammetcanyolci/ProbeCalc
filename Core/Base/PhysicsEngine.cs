@@ -27,7 +27,29 @@ namespace CalcUni.Core.Base
 		// açıyı radyana dönüştürme 
 		protected double DegreesToRadian( double degrees)
 		{ return degrees * (Math.PI / 180.0); }
-	
+		// Her motorda ortak olan uzun çözüm metni
+		
+		
+		
+		
+		public string SolutionSteps { get; protected set; }
+
+		// Alt sınıflar kendi kısa sonucunu vermek zorunda
+		protected abstract string GetShortResultText();
+
+		// cheked ise çözüm adımlarını gösterecek.
+		public string GetFinalReport(bool showDetailedSteps)
+		{
+			if (showDetailedSteps)
+			{
+				return SolutionSteps;
+			}
+			else
+			{
+				return GetShortResultText(); // Hangi motordaysak (İş, Hız vb.) onun kısa sonucunu çağırır.
+			}
+		}
+
 	}
 	
 }

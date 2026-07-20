@@ -11,7 +11,7 @@ using CalcUni.Core.Calculators;
 using CalcUni.Core.Visualization;
 using NCalc;
 using ScottPlot;
-
+using CalcUni.Core.Utilities;
 namespace CalcUni
 {
 	public partial class TemelFizikForm : Form
@@ -176,7 +176,7 @@ namespace CalcUni
 				engine.TotalTime = Convert.ToDouble(txtKinTotalTime.Text);
 
 				engine.Calculate();
-				rtbKinResults.Text = engine.SolutionSteps;
+				rtbKinResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
 				// 4. EVRENSEL GRAFİK MOTORUNU ÇAĞIR (Konum - Zaman Grafiği Çiziyoruz)
 				CalcUni.Core.Visualization.ChartEngine.Draw2DChart(
@@ -202,7 +202,7 @@ namespace CalcUni
 					engine.InitialVelocity = Convert.ToDouble(txtProjInitialVelocity.Text);
 					engine.Angle = Convert.ToDouble(txtProjAngle.Text);
 					engine.Calculate();
-					rtbProjResults.Text = engine.SolutionSteps;
+					rtbProjResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 					// GRAFİĞİ ÇİZDİR!
 					ChartEngine.Draw2DChart(plotProj, engine.TrajectoryX, engine.TrajectoryY, "Eğik Atış Simülasyonu", "Menzil (m)", "Yükseklik (m)");
 
@@ -226,7 +226,7 @@ namespace CalcUni
 				engine.Calculate();
 
 				// Sonuçları yazdır
-				rtbWorkEnergyResults.Text = engine.SolutionSteps;
+				rtbWorkEnergyResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
 				// Çoklu Enerji Grafiğini Çizdir!
 				CalcUni.Core.Visualization.ChartEngine.DrawEnergyChart(
@@ -264,7 +264,7 @@ namespace CalcUni
 				engine.Calculate();
 
 				
-				rtbWorkEnergyResults.Text = engine.SolutionSteps;
+				rtbWorkEnergyResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
 				CalcUni.Core.Visualization.ChartEngine.Draw2DChart(
 					plotWorkEnergy,
