@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalcUni.Core.Base
+namespace ProbeCalc.Core.Base
 {
 	public abstract class ElectricalEngine: PhysicsEngine
 	{

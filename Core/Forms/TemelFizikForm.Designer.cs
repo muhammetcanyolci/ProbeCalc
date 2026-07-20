@@ -1,4 +1,4 @@
-﻿namespace CalcUni
+﻿namespace ProbeCalc
 {
     partial class TemelFizikForm
     {

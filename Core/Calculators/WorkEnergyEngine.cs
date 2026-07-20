@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalcUni.Core.Base;
+using ProbeCalc.Core.Base;
 using NCalc;
 
-namespace CalcUni.Core.Calculators
+namespace ProbeCalc.Core.Calculators
 {
 	public class WorkEnergyEngine : MechanicsEngine
 	{

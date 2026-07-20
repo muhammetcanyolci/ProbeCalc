@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CalcUni
+namespace ProbeCalc
 {
 	public partial class formCalcuni : Form
 	{

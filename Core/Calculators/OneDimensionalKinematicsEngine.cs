@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalcUni.Core.Base;
+using ProbeCalc.Core.Base;
 
-namespace CalcUni.Core.Calculators
+namespace ProbeCalc.Core.Calculators
 {
 	/// <summary>
 	/// 1 Boyutlu Kinematik (Doğrusal Hareket) hesaplamalarını yapan motor sınıfı.

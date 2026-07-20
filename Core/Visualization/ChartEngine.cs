@@ -9,7 +9,7 @@ using ScottPlot.WinForms;
 
 
 
-namespace CalcUni.Core.Visualization
+namespace ProbeCalc.Core.Visualization
 {
 	public static class ChartEngine
 	{
