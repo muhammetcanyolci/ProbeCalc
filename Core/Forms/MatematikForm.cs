@@ -14,7 +14,7 @@ using MathNet.Symbolics;
 
 
 
-namespace CalcUni
+namespace ProbeCalc
 {
 	public partial class MatematikForm : Form
 	{
@@ -42,7 +42,7 @@ namespace CalcUni
 		{
 
 			// 1. Arkada gizlenmiş olan Form1'i (Ana Menüyü) bulup tekrar gösteriyoruz
-			Application.OpenForms["formcalcuni"].Show();
+			Application.OpenForms["formProbeCalc"].Show();
 
 			// 2. İşimiz bittiği için şu anki sayfayı (Havacılık) tamamen kapatıyoruz
 			this.Close();

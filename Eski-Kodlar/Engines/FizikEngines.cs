@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NCalc;
-namespace CalcUni
+namespace ProbeCalc
 	
 {
 	public static class FizikEngines

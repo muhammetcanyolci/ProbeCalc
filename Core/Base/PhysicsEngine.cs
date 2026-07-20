@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalcUni.Core.Interfaces;
+using ProbeCalc.Core.Interfaces;
 
-namespace CalcUni.Core.Base
+namespace ProbeCalc.Core.Base
 {   public abstract class PhysicsEngine: IEngine
 	{
 	// IEngine nin kontrat methodları ( implemented members)

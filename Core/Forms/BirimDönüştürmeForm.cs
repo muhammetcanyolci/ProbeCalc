@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CalcUni
+namespace ProbeCalc
 {
 	public partial class Birim_Dönüştürme : Form
 	{
@@ -126,7 +126,7 @@ namespace CalcUni
 
 		private void btnBirimDönüştürme_Click(object sender, EventArgs e)
 		{
-			formCalcuni form1 = new formCalcuni();
+			formProbeCalc form1 = new formProbeCalc();
 			form1.Show();
 		  this.Hide();
 		}

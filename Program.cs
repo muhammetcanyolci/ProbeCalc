@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CalcUni
+namespace ProbeCalc
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace CalcUni
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formCalcuni());
+            Application.Run(new formProbeCalc());
         }
     }
 }

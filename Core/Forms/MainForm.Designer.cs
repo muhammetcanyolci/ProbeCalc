@@ -1,6 +1,6 @@
-﻿namespace CalcUni
+﻿namespace ProbeCalc
 {
-	partial class formCalcuni
+	partial class formProbeCalc
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -104,7 +104,7 @@
 			this.btnUnitconversation.UseVisualStyleBackColor = false;
 			this.btnUnitconversation.Click += new System.EventHandler(this.btnUnitconversation_Click);
 			// 
-			// formCalcuni
+			// formProbeCalc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,8 +116,8 @@
 			this.Controls.Add(this.btnBasicPhysic);
 			this.Controls.Add(this.label1);
 			this.Margin = new System.Windows.Forms.Padding(2);
-			this.Name = "formCalcuni";
-			this.Text = "CalcUni";
+			this.Name = "formProbeCalc";
+			this.Text = "ProbeCalc";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
