@@ -30,6 +30,7 @@
         {
 			this.label1 = new System.Windows.Forms.Label();
 			this.pnlSidebar = new System.Windows.Forms.Panel();
+			this.btnCollision = new System.Windows.Forms.Button();
 			this.chkShowSteps = new System.Windows.Forms.CheckBox();
 			this.hvclikgridon = new System.Windows.Forms.Button();
 			this.btnInductance = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
 			this.btnElectricField = new System.Windows.Forms.Button();
 			this.btnOscillation = new System.Windows.Forms.Button();
 			this.btnRotational = new System.Windows.Forms.Button();
-			this.btnMomentum = new System.Windows.Forms.Button();
+			this.btnImpulse = new System.Windows.Forms.Button();
 			this.btnWorkEnergy = new System.Windows.Forms.Button();
 			this.btnProjectileMotion = new System.Windows.Forms.Button();
 			this.btnKinematik = new System.Windows.Forms.Button();
@@ -64,6 +65,49 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.pnlMainFizik = new System.Windows.Forms.Panel();
+			this.pnlRotational = new System.Windows.Forms.Panel();
+			this.cmbGeometry = new System.Windows.Forms.ComboBox();
+			this.txtRotTime = new System.Windows.Forms.TextBox();
+			this.label79 = new System.Windows.Forms.Label();
+			this.txtRotForce = new System.Windows.Forms.TextBox();
+			this.txtRotRadius = new System.Windows.Forms.TextBox();
+			this.txtRotMass = new System.Windows.Forms.TextBox();
+			this.btnCalculateRotational = new System.Windows.Forms.Button();
+			this.label81 = new System.Windows.Forms.Label();
+			this.label82 = new System.Windows.Forms.Label();
+			this.label83 = new System.Windows.Forms.Label();
+			this.plotRotational = new ScottPlot.WinForms.FormsPlot();
+			this.pnlCollision = new System.Windows.Forms.Panel();
+			this.label7 = new System.Windows.Forms.Label();
+			this.rtbCollisionResults = new System.Windows.Forms.RichTextBox();
+			this.txtVel2YCollision = new System.Windows.Forms.TextBox();
+			this.txtVel1YCollision = new System.Windows.Forms.TextBox();
+			this.label26 = new System.Windows.Forms.Label();
+			this.label28 = new System.Windows.Forms.Label();
+			this.txtRestitution = new System.Windows.Forms.TextBox();
+			this.label32 = new System.Windows.Forms.Label();
+			this.txtVel2XCollision = new System.Windows.Forms.TextBox();
+			this.label33 = new System.Windows.Forms.Label();
+			this.plotCollision = new ScottPlot.WinForms.FormsPlot();
+			this.txtVel1XCollision = new System.Windows.Forms.TextBox();
+			this.txtMass2Collision = new System.Windows.Forms.TextBox();
+			this.txtMass1Collision = new System.Windows.Forms.TextBox();
+			this.btnCalculateCollision = new System.Windows.Forms.Button();
+			this.label39 = new System.Windows.Forms.Label();
+			this.label40 = new System.Windows.Forms.Label();
+			this.label44 = new System.Windows.Forms.Label();
+			this.pnlImpulse = new System.Windows.Forms.Panel();
+			this.rtbImpulseResults = new System.Windows.Forms.RichTextBox();
+			this.txtImpulseInitialVel = new System.Windows.Forms.TextBox();
+			this.label68 = new System.Windows.Forms.Label();
+			this.txtTimeLimitImpulse = new System.Windows.Forms.TextBox();
+			this.txtMassFuncImpulse = new System.Windows.Forms.TextBox();
+			this.txtForceFuncImpulse = new System.Windows.Forms.TextBox();
+			this.btnCalculateImpulse = new System.Windows.Forms.Button();
+			this.label70 = new System.Windows.Forms.Label();
+			this.label76 = new System.Windows.Forms.Label();
+			this.label77 = new System.Windows.Forms.Label();
+			this.plotImpulse = new ScottPlot.WinForms.FormsPlot();
 			this.pnlWorkEnergy = new System.Windows.Forms.Panel();
 			this.rtbWorkEnergyResults = new System.Windows.Forms.RichTextBox();
 			this.btnWorkCalculate = new System.Windows.Forms.Button();
@@ -141,32 +185,6 @@
 			this.label59 = new System.Windows.Forms.Label();
 			this.label60 = new System.Windows.Forms.Label();
 			this.label61 = new System.Windows.Forms.Label();
-			this.pnlMomentum1 = new System.Windows.Forms.Panel();
-			this.lblItmeSonuc = new System.Windows.Forms.Label();
-			this.txtItmeV1 = new System.Windows.Forms.TextBox();
-			this.label68 = new System.Windows.Forms.Label();
-			this.txtItmeM = new System.Windows.Forms.TextBox();
-			this.label69 = new System.Windows.Forms.Label();
-			this.txtT2 = new System.Windows.Forms.TextBox();
-			this.txtT1 = new System.Windows.Forms.TextBox();
-			this.txtFt = new System.Windows.Forms.TextBox();
-			this.btnItmeHesapla = new System.Windows.Forms.Button();
-			this.label70 = new System.Windows.Forms.Label();
-			this.label76 = new System.Windows.Forms.Label();
-			this.label77 = new System.Windows.Forms.Label();
-			this.txtE = new System.Windows.Forms.TextBox();
-			this.label75 = new System.Windows.Forms.Label();
-			this.txtV2i = new System.Windows.Forms.TextBox();
-			this.label71 = new System.Windows.Forms.Label();
-			this.formsPlotMomentum = new ScottPlot.WinForms.FormsPlot();
-			this.lblMomentumSonuc = new System.Windows.Forms.Label();
-			this.txtM2 = new System.Windows.Forms.TextBox();
-			this.txtV1i = new System.Windows.Forms.TextBox();
-			this.txtM1 = new System.Windows.Forms.TextBox();
-			this.btnMomentumHesapla = new System.Windows.Forms.Button();
-			this.ilkhız = new System.Windows.Forms.Label();
-			this.label72 = new System.Windows.Forms.Label();
-			this.label73 = new System.Windows.Forms.Label();
 			this.pnlElectricGauss = new System.Windows.Forms.Panel();
 			this.label19 = new System.Windows.Forms.Label();
 			this.tbGaussYaricap = new System.Windows.Forms.TrackBar();
@@ -205,35 +223,26 @@
 			this.label17 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
 			this.formsPlotHarmonik = new ScottPlot.WinForms.FormsPlot();
-			this.pnlRotational = new System.Windows.Forms.Panel();
-			this.cmbGeometri = new System.Windows.Forms.ComboBox();
-			this.txtDonmeT = new System.Windows.Forms.TextBox();
-			this.label79 = new System.Windows.Forms.Label();
-			this.lblDonmeSonuc = new System.Windows.Forms.Label();
-			this.txtDonmeF = new System.Windows.Forms.TextBox();
-			this.txtDonmeR = new System.Windows.Forms.TextBox();
-			this.txtDonmeM = new System.Windows.Forms.TextBox();
-			this.btnDonmeHesapla = new System.Windows.Forms.Button();
-			this.label81 = new System.Windows.Forms.Label();
-			this.label82 = new System.Windows.Forms.Label();
-			this.label83 = new System.Windows.Forms.Label();
-			this.formsPlotDonme = new ScottPlot.WinForms.FormsPlot();
+			this.rtbRotationalResults = new System.Windows.Forms.RichTextBox();
+			this.txtDragCoefRot = new System.Windows.Forms.TextBox();
+			this.label25 = new System.Windows.Forms.Label();
 			this.pnlSidebar.SuspendLayout();
 			this.pnlKinematik.SuspendLayout();
 			this.pnlProjectileMotion.SuspendLayout();
 			this.pnlMainFizik.SuspendLayout();
+			this.pnlRotational.SuspendLayout();
+			this.pnlCollision.SuspendLayout();
+			this.pnlImpulse.SuspendLayout();
 			this.pnlWorkEnergy.SuspendLayout();
 			this.pnlSourcesOfMagnetic.SuspendLayout();
 			this.pnlCapacitance.SuspendLayout();
 			this.pnlInductance.SuspendLayout();
 			this.pnlMagneticFields.SuspendLayout();
 			this.pnlFaraday.SuspendLayout();
-			this.pnlMomentum1.SuspendLayout();
 			this.pnlElectricGauss.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tbGaussYaricap)).BeginInit();
 			this.pnlElectricField.SuspendLayout();
 			this.pnlOscillations.SuspendLayout();
-			this.pnlRotational.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -249,6 +258,7 @@
 			// 
 			this.pnlSidebar.AutoScroll = true;
 			this.pnlSidebar.BackColor = System.Drawing.Color.MidnightBlue;
+			this.pnlSidebar.Controls.Add(this.btnCollision);
 			this.pnlSidebar.Controls.Add(this.chkShowSteps);
 			this.pnlSidebar.Controls.Add(this.hvclikgridon);
 			this.pnlSidebar.Controls.Add(this.btnInductance);
@@ -259,7 +269,7 @@
 			this.pnlSidebar.Controls.Add(this.btnElectricField);
 			this.pnlSidebar.Controls.Add(this.btnOscillation);
 			this.pnlSidebar.Controls.Add(this.btnRotational);
-			this.pnlSidebar.Controls.Add(this.btnMomentum);
+			this.pnlSidebar.Controls.Add(this.btnImpulse);
 			this.pnlSidebar.Controls.Add(this.btnWorkEnergy);
 			this.pnlSidebar.Controls.Add(this.label1);
 			this.pnlSidebar.Controls.Add(this.btnProjectileMotion);
@@ -271,11 +281,25 @@
 			this.pnlSidebar.Size = new System.Drawing.Size(300, 753);
 			this.pnlSidebar.TabIndex = 3;
 			// 
+			// btnCollision
+			// 
+			this.btnCollision.BackColor = System.Drawing.Color.LightPink;
+			this.btnCollision.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnCollision.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.btnCollision.Location = new System.Drawing.Point(14, 321);
+			this.btnCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCollision.Name = "btnCollision";
+			this.btnCollision.Size = new System.Drawing.Size(263, 59);
+			this.btnCollision.TabIndex = 31;
+			this.btnCollision.Text = "ÇARPIŞMA";
+			this.btnCollision.UseVisualStyleBackColor = false;
+			this.btnCollision.Click += new System.EventHandler(this.btnCollision_Click);
+			// 
 			// chkShowSteps
 			// 
 			this.chkShowSteps.AutoSize = true;
-			this.chkShowSteps.Location = new System.Drawing.Point(17, 468);
-			this.chkShowSteps.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.chkShowSteps.Location = new System.Drawing.Point(52, 533);
+			this.chkShowSteps.Margin = new System.Windows.Forms.Padding(4);
 			this.chkShowSteps.Name = "chkShowSteps";
 			this.chkShowSteps.Size = new System.Drawing.Size(199, 20);
 			this.chkShowSteps.TabIndex = 30;
@@ -301,7 +325,7 @@
 			this.btnInductance.BackColor = System.Drawing.Color.LightPink;
 			this.btnInductance.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnInductance.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnInductance.Location = new System.Drawing.Point(13, 858);
+			this.btnInductance.Location = new System.Drawing.Point(13, 1060);
 			this.btnInductance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnInductance.Name = "btnInductance";
 			this.btnInductance.Size = new System.Drawing.Size(263, 59);
@@ -315,7 +339,7 @@
 			this.btnFaraday.BackColor = System.Drawing.Color.LightPink;
 			this.btnFaraday.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnFaraday.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnFaraday.Location = new System.Drawing.Point(12, 793);
+			this.btnFaraday.Location = new System.Drawing.Point(13, 997);
 			this.btnFaraday.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnFaraday.Name = "btnFaraday";
 			this.btnFaraday.Size = new System.Drawing.Size(263, 59);
@@ -329,7 +353,7 @@
 			this.btnMagneticFields.BackColor = System.Drawing.Color.LightPink;
 			this.btnMagneticFields.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMagneticFields.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnMagneticFields.Location = new System.Drawing.Point(13, 729);
+			this.btnMagneticFields.Location = new System.Drawing.Point(14, 910);
 			this.btnMagneticFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnMagneticFields.Name = "btnMagneticFields";
 			this.btnMagneticFields.Size = new System.Drawing.Size(263, 59);
@@ -343,7 +367,7 @@
 			this.btnCapacitance.BackColor = System.Drawing.Color.LightPink;
 			this.btnCapacitance.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnCapacitance.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnCapacitance.Location = new System.Drawing.Point(12, 647);
+			this.btnCapacitance.Location = new System.Drawing.Point(14, 827);
 			this.btnCapacitance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnCapacitance.Name = "btnCapacitance";
 			this.btnCapacitance.Size = new System.Drawing.Size(263, 75);
@@ -357,7 +381,7 @@
 			this.btnElectricGauss.BackColor = System.Drawing.Color.LightPink;
 			this.btnElectricGauss.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnElectricGauss.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnElectricGauss.Location = new System.Drawing.Point(12, 582);
+			this.btnElectricGauss.Location = new System.Drawing.Point(3, 748);
 			this.btnElectricGauss.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnElectricGauss.Name = "btnElectricGauss";
 			this.btnElectricGauss.Size = new System.Drawing.Size(263, 59);
@@ -371,7 +395,7 @@
 			this.btnElectricField.BackColor = System.Drawing.Color.LightPink;
 			this.btnElectricField.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnElectricField.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnElectricField.Location = new System.Drawing.Point(12, 505);
+			this.btnElectricField.Location = new System.Drawing.Point(-50, 673);
 			this.btnElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnElectricField.Name = "btnElectricField";
 			this.btnElectricField.Size = new System.Drawing.Size(263, 71);
@@ -385,7 +409,7 @@
 			this.btnOscillation.BackColor = System.Drawing.Color.LightPink;
 			this.btnOscillation.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnOscillation.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnOscillation.Location = new System.Drawing.Point(12, 389);
+			this.btnOscillation.Location = new System.Drawing.Point(14, 455);
 			this.btnOscillation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnOscillation.Name = "btnOscillation";
 			this.btnOscillation.Size = new System.Drawing.Size(263, 59);
@@ -399,7 +423,7 @@
 			this.btnRotational.BackColor = System.Drawing.Color.LightPink;
 			this.btnRotational.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnRotational.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnRotational.Location = new System.Drawing.Point(12, 324);
+			this.btnRotational.Location = new System.Drawing.Point(12, 384);
 			this.btnRotational.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnRotational.Name = "btnRotational";
 			this.btnRotational.Size = new System.Drawing.Size(263, 59);
@@ -408,19 +432,19 @@
 			this.btnRotational.UseVisualStyleBackColor = false;
 			this.btnRotational.Click += new System.EventHandler(this.btnRotational_Click);
 			// 
-			// btnMomentum
+			// btnImpulse
 			// 
-			this.btnMomentum.BackColor = System.Drawing.Color.LightPink;
-			this.btnMomentum.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnMomentum.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnMomentum.Location = new System.Drawing.Point(12, 258);
-			this.btnMomentum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnMomentum.Name = "btnMomentum";
-			this.btnMomentum.Size = new System.Drawing.Size(263, 59);
-			this.btnMomentum.TabIndex = 4;
-			this.btnMomentum.Text = "MOMENTUM";
-			this.btnMomentum.UseVisualStyleBackColor = false;
-			this.btnMomentum.Click += new System.EventHandler(this.btnMomentum_Click);
+			this.btnImpulse.BackColor = System.Drawing.Color.LightPink;
+			this.btnImpulse.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnImpulse.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.btnImpulse.Location = new System.Drawing.Point(12, 258);
+			this.btnImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnImpulse.Name = "btnImpulse";
+			this.btnImpulse.Size = new System.Drawing.Size(263, 59);
+			this.btnImpulse.TabIndex = 4;
+			this.btnImpulse.Text = "İTME";
+			this.btnImpulse.UseVisualStyleBackColor = false;
+			this.btnImpulse.Click += new System.EventHandler(this.btnImpulse_Click_1);
 			// 
 			// btnWorkEnergy
 			// 
@@ -448,6 +472,7 @@
 			this.btnProjectileMotion.TabIndex = 2;
 			this.btnProjectileMotion.Text = "EĞİK ATIŞ";
 			this.btnProjectileMotion.UseVisualStyleBackColor = false;
+			this.btnProjectileMotion.Click += new System.EventHandler(this.btnProjectileMotion_Click_1);
 			// 
 			// btnKinematik
 			// 
@@ -672,10 +697,12 @@
 			// 
 			// pnlMainFizik
 			// 
-			this.pnlMainFizik.Controls.Add(this.pnlMomentum1);
+			this.pnlMainFizik.Controls.Add(this.pnlRotational);
+			this.pnlMainFizik.Controls.Add(this.pnlCollision);
+			this.pnlMainFizik.Controls.Add(this.pnlImpulse);
+			this.pnlMainFizik.Controls.Add(this.pnlProjectileMotion);
 			this.pnlMainFizik.Controls.Add(this.pnlWorkEnergy);
 			this.pnlMainFizik.Controls.Add(this.pnlKinematik);
-			this.pnlMainFizik.Controls.Add(this.pnlProjectileMotion);
 			this.pnlMainFizik.Controls.Add(this.pnlSourcesOfMagnetic);
 			this.pnlMainFizik.Controls.Add(this.pnlCapacitance);
 			this.pnlMainFizik.Controls.Add(this.pnlInductance);
@@ -684,13 +711,490 @@
 			this.pnlMainFizik.Controls.Add(this.pnlElectricGauss);
 			this.pnlMainFizik.Controls.Add(this.pnlElectricField);
 			this.pnlMainFizik.Controls.Add(this.pnlOscillations);
-			this.pnlMainFizik.Controls.Add(this.pnlRotational);
 			this.pnlMainFizik.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlMainFizik.Location = new System.Drawing.Point(0, 0);
 			this.pnlMainFizik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.pnlMainFizik.Name = "pnlMainFizik";
 			this.pnlMainFizik.Size = new System.Drawing.Size(1283, 753);
 			this.pnlMainFizik.TabIndex = 19;
+			// 
+			// pnlRotational
+			// 
+			this.pnlRotational.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlRotational.Controls.Add(this.txtDragCoefRot);
+			this.pnlRotational.Controls.Add(this.label25);
+			this.pnlRotational.Controls.Add(this.rtbRotationalResults);
+			this.pnlRotational.Controls.Add(this.cmbGeometry);
+			this.pnlRotational.Controls.Add(this.txtRotTime);
+			this.pnlRotational.Controls.Add(this.label79);
+			this.pnlRotational.Controls.Add(this.txtRotForce);
+			this.pnlRotational.Controls.Add(this.txtRotRadius);
+			this.pnlRotational.Controls.Add(this.txtRotMass);
+			this.pnlRotational.Controls.Add(this.btnCalculateRotational);
+			this.pnlRotational.Controls.Add(this.label81);
+			this.pnlRotational.Controls.Add(this.label82);
+			this.pnlRotational.Controls.Add(this.label83);
+			this.pnlRotational.Controls.Add(this.plotRotational);
+			this.pnlRotational.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlRotational.Location = new System.Drawing.Point(0, 0);
+			this.pnlRotational.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlRotational.Name = "pnlRotational";
+			this.pnlRotational.Size = new System.Drawing.Size(1283, 753);
+			this.pnlRotational.TabIndex = 6;
+			this.pnlRotational.TabStop = true;
+			// 
+			// cmbGeometry
+			// 
+			this.cmbGeometry.FormattingEnabled = true;
+			this.cmbGeometry.Items.AddRange(new object[] {
+            "İçi Dolu Silindir",
+            "",
+            "",
+            "İnce Disk",
+            "",
+            "",
+            "Boş Çember",
+            "İçi Dolu Küre"});
+			this.cmbGeometry.Location = new System.Drawing.Point(337, 22);
+			this.cmbGeometry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.cmbGeometry.Name = "cmbGeometry";
+			this.cmbGeometry.Size = new System.Drawing.Size(221, 24);
+			this.cmbGeometry.TabIndex = 34;
+			// 
+			// txtRotTime
+			// 
+			this.txtRotTime.Location = new System.Drawing.Point(567, 126);
+			this.txtRotTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtRotTime.Name = "txtRotTime";
+			this.txtRotTime.Size = new System.Drawing.Size(131, 22);
+			this.txtRotTime.TabIndex = 33;
+			// 
+			// label79
+			// 
+			this.label79.AutoSize = true;
+			this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label79.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label79.Location = new System.Drawing.Point(333, 128);
+			this.label79.Name = "label79";
+			this.label79.Size = new System.Drawing.Size(167, 22);
+			this.label79.TabIndex = 32;
+			this.label79.Text = "Uygulama Süresi:";
+			// 
+			// txtRotForce
+			// 
+			this.txtRotForce.Location = new System.Drawing.Point(567, 98);
+			this.txtRotForce.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtRotForce.Name = "txtRotForce";
+			this.txtRotForce.Size = new System.Drawing.Size(131, 22);
+			this.txtRotForce.TabIndex = 30;
+			// 
+			// txtRotRadius
+			// 
+			this.txtRotRadius.Location = new System.Drawing.Point(567, 64);
+			this.txtRotRadius.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtRotRadius.Name = "txtRotRadius";
+			this.txtRotRadius.Size = new System.Drawing.Size(131, 22);
+			this.txtRotRadius.TabIndex = 29;
+			// 
+			// txtRotMass
+			// 
+			this.txtRotMass.Location = new System.Drawing.Point(564, 162);
+			this.txtRotMass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtRotMass.Name = "txtRotMass";
+			this.txtRotMass.Size = new System.Drawing.Size(131, 22);
+			this.txtRotMass.TabIndex = 28;
+			// 
+			// btnCalculateRotational
+			// 
+			this.btnCalculateRotational.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateRotational.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateRotational.Location = new System.Drawing.Point(347, 276);
+			this.btnCalculateRotational.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateRotational.Name = "btnCalculateRotational";
+			this.btnCalculateRotational.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateRotational.TabIndex = 27;
+			this.btnCalculateRotational.Text = "Calculate";
+			this.btnCalculateRotational.UseVisualStyleBackColor = false;
+			this.btnCalculateRotational.Click += new System.EventHandler(this.btnCalculateRotational_Click);
+			// 
+			// label81
+			// 
+			this.label81.AutoSize = true;
+			this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label81.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label81.Location = new System.Drawing.Point(333, 64);
+			this.label81.Name = "label81";
+			this.label81.Size = new System.Drawing.Size(75, 22);
+			this.label81.TabIndex = 26;
+			this.label81.Text = "yarıçap";
+			// 
+			// label82
+			// 
+			this.label82.AutoSize = true;
+			this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label82.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label82.Location = new System.Drawing.Point(333, 98);
+			this.label82.Name = "label82";
+			this.label82.Size = new System.Drawing.Size(161, 22);
+			this.label82.TabIndex = 25;
+			this.label82.Text = "Teğetsel Kuvvet:";
+			// 
+			// label83
+			// 
+			this.label83.AutoSize = true;
+			this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label83.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label83.Location = new System.Drawing.Point(331, 159);
+			this.label83.Name = "label83";
+			this.label83.Size = new System.Drawing.Size(121, 22);
+			this.label83.TabIndex = 24;
+			this.label83.Text = "1.cisim kütle";
+			// 
+			// plotRotational
+			// 
+			this.plotRotational.BackColor = System.Drawing.Color.Crimson;
+			this.plotRotational.Location = new System.Drawing.Point(655, 349);
+			this.plotRotational.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.plotRotational.Name = "plotRotational";
+			this.plotRotational.Size = new System.Drawing.Size(607, 373);
+			this.plotRotational.TabIndex = 19;
+			// 
+			// pnlCollision
+			// 
+			this.pnlCollision.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlCollision.Controls.Add(this.label7);
+			this.pnlCollision.Controls.Add(this.rtbCollisionResults);
+			this.pnlCollision.Controls.Add(this.txtVel2YCollision);
+			this.pnlCollision.Controls.Add(this.txtVel1YCollision);
+			this.pnlCollision.Controls.Add(this.label26);
+			this.pnlCollision.Controls.Add(this.label28);
+			this.pnlCollision.Controls.Add(this.txtRestitution);
+			this.pnlCollision.Controls.Add(this.label32);
+			this.pnlCollision.Controls.Add(this.txtVel2XCollision);
+			this.pnlCollision.Controls.Add(this.label33);
+			this.pnlCollision.Controls.Add(this.plotCollision);
+			this.pnlCollision.Controls.Add(this.txtVel1XCollision);
+			this.pnlCollision.Controls.Add(this.txtMass2Collision);
+			this.pnlCollision.Controls.Add(this.txtMass1Collision);
+			this.pnlCollision.Controls.Add(this.btnCalculateCollision);
+			this.pnlCollision.Controls.Add(this.label39);
+			this.pnlCollision.Controls.Add(this.label40);
+			this.pnlCollision.Controls.Add(this.label44);
+			this.pnlCollision.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlCollision.Location = new System.Drawing.Point(0, 0);
+			this.pnlCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlCollision.Name = "pnlCollision";
+			this.pnlCollision.Size = new System.Drawing.Size(1283, 753);
+			this.pnlCollision.TabIndex = 40;
+			this.pnlCollision.TabStop = true;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label7.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label7.Location = new System.Drawing.Point(489, 29);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(78, 22);
+			this.label7.TabIndex = 38;
+			this.label7.Text = "1.cisim ";
+			// 
+			// rtbCollisionResults
+			// 
+			this.rtbCollisionResults.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbCollisionResults.Location = new System.Drawing.Point(785, 27);
+			this.rtbCollisionResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbCollisionResults.Name = "rtbCollisionResults";
+			this.rtbCollisionResults.ReadOnly = true;
+			this.rtbCollisionResults.Size = new System.Drawing.Size(484, 318);
+			this.rtbCollisionResults.TabIndex = 37;
+			this.rtbCollisionResults.Text = "";
+			// 
+			// txtVel2YCollision
+			// 
+			this.txtVel2YCollision.Location = new System.Drawing.Point(585, 499);
+			this.txtVel2YCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtVel2YCollision.Name = "txtVel2YCollision";
+			this.txtVel2YCollision.Size = new System.Drawing.Size(131, 22);
+			this.txtVel2YCollision.TabIndex = 29;
+			// 
+			// txtVel1YCollision
+			// 
+			this.txtVel1YCollision.Location = new System.Drawing.Point(629, 97);
+			this.txtVel1YCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtVel1YCollision.Name = "txtVel1YCollision";
+			this.txtVel1YCollision.Size = new System.Drawing.Size(131, 22);
+			this.txtVel1YCollision.TabIndex = 28;
+			// 
+			// label26
+			// 
+			this.label26.AutoSize = true;
+			this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label26.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label26.Location = new System.Drawing.Point(336, 492);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(159, 22);
+			this.label26.TabIndex = 26;
+			this.label26.Text = "ikinci cisim y hızı";
+			// 
+			// label28
+			// 
+			this.label28.AutoSize = true;
+			this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label28.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label28.Location = new System.Drawing.Point(383, 97);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(33, 22);
+			this.label28.TabIndex = 24;
+			this.label28.Text = "Vy";
+			// 
+			// txtRestitution
+			// 
+			this.txtRestitution.Location = new System.Drawing.Point(583, 535);
+			this.txtRestitution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtRestitution.Name = "txtRestitution";
+			this.txtRestitution.Size = new System.Drawing.Size(131, 22);
+			this.txtRestitution.TabIndex = 23;
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label32.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label32.Location = new System.Drawing.Point(349, 533);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(172, 22);
+			this.label32.TabIndex = 22;
+			this.label32.Text = "Esneklik Katsayısı";
+			// 
+			// txtVel2XCollision
+			// 
+			this.txtVel2XCollision.Location = new System.Drawing.Point(577, 449);
+			this.txtVel2XCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtVel2XCollision.Name = "txtVel2XCollision";
+			this.txtVel2XCollision.Size = new System.Drawing.Size(131, 22);
+			this.txtVel2XCollision.TabIndex = 21;
+			// 
+			// label33
+			// 
+			this.label33.AutoSize = true;
+			this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label33.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label33.Location = new System.Drawing.Point(343, 450);
+			this.label33.Name = "label33";
+			this.label33.Size = new System.Drawing.Size(163, 22);
+			this.label33.TabIndex = 20;
+			this.label33.Text = "2.Cisim İlk Hızı x:";
+			// 
+			// plotCollision
+			// 
+			this.plotCollision.BackColor = System.Drawing.Color.Crimson;
+			this.plotCollision.Location = new System.Drawing.Point(797, 363);
+			this.plotCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.plotCollision.Name = "plotCollision";
+			this.plotCollision.Size = new System.Drawing.Size(469, 359);
+			this.plotCollision.TabIndex = 19;
+			// 
+			// txtVel1XCollision
+			// 
+			this.txtVel1XCollision.Location = new System.Drawing.Point(586, 61);
+			this.txtVel1XCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtVel1XCollision.Name = "txtVel1XCollision";
+			this.txtVel1XCollision.Size = new System.Drawing.Size(131, 22);
+			this.txtVel1XCollision.TabIndex = 15;
+			// 
+			// txtMass2Collision
+			// 
+			this.txtMass2Collision.Location = new System.Drawing.Point(575, 423);
+			this.txtMass2Collision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtMass2Collision.Name = "txtMass2Collision";
+			this.txtMass2Collision.Size = new System.Drawing.Size(131, 22);
+			this.txtMass2Collision.TabIndex = 14;
+			// 
+			// txtMass1Collision
+			// 
+			this.txtMass1Collision.Location = new System.Drawing.Point(597, 147);
+			this.txtMass1Collision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtMass1Collision.Name = "txtMass1Collision";
+			this.txtMass1Collision.Size = new System.Drawing.Size(131, 22);
+			this.txtMass1Collision.TabIndex = 13;
+			// 
+			// btnCalculateCollision
+			// 
+			this.btnCalculateCollision.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateCollision.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateCollision.Location = new System.Drawing.Point(404, 566);
+			this.btnCalculateCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateCollision.Name = "btnCalculateCollision";
+			this.btnCalculateCollision.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateCollision.TabIndex = 12;
+			this.btnCalculateCollision.Text = "Calculate";
+			this.btnCalculateCollision.UseVisualStyleBackColor = false;
+			this.btnCalculateCollision.Click += new System.EventHandler(this.btnCalculateCollision_Click);
+			// 
+			// label39
+			// 
+			this.label39.AutoSize = true;
+			this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label39.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label39.Location = new System.Drawing.Point(383, 68);
+			this.label39.Name = "label39";
+			this.label39.Size = new System.Drawing.Size(33, 22);
+			this.label39.TabIndex = 11;
+			this.label39.Text = "Vx";
+			// 
+			// label40
+			// 
+			this.label40.AutoSize = true;
+			this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label40.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label40.Location = new System.Drawing.Point(341, 420);
+			this.label40.Name = "label40";
+			this.label40.Size = new System.Drawing.Size(132, 22);
+			this.label40.TabIndex = 10;
+			this.label40.Text = "Cisim Kütlesi:";
+			// 
+			// label44
+			// 
+			this.label44.AutoSize = true;
+			this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label44.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label44.Location = new System.Drawing.Point(369, 145);
+			this.label44.Name = "label44";
+			this.label44.Size = new System.Drawing.Size(121, 22);
+			this.label44.TabIndex = 9;
+			this.label44.Text = "1.cisim kütle";
+			// 
+			// pnlImpulse
+			// 
+			this.pnlImpulse.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlImpulse.Controls.Add(this.rtbImpulseResults);
+			this.pnlImpulse.Controls.Add(this.txtImpulseInitialVel);
+			this.pnlImpulse.Controls.Add(this.label68);
+			this.pnlImpulse.Controls.Add(this.txtTimeLimitImpulse);
+			this.pnlImpulse.Controls.Add(this.txtMassFuncImpulse);
+			this.pnlImpulse.Controls.Add(this.txtForceFuncImpulse);
+			this.pnlImpulse.Controls.Add(this.btnCalculateImpulse);
+			this.pnlImpulse.Controls.Add(this.label70);
+			this.pnlImpulse.Controls.Add(this.label76);
+			this.pnlImpulse.Controls.Add(this.label77);
+			this.pnlImpulse.Controls.Add(this.plotImpulse);
+			this.pnlImpulse.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlImpulse.Location = new System.Drawing.Point(0, 0);
+			this.pnlImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlImpulse.Name = "pnlImpulse";
+			this.pnlImpulse.Size = new System.Drawing.Size(1283, 753);
+			this.pnlImpulse.TabIndex = 39;
+			this.pnlImpulse.TabStop = true;
+			// 
+			// rtbImpulseResults
+			// 
+			this.rtbImpulseResults.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbImpulseResults.Location = new System.Drawing.Point(756, 25);
+			this.rtbImpulseResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbImpulseResults.Name = "rtbImpulseResults";
+			this.rtbImpulseResults.ReadOnly = true;
+			this.rtbImpulseResults.Size = new System.Drawing.Size(484, 318);
+			this.rtbImpulseResults.TabIndex = 36;
+			this.rtbImpulseResults.Text = "";
+			// 
+			// txtImpulseInitialVel
+			// 
+			this.txtImpulseInitialVel.Location = new System.Drawing.Point(582, 138);
+			this.txtImpulseInitialVel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtImpulseInitialVel.Name = "txtImpulseInitialVel";
+			this.txtImpulseInitialVel.Size = new System.Drawing.Size(131, 22);
+			this.txtImpulseInitialVel.TabIndex = 34;
+			// 
+			// label68
+			// 
+			this.label68.AutoSize = true;
+			this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label68.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label68.Location = new System.Drawing.Point(349, 137);
+			this.label68.Name = "label68";
+			this.label68.Size = new System.Drawing.Size(111, 22);
+			this.label68.TabIndex = 33;
+			this.label68.Text = "İlk Hız (v1):";
+			// 
+			// txtTimeLimitImpulse
+			// 
+			this.txtTimeLimitImpulse.Location = new System.Drawing.Point(570, 100);
+			this.txtTimeLimitImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtTimeLimitImpulse.Name = "txtTimeLimitImpulse";
+			this.txtTimeLimitImpulse.Size = new System.Drawing.Size(131, 22);
+			this.txtTimeLimitImpulse.TabIndex = 30;
+			// 
+			// txtMassFuncImpulse
+			// 
+			this.txtMassFuncImpulse.Location = new System.Drawing.Point(570, 65);
+			this.txtMassFuncImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtMassFuncImpulse.Name = "txtMassFuncImpulse";
+			this.txtMassFuncImpulse.Size = new System.Drawing.Size(131, 22);
+			this.txtMassFuncImpulse.TabIndex = 29;
+			// 
+			// txtForceFuncImpulse
+			// 
+			this.txtForceFuncImpulse.Location = new System.Drawing.Point(570, 31);
+			this.txtForceFuncImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtForceFuncImpulse.Name = "txtForceFuncImpulse";
+			this.txtForceFuncImpulse.Size = new System.Drawing.Size(131, 22);
+			this.txtForceFuncImpulse.TabIndex = 28;
+			// 
+			// btnCalculateImpulse
+			// 
+			this.btnCalculateImpulse.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateImpulse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateImpulse.Location = new System.Drawing.Point(348, 181);
+			this.btnCalculateImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateImpulse.Name = "btnCalculateImpulse";
+			this.btnCalculateImpulse.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateImpulse.TabIndex = 27;
+			this.btnCalculateImpulse.Text = "Calculate";
+			this.btnCalculateImpulse.UseVisualStyleBackColor = false;
+			this.btnCalculateImpulse.Click += new System.EventHandler(this.btnCalculateImpulse_Click_1);
+			// 
+			// label70
+			// 
+			this.label70.AutoSize = true;
+			this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label70.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label70.Location = new System.Drawing.Point(337, 65);
+			this.label70.Name = "label70";
+			this.label70.Size = new System.Drawing.Size(158, 22);
+			this.label70.TabIndex = 26;
+			this.label70.Text = "Kütle fonksiyonu";
+			// 
+			// label76
+			// 
+			this.label76.AutoSize = true;
+			this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label76.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label76.Location = new System.Drawing.Point(337, 100);
+			this.label76.Name = "label76";
+			this.label76.Size = new System.Drawing.Size(123, 22);
+			this.label76.TabIndex = 25;
+			this.label76.Text = "Zaman Limiti";
+			// 
+			// label77
+			// 
+			this.label77.AutoSize = true;
+			this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label77.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label77.Location = new System.Drawing.Point(337, 28);
+			this.label77.Name = "label77";
+			this.label77.Size = new System.Drawing.Size(191, 22);
+			this.label77.TabIndex = 24;
+			this.label77.Text = "Kuvvet Fonksiyonu :";
+			// 
+			// plotImpulse
+			// 
+			this.plotImpulse.BackColor = System.Drawing.Color.Crimson;
+			this.plotImpulse.Location = new System.Drawing.Point(797, 363);
+			this.plotImpulse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.plotImpulse.Name = "plotImpulse";
+			this.plotImpulse.Size = new System.Drawing.Size(469, 359);
+			this.plotImpulse.TabIndex = 19;
 			// 
 			// pnlWorkEnergy
 			// 
@@ -1537,287 +2041,6 @@
 			this.label61.TabIndex = 9;
 			this.label61.Text = "Bobin Sarım Sayısı (N):";
 			// 
-			// pnlMomentum1
-			// 
-			this.pnlMomentum1.BackColor = System.Drawing.Color.SlateGray;
-			this.pnlMomentum1.Controls.Add(this.lblItmeSonuc);
-			this.pnlMomentum1.Controls.Add(this.txtItmeV1);
-			this.pnlMomentum1.Controls.Add(this.label68);
-			this.pnlMomentum1.Controls.Add(this.txtItmeM);
-			this.pnlMomentum1.Controls.Add(this.label69);
-			this.pnlMomentum1.Controls.Add(this.txtT2);
-			this.pnlMomentum1.Controls.Add(this.txtT1);
-			this.pnlMomentum1.Controls.Add(this.txtFt);
-			this.pnlMomentum1.Controls.Add(this.btnItmeHesapla);
-			this.pnlMomentum1.Controls.Add(this.label70);
-			this.pnlMomentum1.Controls.Add(this.label76);
-			this.pnlMomentum1.Controls.Add(this.label77);
-			this.pnlMomentum1.Controls.Add(this.txtE);
-			this.pnlMomentum1.Controls.Add(this.label75);
-			this.pnlMomentum1.Controls.Add(this.txtV2i);
-			this.pnlMomentum1.Controls.Add(this.label71);
-			this.pnlMomentum1.Controls.Add(this.formsPlotMomentum);
-			this.pnlMomentum1.Controls.Add(this.lblMomentumSonuc);
-			this.pnlMomentum1.Controls.Add(this.txtM2);
-			this.pnlMomentum1.Controls.Add(this.txtV1i);
-			this.pnlMomentum1.Controls.Add(this.txtM1);
-			this.pnlMomentum1.Controls.Add(this.btnMomentumHesapla);
-			this.pnlMomentum1.Controls.Add(this.ilkhız);
-			this.pnlMomentum1.Controls.Add(this.label72);
-			this.pnlMomentum1.Controls.Add(this.label73);
-			this.pnlMomentum1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlMomentum1.Location = new System.Drawing.Point(0, 0);
-			this.pnlMomentum1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.pnlMomentum1.Name = "pnlMomentum1";
-			this.pnlMomentum1.Size = new System.Drawing.Size(1283, 753);
-			this.pnlMomentum1.TabIndex = 39;
-			this.pnlMomentum1.TabStop = true;
-			// 
-			// lblItmeSonuc
-			// 
-			this.lblItmeSonuc.AutoSize = true;
-			this.lblItmeSonuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblItmeSonuc.Location = new System.Drawing.Point(364, 554);
-			this.lblItmeSonuc.Name = "lblItmeSonuc";
-			this.lblItmeSonuc.Size = new System.Drawing.Size(124, 22);
-			this.lblItmeSonuc.TabIndex = 35;
-			this.lblItmeSonuc.Text = "lblItmeSonuc";
-			// 
-			// txtItmeV1
-			// 
-			this.txtItmeV1.Location = new System.Drawing.Point(613, 442);
-			this.txtItmeV1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtItmeV1.Name = "txtItmeV1";
-			this.txtItmeV1.Size = new System.Drawing.Size(131, 22);
-			this.txtItmeV1.TabIndex = 34;
-			// 
-			// label68
-			// 
-			this.label68.AutoSize = true;
-			this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label68.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label68.Location = new System.Drawing.Point(380, 441);
-			this.label68.Name = "label68";
-			this.label68.Size = new System.Drawing.Size(111, 22);
-			this.label68.TabIndex = 33;
-			this.label68.Text = "İlk Hız (v1):";
-			// 
-			// txtItmeM
-			// 
-			this.txtItmeM.Location = new System.Drawing.Point(613, 404);
-			this.txtItmeM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtItmeM.Name = "txtItmeM";
-			this.txtItmeM.Size = new System.Drawing.Size(131, 22);
-			this.txtItmeM.TabIndex = 32;
-			// 
-			// label69
-			// 
-			this.label69.AutoSize = true;
-			this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label69.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label69.Location = new System.Drawing.Point(380, 406);
-			this.label69.Name = "label69";
-			this.label69.Size = new System.Drawing.Size(97, 22);
-			this.label69.TabIndex = 31;
-			this.label69.Text = "Kütle (m):";
-			// 
-			// txtT2
-			// 
-			this.txtT2.Location = new System.Drawing.Point(613, 377);
-			this.txtT2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtT2.Name = "txtT2";
-			this.txtT2.Size = new System.Drawing.Size(131, 22);
-			this.txtT2.TabIndex = 30;
-			// 
-			// txtT1
-			// 
-			this.txtT1.Location = new System.Drawing.Point(613, 342);
-			this.txtT1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtT1.Name = "txtT1";
-			this.txtT1.Size = new System.Drawing.Size(131, 22);
-			this.txtT1.TabIndex = 29;
-			// 
-			// txtFt
-			// 
-			this.txtFt.Location = new System.Drawing.Point(613, 308);
-			this.txtFt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtFt.Name = "txtFt";
-			this.txtFt.Size = new System.Drawing.Size(131, 22);
-			this.txtFt.TabIndex = 28;
-			// 
-			// btnItmeHesapla
-			// 
-			this.btnItmeHesapla.BackColor = System.Drawing.Color.Pink;
-			this.btnItmeHesapla.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.btnItmeHesapla.Location = new System.Drawing.Point(368, 505);
-			this.btnItmeHesapla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnItmeHesapla.Name = "btnItmeHesapla";
-			this.btnItmeHesapla.Size = new System.Drawing.Size(117, 34);
-			this.btnItmeHesapla.TabIndex = 27;
-			this.btnItmeHesapla.Text = "Calculate";
-			this.btnItmeHesapla.UseVisualStyleBackColor = false;
-			this.btnItmeHesapla.Click += new System.EventHandler(this.btnItmeHesapla_Click);
-			// 
-			// label70
-			// 
-			this.label70.AutoSize = true;
-			this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label70.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label70.Location = new System.Drawing.Point(380, 342);
-			this.label70.Name = "label70";
-			this.label70.Size = new System.Drawing.Size(211, 22);
-			this.label70.TabIndex = 26;
-			this.label70.Text = "Başlangıç Zamanı (t1):";
-			// 
-			// label76
-			// 
-			this.label76.AutoSize = true;
-			this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label76.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label76.Location = new System.Drawing.Point(380, 377);
-			this.label76.Name = "label76";
-			this.label76.Size = new System.Drawing.Size(163, 22);
-			this.label76.TabIndex = 25;
-			this.label76.Text = "Bitiş Zamanı (t2):";
-			// 
-			// label77
-			// 
-			this.label77.AutoSize = true;
-			this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label77.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label77.Location = new System.Drawing.Point(380, 305);
-			this.label77.Name = "label77";
-			this.label77.Size = new System.Drawing.Size(223, 22);
-			this.label77.TabIndex = 24;
-			this.label77.Text = "Kuvvet Fonksiyonu F(t):";
-			// 
-			// txtE
-			// 
-			this.txtE.Location = new System.Drawing.Point(605, 172);
-			this.txtE.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtE.Name = "txtE";
-			this.txtE.Size = new System.Drawing.Size(131, 22);
-			this.txtE.TabIndex = 23;
-			// 
-			// label75
-			// 
-			this.label75.AutoSize = true;
-			this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label75.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label75.Location = new System.Drawing.Point(371, 170);
-			this.label75.Name = "label75";
-			this.label75.Size = new System.Drawing.Size(187, 22);
-			this.label75.TabIndex = 22;
-			this.label75.Text = "Çarpışma Katsayısı:";
-			// 
-			// txtV2i
-			// 
-			this.txtV2i.Location = new System.Drawing.Point(605, 134);
-			this.txtV2i.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtV2i.Name = "txtV2i";
-			this.txtV2i.Size = new System.Drawing.Size(131, 22);
-			this.txtV2i.TabIndex = 21;
-			// 
-			// label71
-			// 
-			this.label71.AutoSize = true;
-			this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label71.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label71.Location = new System.Drawing.Point(371, 135);
-			this.label71.Name = "label71";
-			this.label71.Size = new System.Drawing.Size(147, 22);
-			this.label71.TabIndex = 20;
-			this.label71.Text = "2.Cisim İlk Hızı:";
-			// 
-			// formsPlotMomentum
-			// 
-			this.formsPlotMomentum.BackColor = System.Drawing.Color.Crimson;
-			this.formsPlotMomentum.Location = new System.Drawing.Point(781, 314);
-			this.formsPlotMomentum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.formsPlotMomentum.Name = "formsPlotMomentum";
-			this.formsPlotMomentum.Size = new System.Drawing.Size(469, 359);
-			this.formsPlotMomentum.TabIndex = 19;
-			// 
-			// lblMomentumSonuc
-			// 
-			this.lblMomentumSonuc.AutoSize = true;
-			this.lblMomentumSonuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblMomentumSonuc.Location = new System.Drawing.Point(789, 33);
-			this.lblMomentumSonuc.Name = "lblMomentumSonuc";
-			this.lblMomentumSonuc.Size = new System.Drawing.Size(77, 22);
-			this.lblMomentumSonuc.TabIndex = 18;
-			this.lblMomentumSonuc.Text = "Results";
-			// 
-			// txtM2
-			// 
-			this.txtM2.Location = new System.Drawing.Point(605, 106);
-			this.txtM2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtM2.Name = "txtM2";
-			this.txtM2.Size = new System.Drawing.Size(131, 22);
-			this.txtM2.TabIndex = 15;
-			// 
-			// txtV1i
-			// 
-			this.txtV1i.Location = new System.Drawing.Point(605, 71);
-			this.txtV1i.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtV1i.Name = "txtV1i";
-			this.txtV1i.Size = new System.Drawing.Size(131, 22);
-			this.txtV1i.TabIndex = 14;
-			// 
-			// txtM1
-			// 
-			this.txtM1.Location = new System.Drawing.Point(605, 38);
-			this.txtM1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtM1.Name = "txtM1";
-			this.txtM1.Size = new System.Drawing.Size(131, 22);
-			this.txtM1.TabIndex = 13;
-			// 
-			// btnMomentumHesapla
-			// 
-			this.btnMomentumHesapla.BackColor = System.Drawing.Color.Pink;
-			this.btnMomentumHesapla.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.btnMomentumHesapla.Location = new System.Drawing.Point(375, 218);
-			this.btnMomentumHesapla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnMomentumHesapla.Name = "btnMomentumHesapla";
-			this.btnMomentumHesapla.Size = new System.Drawing.Size(117, 34);
-			this.btnMomentumHesapla.TabIndex = 12;
-			this.btnMomentumHesapla.Text = "Calculate";
-			this.btnMomentumHesapla.UseVisualStyleBackColor = false;
-			this.btnMomentumHesapla.Click += new System.EventHandler(this.btnMomentumHesapla_Click);
-			// 
-			// ilkhız
-			// 
-			this.ilkhız.AutoSize = true;
-			this.ilkhız.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.ilkhız.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.ilkhız.Location = new System.Drawing.Point(371, 71);
-			this.ilkhız.Name = "ilkhız";
-			this.ilkhız.Size = new System.Drawing.Size(61, 22);
-			this.ilkhız.TabIndex = 11;
-			this.ilkhız.Text = "ilk hız";
-			// 
-			// label72
-			// 
-			this.label72.AutoSize = true;
-			this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label72.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label72.Location = new System.Drawing.Point(371, 106);
-			this.label72.Name = "label72";
-			this.label72.Size = new System.Drawing.Size(132, 22);
-			this.label72.TabIndex = 10;
-			this.label72.Text = "Cisim Kütlesi:";
-			// 
-			// label73
-			// 
-			this.label73.AutoSize = true;
-			this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label73.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label73.Location = new System.Drawing.Point(371, 34);
-			this.label73.Name = "label73";
-			this.label73.Size = new System.Drawing.Size(121, 22);
-			this.label73.TabIndex = 9;
-			this.label73.Text = "1.cisim kütle";
-			// 
 			// pnlElectricGauss
 			// 
 			this.pnlElectricGauss.BackColor = System.Drawing.Color.SlateGray;
@@ -2241,149 +2464,35 @@
 			this.formsPlotHarmonik.Size = new System.Drawing.Size(533, 338);
 			this.formsPlotHarmonik.TabIndex = 19;
 			// 
-			// pnlRotational
+			// rtbRotationalResults
 			// 
-			this.pnlRotational.BackColor = System.Drawing.Color.SlateGray;
-			this.pnlRotational.Controls.Add(this.cmbGeometri);
-			this.pnlRotational.Controls.Add(this.txtDonmeT);
-			this.pnlRotational.Controls.Add(this.label79);
-			this.pnlRotational.Controls.Add(this.lblDonmeSonuc);
-			this.pnlRotational.Controls.Add(this.txtDonmeF);
-			this.pnlRotational.Controls.Add(this.txtDonmeR);
-			this.pnlRotational.Controls.Add(this.txtDonmeM);
-			this.pnlRotational.Controls.Add(this.btnDonmeHesapla);
-			this.pnlRotational.Controls.Add(this.label81);
-			this.pnlRotational.Controls.Add(this.label82);
-			this.pnlRotational.Controls.Add(this.label83);
-			this.pnlRotational.Controls.Add(this.formsPlotDonme);
-			this.pnlRotational.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlRotational.Location = new System.Drawing.Point(0, 0);
-			this.pnlRotational.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.pnlRotational.Name = "pnlRotational";
-			this.pnlRotational.Size = new System.Drawing.Size(1283, 753);
-			this.pnlRotational.TabIndex = 6;
-			this.pnlRotational.TabStop = true;
+			this.rtbRotationalResults.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbRotationalResults.Location = new System.Drawing.Point(765, 19);
+			this.rtbRotationalResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbRotationalResults.Name = "rtbRotationalResults";
+			this.rtbRotationalResults.ReadOnly = true;
+			this.rtbRotationalResults.Size = new System.Drawing.Size(484, 318);
+			this.rtbRotationalResults.TabIndex = 38;
+			this.rtbRotationalResults.Text = "";
 			// 
-			// cmbGeometri
+			// txtDragCoefRot
 			// 
-			this.cmbGeometri.FormattingEnabled = true;
-			this.cmbGeometri.Items.AddRange(new object[] {
-            "İçi Dolu Silindir",
-            "Boş Çember",
-            "Küre"});
-			this.cmbGeometri.Location = new System.Drawing.Point(337, 22);
-			this.cmbGeometri.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.cmbGeometri.Name = "cmbGeometri";
-			this.cmbGeometri.Size = new System.Drawing.Size(221, 24);
-			this.cmbGeometri.TabIndex = 34;
+			this.txtDragCoefRot.Location = new System.Drawing.Point(564, 200);
+			this.txtDragCoefRot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtDragCoefRot.Name = "txtDragCoefRot";
+			this.txtDragCoefRot.Size = new System.Drawing.Size(131, 22);
+			this.txtDragCoefRot.TabIndex = 40;
 			// 
-			// txtDonmeT
+			// label25
 			// 
-			this.txtDonmeT.Location = new System.Drawing.Point(567, 126);
-			this.txtDonmeT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtDonmeT.Name = "txtDonmeT";
-			this.txtDonmeT.Size = new System.Drawing.Size(131, 22);
-			this.txtDonmeT.TabIndex = 33;
-			// 
-			// label79
-			// 
-			this.label79.AutoSize = true;
-			this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label79.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label79.Location = new System.Drawing.Point(333, 128);
-			this.label79.Name = "label79";
-			this.label79.Size = new System.Drawing.Size(167, 22);
-			this.label79.TabIndex = 32;
-			this.label79.Text = "Uygulama Süresi:";
-			// 
-			// lblDonmeSonuc
-			// 
-			this.lblDonmeSonuc.AutoSize = true;
-			this.lblDonmeSonuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblDonmeSonuc.Location = new System.Drawing.Point(751, 25);
-			this.lblDonmeSonuc.Name = "lblDonmeSonuc";
-			this.lblDonmeSonuc.Size = new System.Drawing.Size(116, 22);
-			this.lblDonmeSonuc.TabIndex = 31;
-			this.lblDonmeSonuc.Text = "Max Range:";
-			// 
-			// txtDonmeF
-			// 
-			this.txtDonmeF.Location = new System.Drawing.Point(567, 98);
-			this.txtDonmeF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtDonmeF.Name = "txtDonmeF";
-			this.txtDonmeF.Size = new System.Drawing.Size(131, 22);
-			this.txtDonmeF.TabIndex = 30;
-			// 
-			// txtDonmeR
-			// 
-			this.txtDonmeR.Location = new System.Drawing.Point(567, 64);
-			this.txtDonmeR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtDonmeR.Name = "txtDonmeR";
-			this.txtDonmeR.Size = new System.Drawing.Size(131, 22);
-			this.txtDonmeR.TabIndex = 29;
-			// 
-			// txtDonmeM
-			// 
-			this.txtDonmeM.Location = new System.Drawing.Point(564, 162);
-			this.txtDonmeM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtDonmeM.Name = "txtDonmeM";
-			this.txtDonmeM.Size = new System.Drawing.Size(131, 22);
-			this.txtDonmeM.TabIndex = 28;
-			// 
-			// btnDonmeHesapla
-			// 
-			this.btnDonmeHesapla.BackColor = System.Drawing.Color.Pink;
-			this.btnDonmeHesapla.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.btnDonmeHesapla.Location = new System.Drawing.Point(337, 210);
-			this.btnDonmeHesapla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnDonmeHesapla.Name = "btnDonmeHesapla";
-			this.btnDonmeHesapla.Size = new System.Drawing.Size(117, 34);
-			this.btnDonmeHesapla.TabIndex = 27;
-			this.btnDonmeHesapla.Text = "Calculate";
-			this.btnDonmeHesapla.UseVisualStyleBackColor = false;
-			this.btnDonmeHesapla.Click += new System.EventHandler(this.btnDonmeHesapla_Click);
-			// 
-			// label81
-			// 
-			this.label81.AutoSize = true;
-			this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label81.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label81.Location = new System.Drawing.Point(333, 64);
-			this.label81.Name = "label81";
-			this.label81.Size = new System.Drawing.Size(75, 22);
-			this.label81.TabIndex = 26;
-			this.label81.Text = "yarıçap";
-			// 
-			// label82
-			// 
-			this.label82.AutoSize = true;
-			this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label82.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label82.Location = new System.Drawing.Point(333, 98);
-			this.label82.Name = "label82";
-			this.label82.Size = new System.Drawing.Size(161, 22);
-			this.label82.TabIndex = 25;
-			this.label82.Text = "Teğetsel Kuvvet:";
-			// 
-			// label83
-			// 
-			this.label83.AutoSize = true;
-			this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label83.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label83.Location = new System.Drawing.Point(331, 159);
-			this.label83.Name = "label83";
-			this.label83.Size = new System.Drawing.Size(121, 22);
-			this.label83.TabIndex = 24;
-			this.label83.Text = "1.cisim kütle";
-			// 
-			// formsPlotDonme
-			// 
-			this.formsPlotDonme.BackColor = System.Drawing.Color.Crimson;
-			this.formsPlotDonme.Location = new System.Drawing.Point(891, 441);
-			this.formsPlotDonme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.formsPlotDonme.Name = "formsPlotDonme";
-			this.formsPlotDonme.Size = new System.Drawing.Size(371, 234);
-			this.formsPlotDonme.TabIndex = 19;
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label25.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label25.Location = new System.Drawing.Point(331, 197);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(149, 22);
+			this.label25.TabIndex = 39;
+			this.label25.Text = "DragCoefficient\r\n";
 			// 
 			// TemelFizikForm
 			// 
@@ -2401,7 +2510,6 @@
 			this.Name = "TemelFizikForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "temefizikForm";
-			this.Load += new System.EventHandler(this.temefizikForm_Load);
 			this.pnlSidebar.ResumeLayout(false);
 			this.pnlSidebar.PerformLayout();
 			this.pnlKinematik.ResumeLayout(false);
@@ -2409,6 +2517,12 @@
 			this.pnlProjectileMotion.ResumeLayout(false);
 			this.pnlProjectileMotion.PerformLayout();
 			this.pnlMainFizik.ResumeLayout(false);
+			this.pnlRotational.ResumeLayout(false);
+			this.pnlRotational.PerformLayout();
+			this.pnlCollision.ResumeLayout(false);
+			this.pnlCollision.PerformLayout();
+			this.pnlImpulse.ResumeLayout(false);
+			this.pnlImpulse.PerformLayout();
 			this.pnlWorkEnergy.ResumeLayout(false);
 			this.pnlWorkEnergy.PerformLayout();
 			this.pnlSourcesOfMagnetic.ResumeLayout(false);
@@ -2421,8 +2535,6 @@
 			this.pnlMagneticFields.PerformLayout();
 			this.pnlFaraday.ResumeLayout(false);
 			this.pnlFaraday.PerformLayout();
-			this.pnlMomentum1.ResumeLayout(false);
-			this.pnlMomentum1.PerformLayout();
 			this.pnlElectricGauss.ResumeLayout(false);
 			this.pnlElectricGauss.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tbGaussYaricap)).EndInit();
@@ -2430,8 +2542,6 @@
 			this.pnlElectricField.PerformLayout();
 			this.pnlOscillations.ResumeLayout(false);
 			this.pnlOscillations.PerformLayout();
-			this.pnlRotational.ResumeLayout(false);
-			this.pnlRotational.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -2462,7 +2572,7 @@
 		private System.Windows.Forms.Button btnElectricField;
 		private System.Windows.Forms.Button btnOscillation;
 		private System.Windows.Forms.Button btnRotational;
-		private System.Windows.Forms.Button btnMomentum;
+		private System.Windows.Forms.Button btnImpulse;
 		private System.Windows.Forms.Button btnFaraday;
 		private System.Windows.Forms.Button btnMagneticFields;
 		private System.Windows.Forms.Button btnCapacitance;
@@ -2470,7 +2580,7 @@
 		private System.Windows.Forms.Panel pnlOscillations;
 		private ScottPlot.WinForms.FormsPlot formsPlotHarmonik;
 		private System.Windows.Forms.Panel pnlRotational;
-		private ScottPlot.WinForms.FormsPlot formsPlotDonme;
+		private ScottPlot.WinForms.FormsPlot plotRotational;
 		private System.Windows.Forms.Panel pnlInductance;
 		private ScottPlot.WinForms.FormsPlot formsPlotRL;
 		private System.Windows.Forms.Label lblRL_Sonuc;
@@ -2541,16 +2651,8 @@
 		private System.Windows.Forms.Label label29;
 		private System.Windows.Forms.Label label30;
 		private System.Windows.Forms.Label label31;
-		private System.Windows.Forms.Panel pnlMomentum1;
-		private ScottPlot.WinForms.FormsPlot formsPlotMomentum;
-		private System.Windows.Forms.Label lblMomentumSonuc;
-		private System.Windows.Forms.TextBox txtM2;
-		private System.Windows.Forms.TextBox txtV1i;
-		private System.Windows.Forms.TextBox txtM1;
-		private System.Windows.Forms.Button btnMomentumHesapla;
-		private System.Windows.Forms.Label ilkhız;
-		private System.Windows.Forms.Label label72;
-		private System.Windows.Forms.Label label73;
+		private System.Windows.Forms.Panel pnlImpulse;
+		private ScottPlot.WinForms.FormsPlot plotImpulse;
 		private System.Windows.Forms.Panel pnlWorkEnergy;
 		private ScottPlot.WinForms.FormsPlot plotWorkEnergy;
 		private System.Windows.Forms.TextBox txtEnergyFinalHeight;
@@ -2569,30 +2671,22 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label75;
-		private System.Windows.Forms.TextBox txtV2i;
-		private System.Windows.Forms.Label label71;
-		private System.Windows.Forms.TextBox txtE;
-		private System.Windows.Forms.TextBox txtItmeV1;
+		private System.Windows.Forms.TextBox txtImpulseInitialVel;
 		private System.Windows.Forms.Label label68;
-		private System.Windows.Forms.TextBox txtItmeM;
-		private System.Windows.Forms.Label label69;
-		private System.Windows.Forms.TextBox txtT2;
-		private System.Windows.Forms.TextBox txtT1;
-		private System.Windows.Forms.TextBox txtFt;
-		private System.Windows.Forms.Button btnItmeHesapla;
+		private System.Windows.Forms.TextBox txtTimeLimitImpulse;
+		private System.Windows.Forms.TextBox txtMassFuncImpulse;
+		private System.Windows.Forms.TextBox txtForceFuncImpulse;
+		private System.Windows.Forms.Button btnCalculateImpulse;
 		private System.Windows.Forms.Label label70;
 		private System.Windows.Forms.Label label76;
 		private System.Windows.Forms.Label label77;
-		private System.Windows.Forms.Label lblItmeSonuc;
-		private System.Windows.Forms.ComboBox cmbGeometri;
-		private System.Windows.Forms.TextBox txtDonmeT;
+		private System.Windows.Forms.ComboBox cmbGeometry;
+		private System.Windows.Forms.TextBox txtRotTime;
 		private System.Windows.Forms.Label label79;
-		private System.Windows.Forms.Label lblDonmeSonuc;
-		private System.Windows.Forms.TextBox txtDonmeF;
-		private System.Windows.Forms.TextBox txtDonmeR;
-		private System.Windows.Forms.TextBox txtDonmeM;
-		private System.Windows.Forms.Button btnDonmeHesapla;
+		private System.Windows.Forms.TextBox txtRotForce;
+		private System.Windows.Forms.TextBox txtRotRadius;
+		private System.Windows.Forms.TextBox txtRotMass;
+		private System.Windows.Forms.Button btnCalculateRotational;
 		private System.Windows.Forms.Label label81;
 		private System.Windows.Forms.Label label82;
 		private System.Windows.Forms.Label label83;
@@ -2628,5 +2722,29 @@
 		private ScottPlot.WinForms.FormsPlot plotKin;
 		private System.Windows.Forms.RichTextBox rtbWorkEnergyResults;
 		private System.Windows.Forms.CheckBox chkShowSteps;
+		private System.Windows.Forms.Button btnCollision;
+		private System.Windows.Forms.Panel pnlCollision;
+		private System.Windows.Forms.TextBox txtVel2YCollision;
+		private System.Windows.Forms.TextBox txtVel1YCollision;
+		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.TextBox txtRestitution;
+		private System.Windows.Forms.Label label32;
+		private System.Windows.Forms.TextBox txtVel2XCollision;
+		private System.Windows.Forms.Label label33;
+		private ScottPlot.WinForms.FormsPlot plotCollision;
+		private System.Windows.Forms.TextBox txtVel1XCollision;
+		private System.Windows.Forms.TextBox txtMass2Collision;
+		private System.Windows.Forms.TextBox txtMass1Collision;
+		private System.Windows.Forms.Button btnCalculateCollision;
+		private System.Windows.Forms.Label label39;
+		private System.Windows.Forms.Label label40;
+		private System.Windows.Forms.Label label44;
+		private System.Windows.Forms.RichTextBox rtbImpulseResults;
+		private System.Windows.Forms.RichTextBox rtbCollisionResults;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.RichTextBox rtbRotationalResults;
+		private System.Windows.Forms.TextBox txtDragCoefRot;
+		private System.Windows.Forms.Label label25;
 	}
 }

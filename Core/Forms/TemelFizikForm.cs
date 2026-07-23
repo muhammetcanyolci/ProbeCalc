@@ -12,6 +12,9 @@ using ProbeCalc.Core.Visualization;
 using NCalc;
 using ScottPlot;
 using ProbeCalc.Core.Utilities;
+using ProbeCalc.Core.Base;
+
+
 namespace ProbeCalc
 {
 	public partial class TemelFizikForm : Form
@@ -56,114 +59,77 @@ namespace ProbeCalc
 			{
 				// Ne olduğunu bilmediğimiz, öngörülemeyen diğer tüm çökme hataları için son kale
 				MessageBox.Show("Beklenmeyen bir hata oluştu: " + ex.Message, "Sistem Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-
-
+			} 
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		private void PaneliGoster(Panel gosterilecekpanel)
-		{ gosterilecekpanel.BringToFront(); }
-
-
-
-		private void temefizikForm_Load(object sender, EventArgs e)
-		{
-
-		}
-
 		private void btnKinematik_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlKinematik);
+			ShowingPanel.ShowPanel(pnlKinematik);
 		}
 
 
-		private void btnProjectileMotion_Click(object sender, EventArgs e)
+		private void btnProjectileMotion_Click_1(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlProjectileMotion);
+			ShowingPanel.ShowPanel(pnlProjectileMotion);
 		}
 		private void btnWorkEnergy_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlWorkEnergy);
+			ShowingPanel.ShowPanel(pnlWorkEnergy);
 		}
-		private void btnMomentum_Click(object sender, EventArgs e)
+		private void btnImpulse_Click_1(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlMomentum1);
+			ShowingPanel.ShowPanel(pnlImpulse);
+		}
+		private void btnCollision_Click(object sender, EventArgs e)
+		{
+			ShowingPanel.ShowPanel(pnlCollision);
 		}
 		private void btnRotational_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlRotational);
+			ShowingPanel.ShowPanel(pnlRotational);
 		}
 
 		private void btnOscilattion_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlOscillations);
+			ShowingPanel.ShowPanel(pnlOscillations);
 		}
 
 		private void btnElectricField_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlElectricField);
+			ShowingPanel.ShowPanel(pnlElectricField);
 		}
 
 		private void btnElectricGauss_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlElectricGauss);
+			ShowingPanel.ShowPanel(pnlElectricGauss);
 		}
 
 		private void btnCapacitance_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlCapacitance);
+			ShowingPanel.ShowPanel(pnlCapacitance);
 		}
 
 		private void btnMagneticFields_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlMagneticFields);
+			ShowingPanel.ShowPanel(pnlMagneticFields);
 		}
 
 		private void btnSourcesOfMagnetic_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlSourcesOfMagnetic);
+			ShowingPanel.ShowPanel(pnlSourcesOfMagnetic);
 		}
 
 		private void btnFaraday_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlFaraday);
+			ShowingPanel.ShowPanel(pnlFaraday);
 		}
 
 		private void btnInductance_Click(object sender, EventArgs e)
 		{
-			PaneliGoster(pnlInductance);
+			ShowingPanel.ShowPanel(pnlInductance);
 		}
 
 
-
+		//---------------------------------------------------------------------------------------------------------------------------------------------
 		private void btnHesaplaKinematik_Click(object sender, EventArgs e)
 		{
 			SafeExecute(() =>
@@ -171,9 +137,9 @@ namespace ProbeCalc
 				// 1. MOTORU ÇAĞIR VE DEĞERLERİ VER
 				OneDimensionalKinematicsEngine engine = new OneDimensionalKinematicsEngine();
 
-				engine.InitialVelocity = Convert.ToDouble(txtKinInitialVelocity.Text);
-				engine.Acceleration = Convert.ToDouble(txtKinAcceleration.Text);
-				engine.TotalTime = Convert.ToDouble(txtKinTotalTime.Text);
+				engine.InitialVelocity = InputParser.ParseSafe(txtKinInitialVelocity.Text);
+				engine.Acceleration = InputParser.ParseSafe(txtKinAcceleration.Text);
+				engine.TimeLimit = InputParser.ParseSafe(txtKinTotalTime.Text);
 
 				engine.Calculate();
 				rtbKinResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
@@ -191,7 +157,7 @@ namespace ProbeCalc
 
 
 		}
-
+		//---------------------------------------------------------------------------------------------------------------------------------------------
 		private void btnEgikAtıs_Click(object sender, EventArgs e)
 		{
 			SafeExecute
@@ -199,8 +165,8 @@ namespace ProbeCalc
 				{
 
 					ProjectileMotionEngine engine = new ProjectileMotionEngine();
-					engine.InitialVelocity = Convert.ToDouble(txtProjInitialVelocity.Text);
-					engine.Angle = Convert.ToDouble(txtProjAngle.Text);
+					engine.InitialVelocity = InputParser.ParseSafe(txtProjInitialVelocity.Text);
+					engine.Angle = InputParser.ParseSafe(txtProjAngle.Text);
 					engine.Calculate();
 					rtbProjResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 					// GRAFİĞİ ÇİZDİR!
@@ -209,8 +175,7 @@ namespace ProbeCalc
 				});
 		}
 
-
-
+		//---------------------------------------------------------------------------------------------------------------------------------------------
 		private void btnEnerjiHesapla_Click(object sender, EventArgs e)
 		{
 			SafeExecute(() =>
@@ -218,10 +183,10 @@ namespace ProbeCalc
 				WorkEnergyEngine engine = new WorkEnergyEngine();
 
 				
-				engine.InitialVelocity= Convert.ToDouble(txtEnergyInitialVelocity.Text);
-				engine.FirstHeight = Convert.ToDouble(txtEnergyFirstHeight.Text);
-				engine.FinalHeight = Convert.ToDouble(txtEnergyFinalHeight.Text);
-				engine.Mass = Convert.ToDouble(txtEnergyMass.Text);
+				engine.InitialVelocity= InputParser.ParseSafe(txtEnergyInitialVelocity.Text);
+				engine.FirstHeight = InputParser.ParseSafe(txtEnergyFirstHeight.Text);
+				engine.FinalHeight = InputParser.ParseSafe(txtEnergyFinalHeight.Text);
+				engine.Mass = InputParser.ParseSafe(txtEnergyMass.Text);
 
 				engine.Calculate();
 
@@ -240,6 +205,7 @@ namespace ProbeCalc
 
 
 		}
+		//---------------------------------------------------------------------------------------------------------------------------------------------
 		private void btnWorkCalculate_Click_1(object sender, EventArgs e)
 		{
 		
@@ -257,8 +223,8 @@ namespace ProbeCalc
 				};
 
 			
-				engine.StartX = Convert.ToDouble(txtWorkStartX.Text);
-				engine.EndX = Convert.ToDouble(txtWorkEndX.Text);
+				engine.StartX = InputParser.ParseSafe(txtWorkStartX.Text);
+				engine.EndX = InputParser.ParseSafe(txtWorkEndX.Text);
 
 			
 				engine.Calculate();
@@ -276,139 +242,69 @@ namespace ProbeCalc
 				);
 			});
 		}
-		
 
 
-
-
-
-
-		private void btnMomentumHesapla_Click(object sender, EventArgs e)
+		//---------------------------------------------------------------------------------------------------------------------------------------------
+		private void btnCalculateImpulse_Click_1(object sender, EventArgs e)
 		{
-			// Kutulardaki metinleri sayıya çeviriyoruz
-			if (double.TryParse(txtM1.Text, out double m1) &&
-				double.TryParse(txtV1i.Text, out double v1i) &&
-				double.TryParse(txtM2.Text, out double m2) &&
-				double.TryParse(txtV2i.Text, out double v2i) &&
-				double.TryParse(txtE.Text, out double katsayi))
-			{
-				// Katsayı kontrolü (0 ile 1 arası olmalı)
-				if (katsayi < 0 || katsayi > 1)
-				{
-					MessageBox.Show("Restitüsyon katsayısı (e) 0 ile 1 arasında olmalıdır!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
+			SafeExecute(() =>
+			{	
+				// ImpulseMomentumEngine classından nesne üretildi
+				ImpulseMomentumEngine engine = new ImpulseMomentumEngine();
+				// 1. Kullanıcıdan fonksiyonları al ve 't' harflerini 'x'e çevir
+				string rawForce = txtForceFuncImpulse.Text.ToLower().Replace("t", "x");
+				string rawMass = txtMassFuncImpulse.Text.ToLower().Replace("t", "x");
+				if (!string.IsNullOrWhiteSpace(rawForce))
+					engine.ForceFunction = (x) => MathParser.Evaluate(rawForce, x);
 
-				}
+				if (!string.IsNullOrWhiteSpace(rawMass))
+					engine.MassFunction = (x) => MathParser.Evaluate(rawMass, x);
+				engine.TimeLimit = InputParser.ParseSafe(txtTimeLimitImpulse.Text);
+				engine.InitialVelocity = InputParser.ParseSafe(txtImpulseInitialVel.Text);
+				engine.Calculate();
+				// 4.Hesapla ve Raporu Al(GetFinalReport ana sınıftan gelir)
 
-				try
-				{
-					// Fizik motorundan hesabı çek
-					var sonuc = FizikEngines.CarpismayiHesapla(m1, v1i, m2, v2i, katsayi);
+				engine.Calculate();
+				rtbImpulseResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+				ChartEngine.Draw2DChart(plotImpulse,
+				engine.ChartX,
+				engine.ChartY_Velocity,
+				"Roket / Cisim Hız Grafiği",
+				"Zaman (saniye)",
+				"Hız (m/s)");
 
-					// Sonucu yazdır (lblMomentumSonuc adında bir Label eklemeyi unutma)
-					lblMomentumSonuc.Text = $"--- ÇARPIŞMA SONUÇLARI ---\n\n" +
-											$"1. Cisim Son Hız (v1f): {sonuc.v1f:F2} m/s\n" +
-											$"2. Cisim Son Hız (v2f): {sonuc.v2f:F2} m/s\n" +
-											$"Kaybolan Enerji (Isı): {sonuc.keKayip:F2} Joule";
-					GrafikMotoru.EnerjiBarGrafigiCiz(formsPlotMomentum, m1, v1i, m2, v2i, sonuc.v1f, sonuc.v2f);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Hesaplama sırasında bir hata oluştu: " + ex.Message, "Hata");
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen tüm kutuları geçerli sayılarla doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
+			});
 		}
-
-		private void btnItmeHesapla_Click(object sender, EventArgs e)
-
-
+		private void btnCalculateRotational_Click(object sender, EventArgs e)
 		{
-			string fonksiyon = txtFt.Text;
-
-			if (double.TryParse(txtT1.Text, out double t1) &&
-				double.TryParse(txtT2.Text, out double t2) &&
-				double.TryParse(txtItmeM.Text, out double m) &&
-				double.TryParse(txtItmeV1.Text, out double v1))
+			SafeExecute(() =>
 			{
-				if (m <= 0)
-				{
-					MessageBox.Show("Kütle 0'dan büyük olmalıdır!", "Hata");
-					return;
-				}
+				RotationalMotionEngine engine = new RotationalMotionEngine();
 
-				try
-				{
-					// 1. Matmatiği çöz
-					var sonuc = FizikEngines.ItmeVeSonHizHesapla(fonksiyon, t1, t2, m, v1);
+				// 1. Verileri Okuma (Kutulardaki Text özelliklerini al)
+				engine.GeometryType = cmbGeometry.SelectedItem?.ToString() ?? "İçi Dolu Silindir";
+				engine.Mass = InputParser.ParseSafe(txtRotMass.Text);
+				engine.Radius = InputParser.ParseSafe(txtRotRadius.Text);
+				engine.AppliedForce = InputParser.ParseSafe(txtRotForce.Text);
+				engine.TimeLimit = InputParser.ParseSafe(txtRotTime.Text);
 
-					// 2. Sonucu yazdır (lblItmeSonuc adında bir Label olduğunu varsayıyorum)
-					lblItmeSonuc.Text = $"--- İTME VE MOMENTUM ANALİZİ ---\n\n" +
-										$"Toplam İtme (J): {sonuc.itme:F2} N·s\n" +
-										$"Cismin Son Hızı: {sonuc.v2:F2} m/s";
+				// Aerodinamik Sürtünme (Eğer kutu boşsa veya geçersizse 0 kabul et)
+				double drag = 0;
+				double.TryParse(txtDragCoefRot.Text, out drag);
+				engine.DragCoefficient = drag;
 
-					// 3. Çarpışma anının integralli grafiğini çiz!
-					GrafikMotoru.ItmeGrafigiCiz(formsPlotMomentum, fonksiyon, t1, t2);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Fonksiyon formatı hatalı!\nMatematiksel bir hata oluştu: " + ex.Message, "Hata");
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen tüm alanları geçerli sayılarla doldurun!", "Uyarı");
-			}
-		}
+				// 2. Hesapla ve Raporla
+				engine.Calculate();
+				rtbRotationalResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
 
-		private void btnDonmeHesapla_Click(object sender, EventArgs e)
-
-
-		{
-			// ComboBox'tan seçili metni al
-			string geometri = cmbGeometri.SelectedItem?.ToString() ?? "Disk";
-
-			// Kutu kontrolleri
-			if (double.TryParse(txtDonmeM.Text, out double m) &&
-				double.TryParse(txtDonmeR.Text, out double r) &&
-				double.TryParse(txtDonmeF.Text, out double fTeget) &&
-				double.TryParse(txtDonmeT.Text, out double t))
-			{
-				if (m <= 0 || r <= 0 || t <= 0)
-				{
-					MessageBox.Show("Kütle, yarıçap ve süre 0'dan büyük olmalıdır!", "Hata");
-					return;
-				}
-
-				try
-				{
-					// 1. Matematiksel Analizi Yap
-					var sonuc = FizikEngines.DonmeDinamiğiHesapla(geometri, m, r, fTeget, t);
-
-					// 2. Sonuçları Ekrana Yazdır (lblDonmeSonuc adında bir Label olduğunu varsayıyorum)
-					lblDonmeSonuc.Text = $"--- DÖNME DİNAMİĞİ ANALİZİ ---\n\n" +
-										 $"Seçilen Şekil: {geometri}\n" +
-										 $"Eylemsizlik Momenti (I): {sonuc.I:F3} kg·m²\n" +
-										 $"Üretilen Tork (τ): {sonuc.tork:F2} N·m\n" +
-										 $"Son Açısal Hız (ω): {sonuc.omega:F2} rad/s\n" +
-										 $"Depolanan Kinetik Enerji: {sonuc.ke:F2} Joule";
-
-					// 3. Simülasyonu Çiz!
-					GrafikMotoru.DonmeGorseliCiz(formsPlotDonme, r, fTeget, sonuc.ke, geometri);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Hesaplama hatası: " + ex.Message);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen tüm alanları geçerli sayılarla doldurun!", "Uyarı");
-			}
-
+				// 3. Çift Eksenli Telemetri Grafiğini Çizdir
+				ProbeCalc.Core.Visualization.ChartEngine.DrawRotationalTelemetryChart(
+					plotRotational, // Kendi kullandığın plot kontrolünün adı
+					engine.ChartX_Time,
+					engine.ChartY_RPM,
+					engine.ChartY_Energy
+				);
+			});
 		}
 
 		private void btnHarmonikHesapla_Click(object sender, EventArgs e)
@@ -689,5 +585,37 @@ namespace ProbeCalc
 				MessageBox.Show("Lütfen alanlara geçerli sayılar girin!", "Hata");
 			}
 		}
+
+		private void btnCalculateCollision_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				CollisionEngine engine = new CollisionEngine();
+
+				// 1. Kutulardan vektörel değerleri al
+				engine.Mass1 = InputParser.ParseSafe(txtMass1Collision.Text);
+				engine.Vel1_X = InputParser.ParseSafe(txtVel1XCollision.Text);
+				engine.Vel1_Y = InputParser.ParseSafe(txtVel1YCollision.Text);
+
+				engine.Mass2 = InputParser.ParseSafe(txtMass2Collision.Text);
+				engine.Vel2_X = InputParser.ParseSafe(txtVel2XCollision.Text);
+				engine.Vel2_Y = InputParser.ParseSafe(txtVel2YCollision.Text);
+
+				engine.Restitution = InputParser.ParseSafe(txtRestitution.Text);
+
+				// 2. Motoru Çalıştır
+				engine.Calculate();
+				rtbCollisionResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+
+				// 3. Görselleştir
+				ProbeCalc.Core.Visualization.ChartEngine.DrawCollision2DChart(
+					plotCollision,
+					engine.ChartPos_X1, engine.ChartPos_Y1,
+					engine.ChartPos_X2, engine.ChartPos_Y2
+				);
+			});
+		}
+
+
 	}
 }

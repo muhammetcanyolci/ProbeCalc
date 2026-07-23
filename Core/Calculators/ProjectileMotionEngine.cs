@@ -25,7 +25,7 @@ namespace ProbeCalc.Core.Calculators
 		}
 		// 2. ÇIKTILAR (OUTPUTS)
 		// Kullanıcının hesaplama bittikten sonra ekranda göreceği salt okunur (readonly) sonuçlar.
-		public double FlightTime { get; private set; }
+		
 		public double MaxHeight { get; private set; }
 		public double Range { get; private set; }
 		// EĞİTİM MODÜLÜ ÇIKTISI
@@ -48,7 +48,7 @@ namespace ProbeCalc.Core.Calculators
 			double horizontalVelocity = InitialVelocity * Math.Cos(radian);
 
 			// 1. Uçuş Süresi Hesabı
-			FlightTime = (2 * verticalVelocity) / Gravity;
+			TimeLimit= (2 * verticalVelocity) / Gravity;
 
 			// 2. Maksimum Yükseklik Hesabı
 			MaxHeight = Math.Pow(verticalVelocity, 2) / (2 * Gravity);
@@ -64,7 +64,7 @@ namespace ProbeCalc.Core.Calculators
 
 			SolutionSteps += "2. Adım: Uçuş Süresi (t) Hesabı (Kinematik Hareket Denklemi)\n";
 			SolutionSteps += $"   Kullanılan Formül: t = (2 * Vy) / g\n";
-			SolutionSteps += $"   İşlem: (2 * {verticalVelocity.ToString("F2")}) / {Gravity} = {FlightTime.ToString("F2")} saniye\n\n";
+			SolutionSteps += $"   İşlem: (2 * {verticalVelocity.ToString("F2")}) / {Gravity} = {TimeLimit.ToString("F2")} saniye\n\n";
 
 			SolutionSteps += "3. Adım: Maksimum Yükseklik (Hmax) Hesabı (Zamansız Hız Denklemi / Enerji Korunumu)\n";
 			SolutionSteps += $"   Kullanılan Formül: Hmax = Vy² / (2 * g)\n";
@@ -75,7 +75,7 @@ namespace ProbeCalc.Core.Calculators
 			SolutionSteps += $"   İşlem: {Math.Pow(InitialVelocity, 2).ToString("F2")} * sin({2 * Angle}°) / {Gravity} = {Range.ToString("F2")} metre\n";
 			SolutionSteps += "\n--------------------------------------------------\n";
 			SolutionSteps += "🎯 ÖZET SONUÇLAR:\n";
-			SolutionSteps += $"   Uçuş Süresi    : {FlightTime.ToString("F2")} saniye\n";
+			SolutionSteps += $"   Uçuş Süresi    : {TimeLimit.ToString("F2")} saniye\n";
 			SolutionSteps += $"   Maks Yükseklik : {MaxHeight.ToString("F2")} metre\n";
 			
 			
@@ -86,7 +86,7 @@ namespace ProbeCalc.Core.Calculators
 			TrajectoryX = new double[pointCount];
 			TrajectoryY = new double[pointCount];
 
-			double timeStep = FlightTime / (pointCount - 1);
+			double timeStep = TimeLimit / (pointCount - 1);
 
 			for (int i = 0; i < pointCount; i++)
 			{
@@ -102,12 +102,12 @@ namespace ProbeCalc.Core.Calculators
 		}
 		protected override string GetShortResultText()
 		{
-			return $" Uçuş Süresi    : {FlightTime.ToString("F2")} saniye\n Maks Yükseklik : {MaxHeight.ToString("F2")} metre\n  Menzil (Xmax)  : {Range.ToString("F2")} metre\n";
+			return $" Uçuş Süresi    : {TimeLimit.ToString("F2")} saniye\n Maks Yükseklik : {MaxHeight.ToString("F2")} metre\n  Menzil (Xmax)  : {Range.ToString("F2")} metre\n";
 		}
 		public override void Reset()
 		{
 			Angle = 0;
-			FlightTime = 0;
+			TimeLimit = 0;
 			MaxHeight = 0;
 			Range = 0;
 			SolutionSteps = string.Empty;

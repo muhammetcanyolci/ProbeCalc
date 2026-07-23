@@ -14,7 +14,7 @@ namespace ProbeCalc.Core.Calculators
 	{
 		// 1. KULLANICIDAN ALINACAK YENİ GİRDİLER
 		public double Acceleration { get; set; } // İvme (a)
-		public double TotalTime { get; set; }    // Toplam Hareket Süresi (t)
+		
 
 		// 2. TEMEL ÇIKTILAR
 		public double FinalVelocity { get; private set; } // Son Hız
@@ -31,19 +31,19 @@ namespace ProbeCalc.Core.Calculators
 		public override void Calculate()
 		{
 			// --- TEMEL HESAPLAMALAR ---
-			FinalVelocity = InitialVelocity + (Acceleration * TotalTime);
-			Displacement = (InitialVelocity * TotalTime) + (0.5 * Acceleration * Math.Pow(TotalTime, 2));
+			FinalVelocity = InitialVelocity + (Acceleration * TimeLimit);
+			Displacement = (InitialVelocity * TimeLimit) + (0.5 * Acceleration * Math.Pow(TimeLimit	, 2));
 
 			// --- ADIM ADIM ÇÖZÜM RAPORUNUN HAZIRLANMASI ---
 			SolutionSteps = "--- 1D KİNEMATİK HESAPLAMA ADIMLARI ---\n\n";
 
 			SolutionSteps += "1. Adım: Son Hızın Bulunması (Hız - Zaman Denklemi)\n";
 			SolutionSteps += "   Kullanılan Formül: Vf = V0 + (a * t)\n";
-			SolutionSteps += $"   İşlem: {InitialVelocity} + ({Acceleration} * {TotalTime}) = {FinalVelocity.ToString("F2")} m/s\n\n";
+			SolutionSteps += $"   İşlem: {InitialVelocity} + ({Acceleration} * {TimeLimit}) = {FinalVelocity.ToString("F2")} m/s\n\n";
 
 			SolutionSteps += "2. Adım: Yer Değiştirmenin (Konum) Bulunması (Konum Denklemi)\n";
 			SolutionSteps += "   Kullanılan Formül: Δx = (V0 * t) + (0.5 * a * t²)\n";
-			SolutionSteps += $"   İşlem: ({InitialVelocity} * {TotalTime}) + (0.5 * {Acceleration} * {Math.Pow(TotalTime, 2)}) = {Displacement.ToString("F2")} metre\n";
+			SolutionSteps += $"   İşlem: ({InitialVelocity} * {TimeLimit}) + (0.5 * {Acceleration} * {Math.Pow(TimeLimit, 2)}) = {Displacement.ToString("F2")} metre\n";
 
 			SolutionSteps += "\n--------------------------------------------------\n";
 			SolutionSteps += "🎯 ÖZET SONUÇLAR:\n";
@@ -56,7 +56,7 @@ namespace ProbeCalc.Core.Calculators
 			PositionPoints = new double[pointCount];
 			VelocityPoints = new double[pointCount];
 
-			double timeStep = TotalTime / (pointCount - 1);
+			double timeStep = TimeLimit / (pointCount - 1);
 
 			for (int i = 0; i < pointCount; i++)
 			{
@@ -75,7 +75,7 @@ namespace ProbeCalc.Core.Calculators
 		{
 			InitialVelocity = 0;
 			Acceleration = 0;
-			TotalTime = 0;
+			TimeLimit = 0;
 			FinalVelocity = 0;
 			Displacement = 0;
 			SolutionSteps = string.Empty;

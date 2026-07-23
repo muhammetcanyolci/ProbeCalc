@@ -207,6 +207,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Calculators\CollisionEngine.cs" />
+    <Compile Include="Core\Calculators\ImpulseMomentumEngine.cs" />
+    <Compile Include="Core\Calculators\RotationalMotionEngine.cs" />
     <Compile Include="Core\Forms\BirimDönüştürmeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +223,7 @@
     <Compile Include="Core\Calculators\ProjectileMotionEngine.cs" />
     <Compile Include="Core\Calculators\WorkEnergyEngine.cs" />
     <Compile Include="Core\Interfaces\IEngine.cs" />
+    <Compile Include="Core\Utilities\InputParser.cs" />
     <Compile Include="Core\Utilities\MathParser.cs" />
     <Compile Include="Core\Utilities\ShowingPanel.cs" />
     <Compile Include="Core\Visualization\ChartEngine.cs" />

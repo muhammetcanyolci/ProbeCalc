@@ -46,7 +46,7 @@ namespace ProbeCalc.Core.Utilities // Kendi klasör yapına göre burayı ayarla
 			expr.Parameters["x"] = xValue;
 
 			// Sonucu hesapla ve döndür
-			return Convert.ToDouble(expr.Evaluate());
+			return InputParser.ParseSafe(expr.Evaluate());
 		}
 	}
 }

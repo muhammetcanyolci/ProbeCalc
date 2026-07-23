@@ -9,6 +9,8 @@ namespace ProbeCalc.Core.Base
 	{
 		// ilk hızı kontrollü almak için( mechanic konularında ortak)
 		private double _InitialVelocity;
+		public double TimeLimit { get; set; }
+
 		public double InitialVelocity
 		{
 			get => _InitialVelocity;
@@ -32,8 +34,12 @@ namespace ProbeCalc.Core.Base
 				mass = value;	
 			}
 		}
-
-
+		public override void Reset()
+		{
+			InitialVelocity = 0;
+			Mass = 0;
+			SolutionSteps = string.Empty;
+		}
 	}
  
 }

@@ -53,7 +53,7 @@ namespace ProbeCalc
 			double F(double x)
 			{
 				ifade.Parameters["x"] = x;
-				return Convert.ToDouble(ifade.Evaluate());
+				return InputParser.ParseSafe(ifade.Evaluate());
 			}
 
 			double solLimit = 0, sagLimit = 0, netLimit = 0;
@@ -170,7 +170,7 @@ namespace ProbeCalc
 				string temiz = FonksiyonuDuzenle(fonk);
 				NCalc.Expression e = new NCalc.Expression(temiz);
 				e.Parameters["x"] = x;
-				return Convert.ToDouble(e.Evaluate());
+				return InputParser.ParseSafe(e.Evaluate());
 			};
 
 			// Simpson 1/3 Formülü: (h/3) * [f(a) + 4*f(x1) + 2*f(x2) + ... + f(b)]

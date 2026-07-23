@@ -9,7 +9,8 @@ namespace ProbeCalc.Core.Utilities
 {
 	internal class ShowingPanel
 	{
-		public void ShowPanel( Panel thePanel) 
-		{ thePanel.BringToFront(); } 
+		public static void ShowPanel( Panel thePanel) 
+		{ thePanel.BringToFront();
+	} 
 	}
 }

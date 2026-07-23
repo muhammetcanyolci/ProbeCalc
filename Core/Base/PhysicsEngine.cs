@@ -11,6 +11,7 @@ namespace ProbeCalc.Core.Base
 	// IEngine nin kontrat methodları ( implemented members)
 		public abstract void Calculate();
 		public abstract void Reset();
+		
 
 		// Evrensel sabitler 
 		protected const double Gravity = 9.80665 ;
@@ -28,8 +29,12 @@ namespace ProbeCalc.Core.Base
 		protected double DegreesToRadian( double degrees)
 		{ return degrees * (Math.PI / 180.0); }
 		// Her motorda ortak olan uzun çözüm metni
+
+		/// <summary>
+		/// Arayüzden gelen metinlerdeki virgül/nokta krizini çözer ve güvenle double'a çevirir.
+		/// </summary>
 		
-		
+    
 		
 		
 		public string SolutionSteps { get; protected set; }
