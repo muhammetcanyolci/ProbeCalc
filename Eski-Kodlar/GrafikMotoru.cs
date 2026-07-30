@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using NCalc;
 using NCalc.Extensions;
 using ScottPlot.WinForms;
+using ProbeCalc.Core.Utilities;
 
 namespace ProbeCalc
 {
@@ -35,7 +36,7 @@ namespace ProbeCalc
 					xs[i] = oAnkiX;
 
 					ifade.Parameters["x"] = oAnkiX;
-					ys[i] = InputParser.ParseSafe(ifade.Evaluate());
+					ys[i] = Convert.ToDouble(ifade.Evaluate());
 
 					ySifirlar[i] = 0;
 				}
@@ -123,7 +124,7 @@ namespace ProbeCalc
 
 					ifade.Parameters["t"] = oAnkiT;
 					ifade.Parameters["x"] = oAnkiT;
-					Fs[i] = InputParser.ParseSafe(ifade.Evaluate());
+					Fs[i] = Convert.ToDouble(ifade.Evaluate());
 
 					sifirlar[i] = 0;
 				}
@@ -338,7 +339,7 @@ namespace ProbeCalc
 					xs[i] = oAnkiX;
 
 					ifade.Parameters["x"] = oAnkiX;
-					Es[i] = InputParser.ParseSafe(ifade.Evaluate());
+					Es[i] = Convert.ToDouble(ifade.Evaluate());
 
 					sifirlar[i] = 0;
 				}
@@ -391,7 +392,7 @@ namespace ProbeCalc
 					xs[i] = oAnkiX;
 
 					ifade.Parameters["x"] = oAnkiX;
-					Bs[i] = InputParser.ParseSafe(ifade.Evaluate());
+					Bs[i] = Convert.ToDouble(ifade.Evaluate());
 				}
 
 				// Bütün Eğriyi Çiz (Kesik Gri Çizgi)
@@ -413,7 +414,7 @@ namespace ProbeCalc
 					xsBoyali[i] = oAnkiX;
 
 					ifade.Parameters["x"] = oAnkiX;
-					BsBoyali[i] = InputParser.ParseSafe(ifade.Evaluate());
+					BsBoyali[i] = Convert.ToDouble(ifade.Evaluate());
 					sifirlar[i] = 0;
 				}
 
@@ -602,7 +603,7 @@ namespace ProbeCalc
 				double F(double x)
 				{
 					ifade.Parameters["x"] = x;
-					double sonuc = InputParser.ParseSafe(ifade.Evaluate());
+					double sonuc = Convert.ToDouble(ifade.Evaluate());
 					// Eğer tam o noktada tanımsızsa (0/0), y değerini NaN (Not a Number) yap ki grafik orada kopsun
 					if (double.IsInfinity(sonuc) || double.IsNaN(sonuc)) return double.NaN;
 					return sonuc;
@@ -691,7 +692,7 @@ namespace ProbeCalc
 			double F(double x)
 			{
 				ifade.Parameters["x"] = x;
-				double sonuc = InputParser.ParseSafe(ifade.Evaluate());
+				double sonuc = Convert.ToDouble(ifade.Evaluate());
 				if (double.IsInfinity(sonuc) || double.IsNaN(sonuc)) return double.NaN;
 				return sonuc;
 			}

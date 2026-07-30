@@ -71,17 +71,17 @@ namespace ProbeCalc.Core.Calculators
 			// Çözüm adımları
 			SolutionSteps = "--- ENERJİNİN KORUNUMU ADIMLARI ---\n\n";
 			SolutionSteps += "1. Adım: İlk Durumdaki Enerjilerin Hesabı\n";
-			SolutionSteps += $"   İlk Kinetik Enerji (Ek1) = 0.5 * m * v1² = 0.5 * {Mass} * {InitialVelocity}² = {initialKinetic.ToString("F2")} Joule\n";
-			SolutionSteps += $"   İlk Potansiyel Enerji (Ep1) = m * g * h1 = {Mass} * {g} * {FirstHeight} = {initialPotential.ToString("F2")} Joule\n";
-			SolutionSteps += $"   Toplam Mekanik Enerji (E_toplam) = {totalEnergy.ToString("F2")} Joule\n\n";
+			SolutionSteps += $"   İlk Kinetik Enerji (Ek1) = 0.5 * m * v1² = 0.5 * {Mass} * {InitialVelocity}² = {initialKinetic:F2} Joule\n";
+			SolutionSteps += $"   İlk Potansiyel Enerji (Ep1) = m * g * h1 = {Mass} * {g} * {FirstHeight} = {initialPotential:F2} Joule\n";
+			SolutionSteps += $"   Toplam Mekanik Enerji (E_toplam) = {totalEnergy:F2} Joule\n\n";
 
 			SolutionSteps += "2. Adım: Hedef Noktadaki Enerjilerin Hesabı\n";
-			SolutionSteps += $"   Son Potansiyel Enerji (Ep2) = m * g * h2 = {Mass} * {g} * {FinalHeight} = {finalPotential.ToString("F2")} Joule\n";
-			SolutionSteps += $"   Son Kinetik Enerji (Ek2) = E_toplam - Ep2 = {finalKinetic.ToString("F2")} Joule\n\n";
+			SolutionSteps += $"   Son Potansiyel Enerji (Ep2) = m * g * h2 = {Mass} * {g} * {FinalHeight} = {finalPotential:F2} Joule\n";
+			SolutionSteps += $"   Son Kinetik Enerji (Ek2) = E_toplam - Ep2 = {finalKinetic:F2} Joule\n\n";
 
 			SolutionSteps += "3. Adım: Son Hız ve Yapılan İş\n";
-			SolutionSteps += $"   Son Hız (v2) = √(2 * Ek2 / m) = {finalVelocity.ToString("F2")} m/s\n";
-			SolutionSteps += $"   Yerçekimi Kuvvetinin Yaptığı İş (W) = Ep1 - Ep2 = {CalculatedWork.ToString("F2")} Joule\n";
+			SolutionSteps += $"   Son Hız (v2) = √(2 * Ek2 / m) = {finalVelocity:F2} m/s\n";
+			SolutionSteps += $"   Yerçekimi Kuvvetinin Yaptığı İş (W) = Ep1 - Ep2 = {CalculatedWork:F2} Joule\n";
 
 			// GRAFİK VERİLERİ (Yükseklik değişimine göre Enerji Grafiği)
 			int points = 100;
@@ -154,19 +154,22 @@ namespace ProbeCalc.Core.Calculators
 
 		public override void Reset()
 		{
-			InitialVelocity = 0;
+			// Ata sınıftaki (MechanicsEngine) ortak değişkenleri sıfırla
+			base.Reset();
+
+			// Bu sınıfa (WorkEnergyEngine) özel değişkenleri sıfırla
 			FirstHeight = 0;
 			FinalHeight = 0;
-			Mass = 0;
 			StartX = 0;
 			EndX = 0;
 			ForceFunction = null;
 			CalculatedWork = 0;
-			SolutionSteps = string.Empty;
+
+			// Dizileri temizle
 			ChartX = null;
 			ChartY_Kinetic = null;
 			ChartY_Potential = null;
-			ChartY_Total = null;	
+			ChartY_Total = null;
 		}
 	}
 }

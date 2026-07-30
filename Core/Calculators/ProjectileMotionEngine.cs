@@ -60,26 +60,25 @@ namespace ProbeCalc.Core.Calculators
 
 			SolutionSteps += "1. Adım: Dikey Hız (Vy) Bileşeninin Ayrıştırılması (Trigonometrik Dönüşüm)\n";
 			SolutionSteps += $"   Kullanılan Formül: Vy = v0 * sin(θ)\n";
-			SolutionSteps += $"   İşlem: {InitialVelocity} * sin({Angle}°) = {verticalVelocity.ToString("F2")} m/s\n\n";
+			SolutionSteps += $"   İşlem: {InitialVelocity} * sin({Angle}°) = {verticalVelocity:F2} m/s\n\n";
 
 			SolutionSteps += "2. Adım: Uçuş Süresi (t) Hesabı (Kinematik Hareket Denklemi)\n";
 			SolutionSteps += $"   Kullanılan Formül: t = (2 * Vy) / g\n";
-			SolutionSteps += $"   İşlem: (2 * {verticalVelocity.ToString("F2")}) / {Gravity} = {TimeLimit.ToString("F2")} saniye\n\n";
+			SolutionSteps += $"   İşlem: (2 * {verticalVelocity:F2}) / {Gravity} = {TimeLimit:F2} saniye\n\n";
 
 			SolutionSteps += "3. Adım: Maksimum Yükseklik (Hmax) Hesabı (Zamansız Hız Denklemi / Enerji Korunumu)\n";
 			SolutionSteps += $"   Kullanılan Formül: Hmax = Vy² / (2 * g)\n";
-			SolutionSteps += $"   İşlem: {Math.Pow(verticalVelocity, 2).ToString("F2")} / (2 * {Gravity}) = {MaxHeight.ToString("F2")} metre\n\n";
-
+			SolutionSteps += $"   İşlem: {Math.Pow(verticalVelocity, 2):F2} / (2 * {Gravity}) = {MaxHeight:F2} metre\n\n";
 			SolutionSteps += "4. Adım: Menzil (Xmax) Hesabı (Yatayda Sabit Hızlı Hareket)\n";
 			SolutionSteps += $"   Kullanılan Formül: Xmax = (v0² * sin(2θ)) / g\n";
-			SolutionSteps += $"   İşlem: {Math.Pow(InitialVelocity, 2).ToString("F2")} * sin({2 * Angle}°) / {Gravity} = {Range.ToString("F2")} metre\n";
+			SolutionSteps += $"   İşlem: {Math.Pow(InitialVelocity, 2):F2} * sin({2 * Angle}°) / {Gravity} = {Range:F2} metre\n";
 			SolutionSteps += "\n--------------------------------------------------\n";
 			SolutionSteps += "🎯 ÖZET SONUÇLAR:\n";
-			SolutionSteps += $"   Uçuş Süresi    : {TimeLimit.ToString("F2")} saniye\n";
-			SolutionSteps += $"   Maks Yükseklik : {MaxHeight.ToString("F2")} metre\n";
+			SolutionSteps += $"   Uçuş Süresi    : {TimeLimit:F2} saniye\n";
+			SolutionSteps += $"   Maks Yükseklik : {MaxHeight:F2} metre\n";
 			
 			
-			SolutionSteps += $"   Menzil (Xmax)  : {Range.ToString("F2")} metre\n";
+			SolutionSteps += $"   Menzil (Xmax)  : {Range:F2} metre\n";
 			// --- GRAFİK İÇİN X VE Y KOORDİNATLARININ ÜRETİLMESİ ---
 			// Yörüngeyi 100 parçaya bölerek pürüzsüz bir çizgi elde ediyoruz
 			int pointCount = 100;
@@ -102,18 +101,22 @@ namespace ProbeCalc.Core.Calculators
 		}
 		protected override string GetShortResultText()
 		{
-			return $" Uçuş Süresi    : {TimeLimit.ToString("F2")} saniye\n Maks Yükseklik : {MaxHeight.ToString("F2")} metre\n  Menzil (Xmax)  : {Range.ToString("F2")} metre\n";
+			return $" Uçuş Süresi    : {TimeLimit:F2} saniye\n Maks Yükseklik : {MaxHeight:F2} metre\n  Menzil (Xmax)  : {Range:F2} metre\n";
 		}
 		public override void Reset()
 		{
+			// Ata sınıftaki değişkenleri sıfırla (InitialVelocity, Mass, TimeLimit, SolutionSteps)
+			base.Reset();
+
+			// Sadece bu sınıfa özel değerleri sıfırla
 			Angle = 0;
-			TimeLimit = 0;
 			MaxHeight = 0;
 			Range = 0;
-			SolutionSteps = string.Empty;
-			InitialVelocity = 0;
+
+			// Dizileri temizle
 			TrajectoryX = null;
 			TrajectoryY = null;
 		}
 	}
 }
+

@@ -19,11 +19,7 @@ namespace ProbeCalc.Core.Utilities // Kendi klasör yapına göre burayı ayarla
 			// 1. Girdi içindeki boşlukları temizleyelim ki hata payı azalsın
 			string formatted = userInput.Replace(" ", "");
 
-			// 2. REGEX SİHRİ: x^2 veya 5^3 gibi ifadeleri Pow(x, 2) formatına çevirir.
-			// Bu desen, ^ işaretinin solundaki ve sağındaki değerleri yakalar ve Pow(sol, sağ) yapar.
-			formatted = Regex.Replace(formatted, @"([a-zA-Z0-9_.]+)\^([a-zA-Z0-9_.]+)", "Pow($1, $2)");
-
-			// (Opsiyonel Ekstra Sihir): pi veya e gibi sabitleri otomatik C# sabitlerine çevirebilirsin
+			//  pi veya e gibi sabitleri otomatik C# sabitlerine çevirebilirsin
 			formatted = formatted.Replace("pi", "Pi").Replace("e", "E");
 			formatted = formatted.Replace("sin", "Sin").Replace("cos", "Cos").Replace("tan", "Tan");
 			// 1. Durum: Rakam ile Harf/Açma Parantezi yan yana ise araya çarpı koy.
@@ -46,7 +42,7 @@ namespace ProbeCalc.Core.Utilities // Kendi klasör yapına göre burayı ayarla
 			expr.Parameters["x"] = xValue;
 
 			// Sonucu hesapla ve döndür
-			return InputParser.ParseSafe(expr.Evaluate());
+			return Convert.ToDouble(expr.Evaluate());
 		}
 	}
 }

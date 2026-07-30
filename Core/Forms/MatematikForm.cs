@@ -271,7 +271,7 @@ namespace ProbeCalc
 				GrafikMotoru.FonksiyonGrafigiCiz(formsPlotIntegral, fonk, a - (b - a) * 0.5, b + (b - a) * 0.5, true);
 				// public static void AlanGrafigiCiz(FormsPlot plotEkrani, string fonksiyonMetni, double x1, double x2, string xEkseniAd, string yEkseniAd, string baslik)
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show("İntegral hesaplanırken bir hata oluştu. Lütfen sınırları ve fonksiyonu kontrol edin.");
 			}

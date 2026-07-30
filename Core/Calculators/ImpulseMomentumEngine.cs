@@ -103,6 +103,8 @@ namespace ProbeCalc.Core.Calculators
 			ChartX = null;
 			ChartY_Force = null;
 			ChartY_Velocity = null;
+			ForceFunction= null;
+			MassFunction= null;
 
 		}
 		protected override string GetShortResultText()

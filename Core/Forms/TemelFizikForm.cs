@@ -18,7 +18,26 @@ using ProbeCalc.Core.Base;
 namespace ProbeCalc
 {
 	public partial class TemelFizikForm : Form
+
 	{
+		private readonly OneDimensionalKinematicsEngine kinematicsEngine = new OneDimensionalKinematicsEngine();
+		private readonly WorkEnergyEngine workEngine = new WorkEnergyEngine();
+		private readonly WorkEnergyEngine energyEngine = new WorkEnergyEngine();
+		private readonly ImpulseMomentumEngine impulseEngine = new ImpulseMomentumEngine();
+		private readonly RotationalMotionEngine rotationalEngine = new RotationalMotionEngine();
+		private readonly SpringMassEngine springEngine = new SpringMassEngine();
+		private readonly SimplePendulumEngine pendulumEngine = new SimplePendulumEngine();
+		private readonly ElectricFieldEngine _electricFieldEngine = new ElectricFieldEngine();
+		private readonly ElectricForceEngine _electricForceEngine = new ElectricForceEngine();
+		private readonly GaussLawEngine _gaussLawEngine = new GaussLawEngine();
+
+
+
+		// Sürükleme sırasında her tick'te MessageBox patlamasın diye ayrı bayrak
+		private bool _gaussInputsReady = false;
+
+
+
 		public TemelFizikForm()
 		{
 
@@ -59,7 +78,7 @@ namespace ProbeCalc
 			{
 				// Ne olduğunu bilmediğimiz, öngörülemeyen diğer tüm çökme hataları için son kale
 				MessageBox.Show("Beklenmeyen bir hata oluştu: " + ex.Message, "Sistem Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			} 
+			}
 		}
 		private void btnKinematik_Click(object sender, EventArgs e)
 		{
@@ -97,10 +116,15 @@ namespace ProbeCalc
 		{
 			ShowingPanel.ShowPanel(pnlElectricField);
 		}
-
-		private void btnElectricGauss_Click(object sender, EventArgs e)
+		private void btnMenuElectricForce_Click(object sender, EventArgs e)
 		{
-			ShowingPanel.ShowPanel(pnlElectricGauss);
+			ShowingPanel.ShowPanel(pnlElectricForce);
+		}
+
+
+		private void btnMenuGaussLaw_Click(object sender, EventArgs e)
+		{
+			ShowingPanel.ShowPanel(pnlGaussLaw);
 		}
 
 		private void btnCapacitance_Click(object sender, EventArgs e)
@@ -134,21 +158,20 @@ namespace ProbeCalc
 		{
 			SafeExecute(() =>
 			{
-				// 1. MOTORU ÇAĞIR VE DEĞERLERİ VER
-				OneDimensionalKinematicsEngine engine = new OneDimensionalKinematicsEngine();
+				kinematicsEngine.Reset();
 
-				engine.InitialVelocity = InputParser.ParseSafe(txtKinInitialVelocity.Text);
-				engine.Acceleration = InputParser.ParseSafe(txtKinAcceleration.Text);
-				engine.TimeLimit = InputParser.ParseSafe(txtKinTotalTime.Text);
+				kinematicsEngine.InitialVelocity = InputParser.ParseSafe(txtKinInitialVelocity.Text);
+				kinematicsEngine.Acceleration = InputParser.ParseSafe(txtKinAcceleration.Text);
+				kinematicsEngine.TimeLimit = InputParser.ParseSafe(txtKinTotalTime.Text);
 
-				engine.Calculate();
-				rtbKinResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+				kinematicsEngine.Calculate();
+				rtbKinResults.Text = kinematicsEngine.GetFinalReport(chkShowSteps.Checked);
 
 				// 4. EVRENSEL GRAFİK MOTORUNU ÇAĞIR (Konum - Zaman Grafiği Çiziyoruz)
 				ProbeCalc.Core.Visualization.ChartEngine.Draw2DChart(
 					plotKin,
-					engine.TimePoints,      // X Ekseni: Zaman (s)
-					engine.PositionPoints,  // Y Ekseni: Konum (m)
+					kinematicsEngine.TimePoints,      // X Ekseni: Zaman (s)
+					kinematicsEngine.PositionPoints,  // Y Ekseni: Konum (m)
 					"Konum - Zaman Grafiği",
 					"Zaman (Saniye)",
 					"Konum (Metre)"
@@ -164,13 +187,15 @@ namespace ProbeCalc
 				(() =>
 				{
 
-					ProjectileMotionEngine engine = new ProjectileMotionEngine();
-					engine.InitialVelocity = InputParser.ParseSafe(txtProjInitialVelocity.Text);
-					engine.Angle = InputParser.ParseSafe(txtProjAngle.Text);
-					engine.Calculate();
-					rtbProjResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+					ProjectileMotionEngine projectileEngine = new ProjectileMotionEngine
+					{
+						InitialVelocity = InputParser.ParseSafe(txtProjInitialVelocity.Text),
+						Angle = InputParser.ParseSafe(txtProjAngle.Text)
+					};
+					projectileEngine.Calculate();
+					rtbProjResults.Text = projectileEngine.GetFinalReport(chkShowSteps.Checked);
 					// GRAFİĞİ ÇİZDİR!
-					ChartEngine.Draw2DChart(plotProj, engine.TrajectoryX, engine.TrajectoryY, "Eğik Atış Simülasyonu", "Menzil (m)", "Yükseklik (m)");
+					ChartEngine.Draw2DChart(plotProj, projectileEngine.TrajectoryX, projectileEngine.TrajectoryY, "Eğik Atış Simülasyonu", "Menzil (m)", "Yükseklik (m)");
 
 				});
 		}
@@ -180,26 +205,25 @@ namespace ProbeCalc
 		{
 			SafeExecute(() =>
 			{
-				WorkEnergyEngine engine = new WorkEnergyEngine();
+				energyEngine.Reset();
 
-				
-				engine.InitialVelocity= InputParser.ParseSafe(txtEnergyInitialVelocity.Text);
-				engine.FirstHeight = InputParser.ParseSafe(txtEnergyFirstHeight.Text);
-				engine.FinalHeight = InputParser.ParseSafe(txtEnergyFinalHeight.Text);
-				engine.Mass = InputParser.ParseSafe(txtEnergyMass.Text);
+				energyEngine.InitialVelocity = InputParser.ParseSafe(txtEnergyInitialVelocity.Text);
+				energyEngine.FirstHeight = InputParser.ParseSafe(txtEnergyFirstHeight.Text);
+				energyEngine.FinalHeight = InputParser.ParseSafe(txtEnergyFinalHeight.Text);
+				energyEngine.Mass = InputParser.ParseSafe(txtEnergyMass.Text);
 
-				engine.Calculate();
+				energyEngine.Calculate();
 
 				// Sonuçları yazdır
-				rtbWorkEnergyResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+				rtbWorkEnergyResults.Text = energyEngine.GetFinalReport(chkShowSteps.Checked);
 
 				// Çoklu Enerji Grafiğini Çizdir!
 				ProbeCalc.Core.Visualization.ChartEngine.DrawEnergyChart(
 					plotWorkEnergy,
-					engine.ChartX,
-					engine.ChartY_Kinetic,
-					engine.ChartY_Potential,
-					engine.ChartY_Total
+					energyEngine.ChartX,
+					energyEngine.ChartY_Kinetic,
+					energyEngine.ChartY_Potential,
+					energyEngine.ChartY_Total
 				);
 			});
 
@@ -208,34 +232,32 @@ namespace ProbeCalc
 		//---------------------------------------------------------------------------------------------------------------------------------------------
 		private void btnWorkCalculate_Click_1(object sender, EventArgs e)
 		{
-		
+
 			SafeExecute(() =>
 			{
-				WorkEnergyEngine engine = new WorkEnergyEngine();
-
+				workEngine.Reset();
 				// 1. Kullanıcının arayüze yazdığı "2x^3 + 5x" gibi metni TextBox'tan alıyoruz
-				string rawFunction = txtWorkFunction.Text; 
+				string rawFunction = txtWorkFunction.Text;
 
 				// 2. BAĞLANTIYI KURUYORUZ: Motorumuz o metni alıp x değerine göre çözecek!
-				engine.ForceFunction = (x) =>
+				workEngine.ForceFunction = (x) =>
 				{
 					return ProbeCalc.Core.Utilities.MathParser.Evaluate(rawFunction, x);
 				};
 
-			
-				engine.StartX = InputParser.ParseSafe(txtWorkStartX.Text);
-				engine.EndX = InputParser.ParseSafe(txtWorkEndX.Text);
 
-			
-				engine.Calculate();
+				workEngine.StartX = InputParser.ParseSafe(txtWorkStartX.Text);
+				workEngine.EndX = InputParser.ParseSafe(txtWorkEndX.Text);
 
-				
-				rtbWorkEnergyResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+
+				workEngine.Calculate();
+
+				rtbWorkEnergyResults.Text = workEngine.GetFinalReport(chkShowSteps.Checked);
 
 				ProbeCalc.Core.Visualization.ChartEngine.Draw2DChart(
 					plotWorkEnergy,
-					engine.ChartX,
-					engine.ChartY_Total,
+					workEngine.ChartX,
+					workEngine.ChartY_Total,
 					"Kuvvet - Konum Grafiği",
 					"Konum (Metre)",
 					"Kuvvet (Newton)"
@@ -248,27 +270,27 @@ namespace ProbeCalc
 		private void btnCalculateImpulse_Click_1(object sender, EventArgs e)
 		{
 			SafeExecute(() =>
-			{	
-				// ImpulseMomentumEngine classından nesne üretildi
-				ImpulseMomentumEngine engine = new ImpulseMomentumEngine();
+			{
+				impulseEngine.Reset();
+
 				// 1. Kullanıcıdan fonksiyonları al ve 't' harflerini 'x'e çevir
-				string rawForce = txtForceFuncImpulse.Text.ToLower().Replace("t", "x");
-				string rawMass = txtMassFuncImpulse.Text.ToLower().Replace("t", "x");
+				string rawForce = txtForceFuncImpulse.Text;
+				string rawMass = txtMassFuncImpulse.Text;
 				if (!string.IsNullOrWhiteSpace(rawForce))
-					engine.ForceFunction = (x) => MathParser.Evaluate(rawForce, x);
+					impulseEngine.ForceFunction = (x) => MathParser.Evaluate(rawForce, x);
 
 				if (!string.IsNullOrWhiteSpace(rawMass))
-					engine.MassFunction = (x) => MathParser.Evaluate(rawMass, x);
-				engine.TimeLimit = InputParser.ParseSafe(txtTimeLimitImpulse.Text);
-				engine.InitialVelocity = InputParser.ParseSafe(txtImpulseInitialVel.Text);
-				engine.Calculate();
+					impulseEngine.MassFunction = (x) => MathParser.Evaluate(rawMass, x);
+				impulseEngine.TimeLimit = InputParser.ParseSafe(txtTimeLimitImpulse.Text);
+				impulseEngine.InitialVelocity = InputParser.ParseSafe(txtImpulseInitialVel.Text);
+				impulseEngine.Calculate();
 				// 4.Hesapla ve Raporu Al(GetFinalReport ana sınıftan gelir)
 
-				engine.Calculate();
-				rtbImpulseResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+				impulseEngine.Calculate();
+				rtbImpulseResults.Text = impulseEngine.GetFinalReport(chkShowSteps.Checked);
 				ChartEngine.Draw2DChart(plotImpulse,
-				engine.ChartX,
-				engine.ChartY_Velocity,
+				impulseEngine.ChartX,
+				impulseEngine.ChartY_Velocity,
 				"Roket / Cisim Hız Grafiği",
 				"Zaman (saniye)",
 				"Hız (m/s)");
@@ -279,148 +301,38 @@ namespace ProbeCalc
 		{
 			SafeExecute(() =>
 			{
-				RotationalMotionEngine engine = new RotationalMotionEngine();
-
+				rotationalEngine.Reset();
 				// 1. Verileri Okuma (Kutulardaki Text özelliklerini al)
-				engine.GeometryType = cmbGeometry.SelectedItem?.ToString() ?? "İçi Dolu Silindir";
-				engine.Mass = InputParser.ParseSafe(txtRotMass.Text);
-				engine.Radius = InputParser.ParseSafe(txtRotRadius.Text);
-				engine.AppliedForce = InputParser.ParseSafe(txtRotForce.Text);
-				engine.TimeLimit = InputParser.ParseSafe(txtRotTime.Text);
+				rotationalEngine.GeometryType = cmbGeometry.SelectedItem?.ToString() ?? "İçi Dolu Silindir";
+				rotationalEngine.Mass = InputParser.ParseSafe(txtRotMass.Text);
+				rotationalEngine.Radius = InputParser.ParseSafe(txtRotRadius.Text);
+				rotationalEngine.AppliedForce = InputParser.ParseSafe(txtRotForce.Text);
+				rotationalEngine.TimeLimit = InputParser.ParseSafe(txtRotTime.Text);
 
 				// Aerodinamik Sürtünme (Eğer kutu boşsa veya geçersizse 0 kabul et)
 				double drag = 0;
 				double.TryParse(txtDragCoefRot.Text, out drag);
-				engine.DragCoefficient = drag;
+				rotationalEngine.DragCoefficient = drag;
 
 				// 2. Hesapla ve Raporla
-				engine.Calculate();
-				rtbRotationalResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+				rotationalEngine.Calculate();
+				rtbRotationalResults.Text = rotationalEngine.GetFinalReport(chkShowSteps.Checked);
 
 				// 3. Çift Eksenli Telemetri Grafiğini Çizdir
 				ProbeCalc.Core.Visualization.ChartEngine.DrawRotationalTelemetryChart(
 					plotRotational, // Kendi kullandığın plot kontrolünün adı
-					engine.ChartX_Time,
-					engine.ChartY_RPM,
-					engine.ChartY_Energy
+					rotationalEngine.ChartX_Time,
+					rotationalEngine.ChartY_RPM,
+					rotationalEngine.ChartY_Energy
 				);
 			});
 		}
 
-		private void btnHarmonikHesapla_Click(object sender, EventArgs e)
-		{
-			string tip = cmbHarmonikTip.SelectedItem?.ToString() ?? "Yay-Kütle";
-
-			if (double.TryParse(txtHarmonikM_L.Text, out double mL) &&
-				double.TryParse(txtHarmonikK_G.Text, out double kG) &&
-				double.TryParse(txtHarmonikA.Text, out double genlik))
-			{
-				// Sönüm değeri boş bırakıldıysa veya hatalıysa 0 kabul et (İdeal sistem)
-				double sonum = double.TryParse(txtHarmonikSonum.Text, out double s) ? s : 0;
-
-				if (mL <= 0 || kG <= 0)
-				{
-					MessageBox.Show("Kütle/Uzunluk ve Yay Sabiti/Yerçekimi 0'dan büyük olmalıdır!", "Hata");
-					return;
-				}
-
-				try
-				{
-					// 1. Matematik Motoru
-					var sonuc = FizikEngines.HarmonikHesapla(tip, mL, kG, genlik);
-
-					// 2. Ekrana Yazdır
-					lblHarmonikSonuc.Text = $"--- HARMONİK HAREKET ANALİZİ ---\n\n" +
-											$"Sistem: {tip}\n" +
-											$"Açısal Frekans (ω): {sonuc.omega:F2} rad/s\n" +
-											$"Periyot (T): {sonuc.T:F2} s\n" +
-											$"Frekans (f): {sonuc.f:F2} Hz\n" +
-											$"Maksimum Hız: {sonuc.vMax:F2} m/s\n" +
-											$"Maksimum İvme: {sonuc.aMax:F2} m/s²\n" +
-											$"Toplam Enerji: {sonuc.E:F2} J";
-
-					// 3. Grafik Motoru
-					GrafikMotoru.HarmonikDalgaCiz(formsPlotHarmonik, genlik, sonuc.omega, sonum);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Hesaplama Hatası: " + ex.Message);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen zorunlu alanları geçerli sayılarla doldurun!", "Uyarı");
-			}
-		}
-
-		private void btnElektrikIntegral_Click(object sender, EventArgs e)
-		{
 
 
-			string fonksiyon = txtEx.Text;
-
-			if (double.TryParse(txtElektrikX1.Text, out double x1) &&
-				double.TryParse(txtElektrikX2.Text, out double x2) &&
-				double.TryParse(txtTasinanQ.Text, out double q))
-			{
-				try
-				{
-					// 1. İntegrali Çöz
-					var sonuc = FizikEngines.ElektrikPotansiyelIntegralHesapla(fonksiyon, x1, x2, q);
-
-					// 2. Ekrana Yazdır
-					lblElektrikIntegralSonuc.Text = $"--- POTANSİYEL VE İŞ ANALİZİ ---\n\n" +
-													$"Potansiyel Fark (ΔV): {sonuc.deltaV:F2} Volt\n" +
-													$"Yapılan İş (W): {sonuc.isYapanW:E3} Joule";
-
-					// 3. Eğrinin Altındaki Alanı Çiz
-					GrafikMotoru.ElektrikIntegralGrafigiCiz(formsPlotElektrikIntegral, fonksiyon, x1, x2);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Fonksiyon formatı hatalı!\nMatematiksel bir hata oluştu: " + ex.Message, "Hata");
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen tüm alanları geçerli sayılarla doldurun!", "Uyarı");
-			}
-
-		}
-
-		private void tbGaussYaricap_Scroll(object sender, EventArgs e)
-		{
 
 
-			// TrackBar 1 ile 100 arası döner. 10'a bölerek 0.1 ile 10.0 metre arası hassas "r" değeri elde ediyoruz.
-			double r = tbGaussYaricap.Value / 10.0;
-			lblGaussR_Deger.Text = $"r = {r:F1} m"; // Yanındaki label'a anlık değeri yaz
 
-			string tip = cmbGaussTip.SelectedItem?.ToString() ?? "Yalıtkan Küre";
-
-			if (double.TryParse(txtGaussQ.Text, out double Q) &&
-				double.TryParse(txtGaussR_Cisim.Text, out double R_cisim))
-			{
-				try
-				{
-					// 1. Motoru Çalıştır
-					var sonuc = FizikEngines.GaussHesapla(tip, Q, R_cisim, r);
-
-					// 2. Anlık Sonuçları Yaz
-					lblGaussSonuc.Text = $"--- GAUSS YASASI ANLIK ANALİZ ---\n\n" +
-										 $"Kapsanan Yük (Q_iç): {sonuc.Qin:E3} Coulomb\n" +
-										 $"Toplam Akı (Φ): {sonuc.Aki:E3} N·m²/C\n" +
-										 $"Elektrik Alan (E): {sonuc.E:E3} N/C";
-
-
-				}
-				catch (Exception ex)
-				{
-					lblGaussSonuc.Text = "Hata: " + ex.Message;
-				}
-			}
-
-		}
 		// --- KUTULARA YAZDIKÇA ÇALIŞAN CANLI HESAPLAMA MOTORU ---
 		private void KapasitansCanliHesapla(object sender, EventArgs e)
 		{
@@ -616,6 +528,226 @@ namespace ProbeCalc
 			});
 		}
 
+		private void btnCalculateOscillation_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				// Rapor ekranını temizle
+				rtbOscillationReport.Clear();
 
+				// Hangi sekmenin açık olduğunu kontrol et (0: Yay, 1: Sarkaç)
+				if (tabOscillation.SelectedIndex == 0)
+				{
+					RunSpringSimulation();
+				}
+				else if (tabOscillation.SelectedIndex == 1)
+				{
+					RunPendulumSimulation();
+				}
+			});
+		}
+		private void RunSpringSimulation()
+		{
+
+
+			// Yay kutularından verileri okuma (Tamamen İngilizce adlandırmalar)
+			springEngine.Mass = InputParser.ParseSafe(txtSpringMass.Text);
+			springEngine.TimeLimit = InputParser.ParseSafe(txtSpringTimeLimit.Text);
+			springEngine.Amplitude = InputParser.ParseSafe(txtSpringAmplitude.Text);
+			springEngine.DampingCoefficient = InputParser.ParseSafe(txtSpringDamping.Text);
+			springEngine.SpringConstant = InputParser.ParseSafe(txtSpringConstant.Text);
+
+			springEngine.Calculate();
+			rtbOscillationReport.Text = springEngine.SolutionSteps;
+
+		}
+		private void RunPendulumSimulation()
+		{
+
+
+			// Sarkaç kutularından verileri okuma
+			pendulumEngine.Mass = InputParser.ParseSafe(txtPendulumMass.Text);
+			pendulumEngine.TimeLimit = InputParser.ParseSafe(txtPendulumTimeLimit.Text);
+			pendulumEngine.Amplitude = InputParser.ParseSafe(txtPendulumAmplitude.Text);
+			pendulumEngine.DampingCoefficient = InputParser.ParseSafe(txtPendulumDamping.Text);
+			pendulumEngine.Length = InputParser.ParseSafe(txtPendulumLength.Text);
+			pendulumEngine.Calculate();
+			rtbOscillationReport.Text = pendulumEngine.SolutionSteps;
+		}
+
+		private void btnCalculateElectricField_Click(object sender, EventArgs e)
+		{
+
+			SafeExecute(() =>
+			{
+				// 1. Temizlik
+				_electricFieldEngine.Reset();
+
+				// 2. Veri Ataması
+				double sourceChargeMicroC = InputParser.ParseSafe(txtEFieldSourceCharge.Text);
+				double distanceMeter = InputParser.ParseSafe(txtEFieldDistance.Text);
+
+				// Kullanıcı μC girer, motor SI (C) bekler -> dönüşüm burada, UI katmanında
+				_electricFieldEngine.SourceCharge = sourceChargeMicroC * 1e-6;
+				_electricFieldEngine.Distance = distanceMeter;
+
+				// 3. İşlem
+				_electricFieldEngine.Calculate();
+
+				// 4. Çıktı — rapor
+				rtbEField.Text = _electricFieldEngine.GetFinalReport(chkShowSteps.Checked);
+
+				// 4. Çıktı — grafik (E'nin r'ye göre 1/r² azalışı)
+				ChartEngine.Draw2DChart(
+					plotElectricField,
+					_electricFieldEngine.DistanceX,
+					_electricFieldEngine.FieldY,
+					"Elektrik Alan vs Uzaklık Grafiği",
+					"Mesafe (r)  [m]",
+					"Elektrik Alan (E)  [N/C]");
+			});
+		}
+
+		private void btnCalculateEForce_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				// 1. Temizlik
+				_electricForceEngine.Reset();
+
+				// 2. Veri Ataması
+				double charge1MicroC = InputParser.ParseSafe(txtEForceCharge1.Text);
+				double charge2MicroC = InputParser.ParseSafe(txtEForceCharge2.Text);
+				double distanceMeter = InputParser.ParseSafe(txtEForceDistance.Text);
+
+				_electricForceEngine.Charge1 = charge1MicroC * 1e-6;
+				_electricForceEngine.Charge2 = charge2MicroC * 1e-6;
+				_electricForceEngine.Distance = distanceMeter;
+
+				// 3. İşlem
+				_electricForceEngine.Calculate();
+
+				// 4. Çıktı — rapor
+				rtbElectricalForce.Text =
+					_electricForceEngine.GetFinalReport(chkShowSteps.Checked);
+
+				// İtme/çekme niteliğini ayrıca bir Label'da da gösterelim (renkli, dikkat çekici)
+				lblEForceNature.Text = _electricForceEngine.ForceNature;
+				lblEForceNature.ForeColor = _electricForceEngine.ForceNature.StartsWith("İtme")
+					? System.Drawing.Color.OrangeRed
+					: System.Drawing.Color.DodgerBlue;
+
+				// 4. Çıktı — grafik (F'nin r'ye göre 1/r² azalışı)
+				ChartEngine.Draw2DChart(
+					plotElectricalForce,
+					_electricForceEngine.DistanceX,
+					_electricForceEngine.ForceY,
+					"Elektiriksel kuvvet vs uzaklık ",
+					"Mesafe (r)  [m]",
+					"Coulomb Kuvveti (F)  [N]");
+			});
+		}
+		private void cmbSystemGeometry_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			_gaussInputsReady = false;
+
+			var geometry = (GaussGeometryType)cmbSystemGeometry.SelectedIndex;
+
+			lblChargeOrDensity.Text = GaussLawEngine.GetChargeLabelText(geometry);
+			txtSphereRadius.Enabled = GaussLawEngine.RequiresSphereRadius(geometry);
+		}
+
+		// ========================================================================
+		// YARDIMCI: TrackBar'ın temsil ettiği gerçek menzili (metre) belirler.
+		// Küre modlarında girilmiş R varsa R*5, yoksa/diğer modlarda sabit varsayılan.
+		// ========================================================================
+
+
+		// ========================================================================
+		// TRACKBAR HAREKET ETTİKÇE — canlı önizleme. Hata olursa sessizce yutulur;
+		// tam doğrulama sadece "Calculate" butonunda (SafeExecute içinde) yapılır.
+		// ========================================================================
+		private void tbGaussSurface_Scroll(object sender, EventArgs e)
+		{
+			var geometry = (GaussGeometryType)cmbSystemGeometry.SelectedIndex;
+			double enteredRadius = 0;
+			try { enteredRadius = InputParser.ParseSafe(txtSphereRadius.Text); } catch { /* henüz girilmemiş olabilir */ }
+
+			double maxRangeMeters = GaussLawEngine.GetSuggestedObservationRange(geometry, enteredRadius);
+			double r = (tbGaussSurface.Value / (double)tbGaussSurface.Maximum) * maxRangeMeters;
+			if (r <= 0) r = 0.001;
+
+			lblGaussRValue.Text = $"r = {r:F3} m";
+
+			if (!_gaussInputsReady) return;
+
+			try
+			{
+				_gaussLawEngine.Distance = r;
+				_gaussLawEngine.Calculate();
+
+				rtbGaussResult.Text = _gaussLawEngine.GetFinalReport(chkShowSteps.Checked);
+				lblGaussRegion.Text = _gaussLawEngine.RegionLabel;
+
+				ChartEngine.Draw2DChart(
+					chartGaussLaw,
+					_gaussLawEngine.DistanceX,
+					_gaussLawEngine.FieldY,
+					"Elektrik Alan vs Uzaklık Grafiği",
+					"Mesafe (r)  [m]",
+					"Elektrik Alan (E)  [N/C]");
+			}
+			catch
+			{
+				// Sürükleme sırasında sessizce yut
+			}
+		}
+
+
+			 // ========================================================================
+			 // HESAPLA BUTONU — tam doğrulama burada (SafeExecute içinde)
+			 // ========================================================================
+
+
+		private void btnCalculateGauss_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				_gaussLawEngine.Reset();
+
+				var geometry = (GaussGeometryType)cmbSystemGeometry.SelectedIndex;
+				_gaussLawEngine.GeometryType = geometry;
+
+				double sourceValueMicro = InputParser.ParseSafe(txtTotalChargeOrDensity.Text);
+				_gaussLawEngine.SourceValue = sourceValueMicro * 1e-6;
+
+				double enteredRadius = 0;
+				if (GaussLawEngine.RequiresSphereRadius(geometry))
+				{
+					enteredRadius = InputParser.ParseSafe(txtSphereRadius.Text);
+					_gaussLawEngine.SphereRadius = enteredRadius;
+				}
+
+				double maxRangeMeters = GaussLawEngine.GetSuggestedObservationRange(geometry, enteredRadius);
+				double r = (tbGaussSurface.Value / (double)tbGaussSurface.Maximum) * maxRangeMeters;
+				_gaussLawEngine.Distance = r > 0 ? r : 0.001;
+
+				_gaussLawEngine.Calculate();
+				_gaussInputsReady = true;
+
+				rtbGaussResult.Text = _gaussLawEngine.GetFinalReport(chkShowSteps.Checked);
+				lblGaussRegion.Text = _gaussLawEngine.RegionLabel;
+				lblGaussRValue.Text = $"r = {_gaussLawEngine.Distance:F3} m";
+
+				ChartEngine.Draw2DChart(
+					chartGaussLaw,
+					_gaussLawEngine.DistanceX,
+					_gaussLawEngine.FieldY,
+					" Elektrik Alan vs Uzaklık Grafiği",
+					"Mesafe (r)  [m]",
+					"Elektrik Alan (E)  [N/C]");
+			});
+		}
 	}
 }
+

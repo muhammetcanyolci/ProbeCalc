@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProbeCalc.Core.Utilities;
 using NCalc;
 namespace ProbeCalc
+
 	
 {
 	public static class FizikEngines
@@ -52,7 +54,7 @@ namespace ProbeCalc
 			double Fx(double xDegeri)
 			{
 				ifade.Parameters["x"] = xDegeri;
-				return InputParser.ParseSafe(ifade.Evaluate());
+				return Convert.ToDouble(ifade.Evaluate());
 			}
 
 			// İntegral Hesaplama Algoritması (Simpson 1/3)
@@ -106,7 +108,7 @@ namespace ProbeCalc
 				// Kullanıcı fonksiyona "t" de yazsa "x" de yazsa çalışsın diye ikisini de destekliyoruz
 				ifade.Parameters["t"] = t;
 				ifade.Parameters["x"] = t;
-				return InputParser.ParseSafe(ifade.Evaluate());
+				return Convert.ToDouble(ifade.Evaluate());
 			}
 
 			// Yamuk Kuralı ile Belirli İntegral (J = ∫ F(t) dt)
@@ -186,7 +188,7 @@ namespace ProbeCalc
 			double E(double x)
 			{
 				ifade.Parameters["x"] = x;
-				return InputParser.ParseSafe(ifade.Evaluate());
+				return Convert.ToDouble(ifade.Evaluate());
 			}
 
 			// Yamuk Kuralı ile Belirli İntegral: ∫ E(x) dx
@@ -274,7 +276,7 @@ namespace ProbeCalc
 			double B(double x)
 			{
 				ifade.Parameters["x"] = x;
-				return InputParser.ParseSafe(ifade.Evaluate());
+				return Convert.ToDouble(ifade.Evaluate());
 			}
 
 			// Yamuk Kuralı ile Yüzey İntegrali: ∫ B(x) dx

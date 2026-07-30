@@ -36,16 +36,7 @@ namespace ProbeCalc.Core.Calculators
 		public double[] ChartPos_X2 { get; private set; }
 		public double[] ChartPos_Y2 { get; private set; }
 
-		public override void Reset()
-		{
-			
-			Mass1 = 0; Vel1_X = 0; Vel1_Y = 0;
-			Mass2 = 0; Vel2_X = 0; Vel2_Y = 0;
-			Restitution = 1.0;
-			FinalVel1_X = 0; FinalVel1_Y = 0; FinalVel2_X = 0; FinalVel2_Y = 0;
-			EnergyLoss = 0;
-			ChartPos_X1 = null; ChartPos_Y1 = null; ChartPos_X2 = null; ChartPos_Y2 = null;
-		}
+
 
 		public override void Calculate()
 		{
@@ -149,7 +140,20 @@ namespace ProbeCalc.Core.Calculators
 		{
 			return $"V1': ({FinalVel1_X:F1}i, {FinalVel1_Y:F1}j) | V2': ({FinalVel2_X:F1}i, {FinalVel2_Y:F1}j) | Kayıp: {EnergyLoss:F1} J";
 		}
+
+
+
+		public override void Reset()
+		{
+
+			Mass1 = 0; Vel1_X = 0; Vel1_Y = 0;
+			Mass2 = 0; Vel2_X = 0; Vel2_Y = 0;
+			Restitution = 1.0;
+			FinalVel1_X = 0; FinalVel1_Y = 0; FinalVel2_X = 0; FinalVel2_Y = 0;
+			EnergyLoss = 0;
+			ChartPos_X1 = null; ChartPos_Y1 = null; ChartPos_X2 = null; ChartPos_Y2 = null;
+			SolutionSteps = string.Empty;
+		}
+
 	}
-
-
 }

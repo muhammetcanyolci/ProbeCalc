@@ -30,6 +30,7 @@
         {
 			this.label1 = new System.Windows.Forms.Label();
 			this.pnlSidebar = new System.Windows.Forms.Panel();
+			this.btnMenuElectricForce = new System.Windows.Forms.Button();
 			this.btnCollision = new System.Windows.Forms.Button();
 			this.chkShowSteps = new System.Windows.Forms.CheckBox();
 			this.hvclikgridon = new System.Windows.Forms.Button();
@@ -37,8 +38,8 @@
 			this.btnFaraday = new System.Windows.Forms.Button();
 			this.btnMagneticFields = new System.Windows.Forms.Button();
 			this.btnCapacitance = new System.Windows.Forms.Button();
-			this.btnElectricGauss = new System.Windows.Forms.Button();
-			this.btnElectricField = new System.Windows.Forms.Button();
+			this.btnMenuGaussLaw = new System.Windows.Forms.Button();
+			this.btnMenuElectricField = new System.Windows.Forms.Button();
 			this.btnOscillation = new System.Windows.Forms.Button();
 			this.btnRotational = new System.Windows.Forms.Button();
 			this.btnImpulse = new System.Windows.Forms.Button();
@@ -65,7 +66,71 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.pnlMainFizik = new System.Windows.Forms.Panel();
+			this.pnlGaussLaw = new System.Windows.Forms.Panel();
+			this.lblGaussRegion = new System.Windows.Forms.Label();
+			this.chartGaussLaw = new ScottPlot.WinForms.FormsPlot();
+			this.rtbGaussResult = new System.Windows.Forms.RichTextBox();
+			this.label19 = new System.Windows.Forms.Label();
+			this.tbGaussSurface = new System.Windows.Forms.TrackBar();
+			this.cmbSystemGeometry = new System.Windows.Forms.ComboBox();
+			this.lblGaussRValue = new System.Windows.Forms.Label();
+			this.txtSphereRadius = new System.Windows.Forms.TextBox();
+			this.txtTotalChargeOrDensity = new System.Windows.Forms.TextBox();
+			this.btnCalculateGauss = new System.Windows.Forms.Button();
+			this.lblChargeOrDensity = new System.Windows.Forms.Label();
+			this.label36 = new System.Windows.Forms.Label();
+			this.label37 = new System.Windows.Forms.Label();
+			this.pnlElectricForce = new System.Windows.Forms.Panel();
+			this.lblEForceNature = new System.Windows.Forms.Label();
+			this.rtbElectricalForce = new System.Windows.Forms.RichTextBox();
+			this.txtEForceCharge2 = new System.Windows.Forms.TextBox();
+			this.txtEForceDistance = new System.Windows.Forms.TextBox();
+			this.plotElectricalForce = new ScottPlot.WinForms.FormsPlot();
+			this.txtEForceCharge1 = new System.Windows.Forms.TextBox();
+			this.btnCalculateEForce = new System.Windows.Forms.Button();
+			this.label62 = new System.Windows.Forms.Label();
+			this.label63 = new System.Windows.Forms.Label();
+			this.label64 = new System.Windows.Forms.Label();
+			this.pnlElectricField = new System.Windows.Forms.Panel();
+			this.rtbEField = new System.Windows.Forms.RichTextBox();
+			this.txtEFieldDistance = new System.Windows.Forms.TextBox();
+			this.plotElectricField = new ScottPlot.WinForms.FormsPlot();
+			this.txtElektrikX1 = new System.Windows.Forms.TextBox();
+			this.txtEFieldSourceCharge = new System.Windows.Forms.TextBox();
+			this.btnCalculateElectricField = new System.Windows.Forms.Button();
+			this.label29 = new System.Windows.Forms.Label();
+			this.label31 = new System.Windows.Forms.Label();
+			this.pnlOscillations = new System.Windows.Forms.Panel();
+			this.rtbOscillationReport = new System.Windows.Forms.RichTextBox();
+			this.tabOscillation = new System.Windows.Forms.TabControl();
+			this.tabSpringPage = new System.Windows.Forms.TabPage();
+			this.txtSpringConstant = new System.Windows.Forms.TextBox();
+			this.Genlik = new System.Windows.Forms.Label();
+			this.txtSpringMass = new System.Windows.Forms.TextBox();
+			this.txtSpringTimeLimit = new System.Windows.Forms.TextBox();
+			this.txtSpringAmplitude = new System.Windows.Forms.TextBox();
+			this.txtSpringDamping = new System.Windows.Forms.TextBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.tabPendulumPage = new System.Windows.Forms.TabPage();
+			this.txtPendulumLength = new System.Windows.Forms.TextBox();
+			this.label27 = new System.Windows.Forms.Label();
+			this.txtPendulumMass = new System.Windows.Forms.TextBox();
+			this.txtPendulumTimeLimit = new System.Windows.Forms.TextBox();
+			this.txtPendulumAmplitude = new System.Windows.Forms.TextBox();
+			this.txtPendulumDamping = new System.Windows.Forms.TextBox();
+			this.label38 = new System.Windows.Forms.Label();
+			this.label45 = new System.Windows.Forms.Label();
+			this.label46 = new System.Windows.Forms.Label();
+			this.label56 = new System.Windows.Forms.Label();
+			this.btnCalculateOscillation = new System.Windows.Forms.Button();
+			this.plotOscillation = new ScottPlot.WinForms.FormsPlot();
 			this.pnlRotational = new System.Windows.Forms.Panel();
+			this.txtDragCoefRot = new System.Windows.Forms.TextBox();
+			this.label25 = new System.Windows.Forms.Label();
+			this.rtbRotationalResults = new System.Windows.Forms.RichTextBox();
 			this.cmbGeometry = new System.Windows.Forms.ComboBox();
 			this.txtRotTime = new System.Windows.Forms.TextBox();
 			this.label79 = new System.Windows.Forms.Label();
@@ -185,51 +250,18 @@
 			this.label59 = new System.Windows.Forms.Label();
 			this.label60 = new System.Windows.Forms.Label();
 			this.label61 = new System.Windows.Forms.Label();
-			this.pnlElectricGauss = new System.Windows.Forms.Panel();
-			this.label19 = new System.Windows.Forms.Label();
-			this.tbGaussYaricap = new System.Windows.Forms.TrackBar();
-			this.cmbGaussTip = new System.Windows.Forms.ComboBox();
-			this.lblGaussSonuc = new System.Windows.Forms.Label();
-			this.lblGaussR_Deger = new System.Windows.Forms.Label();
-			this.label34 = new System.Windows.Forms.Label();
-			this.txtGaussR_Cisim = new System.Windows.Forms.TextBox();
-			this.txtGaussQ = new System.Windows.Forms.TextBox();
-			this.button12 = new System.Windows.Forms.Button();
-			this.label35 = new System.Windows.Forms.Label();
-			this.label36 = new System.Windows.Forms.Label();
-			this.label37 = new System.Windows.Forms.Label();
-			this.pnlElectricField = new System.Windows.Forms.Panel();
-			this.txtTasinanQ = new System.Windows.Forms.TextBox();
-			this.label15 = new System.Windows.Forms.Label();
-			this.formsPlotElektrikIntegral = new ScottPlot.WinForms.FormsPlot();
-			this.lblElektrikIntegralSonuc = new System.Windows.Forms.Label();
-			this.txtElektrikX2 = new System.Windows.Forms.TextBox();
-			this.txtElektrikX1 = new System.Windows.Forms.TextBox();
-			this.txtEx = new System.Windows.Forms.TextBox();
-			this.btnElektrikIntegral = new System.Windows.Forms.Button();
-			this.label29 = new System.Windows.Forms.Label();
-			this.label30 = new System.Windows.Forms.Label();
-			this.label31 = new System.Windows.Forms.Label();
-			this.pnlOscillations = new System.Windows.Forms.Panel();
-			this.cmbHarmonikTip = new System.Windows.Forms.ComboBox();
-			this.txtHarmonikA = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
-			this.lblHarmonikSonuc = new System.Windows.Forms.Label();
-			this.txtHarmonikK_G = new System.Windows.Forms.TextBox();
-			this.txtHarmonikM_L = new System.Windows.Forms.TextBox();
-			this.txtHarmonikSonum = new System.Windows.Forms.TextBox();
-			this.btnHarmonikHesapla = new System.Windows.Forms.Button();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.formsPlotHarmonik = new ScottPlot.WinForms.FormsPlot();
-			this.rtbRotationalResults = new System.Windows.Forms.RichTextBox();
-			this.txtDragCoefRot = new System.Windows.Forms.TextBox();
-			this.label25 = new System.Windows.Forms.Label();
 			this.pnlSidebar.SuspendLayout();
 			this.pnlKinematik.SuspendLayout();
 			this.pnlProjectileMotion.SuspendLayout();
 			this.pnlMainFizik.SuspendLayout();
+			this.pnlGaussLaw.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbGaussSurface)).BeginInit();
+			this.pnlElectricForce.SuspendLayout();
+			this.pnlElectricField.SuspendLayout();
+			this.pnlOscillations.SuspendLayout();
+			this.tabOscillation.SuspendLayout();
+			this.tabSpringPage.SuspendLayout();
+			this.tabPendulumPage.SuspendLayout();
 			this.pnlRotational.SuspendLayout();
 			this.pnlCollision.SuspendLayout();
 			this.pnlImpulse.SuspendLayout();
@@ -239,10 +271,6 @@
 			this.pnlInductance.SuspendLayout();
 			this.pnlMagneticFields.SuspendLayout();
 			this.pnlFaraday.SuspendLayout();
-			this.pnlElectricGauss.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tbGaussYaricap)).BeginInit();
-			this.pnlElectricField.SuspendLayout();
-			this.pnlOscillations.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -258,6 +286,7 @@
 			// 
 			this.pnlSidebar.AutoScroll = true;
 			this.pnlSidebar.BackColor = System.Drawing.Color.MidnightBlue;
+			this.pnlSidebar.Controls.Add(this.btnMenuElectricForce);
 			this.pnlSidebar.Controls.Add(this.btnCollision);
 			this.pnlSidebar.Controls.Add(this.chkShowSteps);
 			this.pnlSidebar.Controls.Add(this.hvclikgridon);
@@ -265,8 +294,8 @@
 			this.pnlSidebar.Controls.Add(this.btnFaraday);
 			this.pnlSidebar.Controls.Add(this.btnMagneticFields);
 			this.pnlSidebar.Controls.Add(this.btnCapacitance);
-			this.pnlSidebar.Controls.Add(this.btnElectricGauss);
-			this.pnlSidebar.Controls.Add(this.btnElectricField);
+			this.pnlSidebar.Controls.Add(this.btnMenuGaussLaw);
+			this.pnlSidebar.Controls.Add(this.btnMenuElectricField);
 			this.pnlSidebar.Controls.Add(this.btnOscillation);
 			this.pnlSidebar.Controls.Add(this.btnRotational);
 			this.pnlSidebar.Controls.Add(this.btnImpulse);
@@ -280,6 +309,20 @@
 			this.pnlSidebar.Name = "pnlSidebar";
 			this.pnlSidebar.Size = new System.Drawing.Size(300, 753);
 			this.pnlSidebar.TabIndex = 3;
+			// 
+			// btnMenuElectricForce
+			// 
+			this.btnMenuElectricForce.BackColor = System.Drawing.Color.LightPink;
+			this.btnMenuElectricForce.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMenuElectricForce.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.btnMenuElectricForce.Location = new System.Drawing.Point(14, 577);
+			this.btnMenuElectricForce.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnMenuElectricForce.Name = "btnMenuElectricForce";
+			this.btnMenuElectricForce.Size = new System.Drawing.Size(263, 71);
+			this.btnMenuElectricForce.TabIndex = 32;
+			this.btnMenuElectricForce.Text = "ELEKTİRİK KUVVET";
+			this.btnMenuElectricForce.UseVisualStyleBackColor = false;
+			this.btnMenuElectricForce.Click += new System.EventHandler(this.btnMenuElectricForce_Click);
 			// 
 			// btnCollision
 			// 
@@ -376,33 +419,32 @@
 			this.btnCapacitance.UseVisualStyleBackColor = false;
 			this.btnCapacitance.Click += new System.EventHandler(this.btnCapacitance_Click);
 			// 
-			// btnElectricGauss
+			// btnMenuGaussLaw
 			// 
-			this.btnElectricGauss.BackColor = System.Drawing.Color.LightPink;
-			this.btnElectricGauss.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnElectricGauss.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnElectricGauss.Location = new System.Drawing.Point(3, 748);
-			this.btnElectricGauss.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnElectricGauss.Name = "btnElectricGauss";
-			this.btnElectricGauss.Size = new System.Drawing.Size(263, 59);
-			this.btnElectricGauss.TabIndex = 8;
-			this.btnElectricGauss.Text = "GAUSS YASASI";
-			this.btnElectricGauss.UseVisualStyleBackColor = false;
-			this.btnElectricGauss.Click += new System.EventHandler(this.btnElectricGauss_Click);
+			this.btnMenuGaussLaw.BackColor = System.Drawing.Color.LightPink;
+			this.btnMenuGaussLaw.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMenuGaussLaw.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.btnMenuGaussLaw.Location = new System.Drawing.Point(14, 759);
+			this.btnMenuGaussLaw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnMenuGaussLaw.Name = "btnMenuGaussLaw";
+			this.btnMenuGaussLaw.Size = new System.Drawing.Size(263, 59);
+			this.btnMenuGaussLaw.TabIndex = 8;
+			this.btnMenuGaussLaw.Text = "GAUSS YASASI";
+			this.btnMenuGaussLaw.UseVisualStyleBackColor = false;
 			// 
-			// btnElectricField
+			// btnMenuElectricField
 			// 
-			this.btnElectricField.BackColor = System.Drawing.Color.LightPink;
-			this.btnElectricField.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnElectricField.ForeColor = System.Drawing.SystemColors.Desktop;
-			this.btnElectricField.Location = new System.Drawing.Point(-50, 673);
-			this.btnElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnElectricField.Name = "btnElectricField";
-			this.btnElectricField.Size = new System.Drawing.Size(263, 71);
-			this.btnElectricField.TabIndex = 7;
-			this.btnElectricField.Text = "ELEKTİRİK ALAN VE KUVVET";
-			this.btnElectricField.UseVisualStyleBackColor = false;
-			this.btnElectricField.Click += new System.EventHandler(this.btnElectricField_Click);
+			this.btnMenuElectricField.BackColor = System.Drawing.Color.LightPink;
+			this.btnMenuElectricField.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMenuElectricField.ForeColor = System.Drawing.SystemColors.Desktop;
+			this.btnMenuElectricField.Location = new System.Drawing.Point(12, 661);
+			this.btnMenuElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnMenuElectricField.Name = "btnMenuElectricField";
+			this.btnMenuElectricField.Size = new System.Drawing.Size(263, 71);
+			this.btnMenuElectricField.TabIndex = 7;
+			this.btnMenuElectricField.Text = "ELEKTİRİK ALAN";
+			this.btnMenuElectricField.UseVisualStyleBackColor = false;
+			this.btnMenuElectricField.Click += new System.EventHandler(this.btnElectricField_Click);
 			// 
 			// btnOscillation
 			// 
@@ -697,6 +739,10 @@
 			// 
 			// pnlMainFizik
 			// 
+			this.pnlMainFizik.Controls.Add(this.pnlGaussLaw);
+			this.pnlMainFizik.Controls.Add(this.pnlElectricForce);
+			this.pnlMainFizik.Controls.Add(this.pnlElectricField);
+			this.pnlMainFizik.Controls.Add(this.pnlOscillations);
 			this.pnlMainFizik.Controls.Add(this.pnlRotational);
 			this.pnlMainFizik.Controls.Add(this.pnlCollision);
 			this.pnlMainFizik.Controls.Add(this.pnlImpulse);
@@ -708,15 +754,688 @@
 			this.pnlMainFizik.Controls.Add(this.pnlInductance);
 			this.pnlMainFizik.Controls.Add(this.pnlMagneticFields);
 			this.pnlMainFizik.Controls.Add(this.pnlFaraday);
-			this.pnlMainFizik.Controls.Add(this.pnlElectricGauss);
-			this.pnlMainFizik.Controls.Add(this.pnlElectricField);
-			this.pnlMainFizik.Controls.Add(this.pnlOscillations);
 			this.pnlMainFizik.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlMainFizik.Location = new System.Drawing.Point(0, 0);
 			this.pnlMainFizik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.pnlMainFizik.Name = "pnlMainFizik";
 			this.pnlMainFizik.Size = new System.Drawing.Size(1283, 753);
 			this.pnlMainFizik.TabIndex = 19;
+			// 
+			// pnlGaussLaw
+			// 
+			this.pnlGaussLaw.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlGaussLaw.Controls.Add(this.lblGaussRegion);
+			this.pnlGaussLaw.Controls.Add(this.chartGaussLaw);
+			this.pnlGaussLaw.Controls.Add(this.rtbGaussResult);
+			this.pnlGaussLaw.Controls.Add(this.label19);
+			this.pnlGaussLaw.Controls.Add(this.tbGaussSurface);
+			this.pnlGaussLaw.Controls.Add(this.cmbSystemGeometry);
+			this.pnlGaussLaw.Controls.Add(this.lblGaussRValue);
+			this.pnlGaussLaw.Controls.Add(this.txtSphereRadius);
+			this.pnlGaussLaw.Controls.Add(this.txtTotalChargeOrDensity);
+			this.pnlGaussLaw.Controls.Add(this.btnCalculateGauss);
+			this.pnlGaussLaw.Controls.Add(this.lblChargeOrDensity);
+			this.pnlGaussLaw.Controls.Add(this.label36);
+			this.pnlGaussLaw.Controls.Add(this.label37);
+			this.pnlGaussLaw.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlGaussLaw.Location = new System.Drawing.Point(0, 0);
+			this.pnlGaussLaw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlGaussLaw.Name = "pnlGaussLaw";
+			this.pnlGaussLaw.Size = new System.Drawing.Size(1283, 753);
+			this.pnlGaussLaw.TabIndex = 32;
+			this.pnlGaussLaw.TabStop = true;
+			// 
+			// lblGaussRegion
+			// 
+			this.lblGaussRegion.AutoSize = true;
+			this.lblGaussRegion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.lblGaussRegion.Location = new System.Drawing.Point(837, 474);
+			this.lblGaussRegion.Name = "lblGaussRegion";
+			this.lblGaussRegion.Size = new System.Drawing.Size(151, 22);
+			this.lblGaussRegion.TabIndex = 52;
+			this.lblGaussRegion.Text = "lblGaussRegion";
+			// 
+			// chartGaussLaw
+			// 
+			this.chartGaussLaw.BackColor = System.Drawing.Color.Crimson;
+			this.chartGaussLaw.Location = new System.Drawing.Point(310, 295);
+			this.chartGaussLaw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.chartGaussLaw.Name = "chartGaussLaw";
+			this.chartGaussLaw.Size = new System.Drawing.Size(476, 326);
+			this.chartGaussLaw.TabIndex = 51;
+			// 
+			// rtbGaussResult
+			// 
+			this.rtbGaussResult.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbGaussResult.Location = new System.Drawing.Point(796, 139);
+			this.rtbGaussResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbGaussResult.Name = "rtbGaussResult";
+			this.rtbGaussResult.ReadOnly = true;
+			this.rtbGaussResult.Size = new System.Drawing.Size(484, 304);
+			this.rtbGaussResult.TabIndex = 50;
+			this.rtbGaussResult.Text = "";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label19.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label19.Location = new System.Drawing.Point(361, 146);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(338, 22);
+			this.label19.TabIndex = 22;
+			this.label19.Text = "Gauss Yüzeyi Kaydırıcısı (TrackBar):";
+			// 
+			// tbGaussSurface
+			// 
+			this.tbGaussSurface.Location = new System.Drawing.Point(701, 142);
+			this.tbGaussSurface.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tbGaussSurface.Maximum = 100;
+			this.tbGaussSurface.Minimum = 1;
+			this.tbGaussSurface.Name = "tbGaussSurface";
+			this.tbGaussSurface.Size = new System.Drawing.Size(104, 56);
+			this.tbGaussSurface.TabIndex = 21;
+			this.tbGaussSurface.Value = 1;
+			// 
+			// cmbSystemGeometry
+			// 
+			this.cmbSystemGeometry.FormattingEnabled = true;
+			this.cmbSystemGeometry.Items.AddRange(new object[] {
+            "Noktasal Yük",
+            "",
+            "Yalıtkan Küre (Dolu)",
+            "",
+            "İletken Küre",
+            "",
+            "Çizgisel Yük (Sonsuz Tel)",
+            "",
+            "Sonsuz Düzlem"});
+			this.cmbSystemGeometry.Location = new System.Drawing.Point(671, 33);
+			this.cmbSystemGeometry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.cmbSystemGeometry.Name = "cmbSystemGeometry";
+			this.cmbSystemGeometry.Size = new System.Drawing.Size(121, 24);
+			this.cmbSystemGeometry.TabIndex = 20;
+			// 
+			// lblGaussRValue
+			// 
+			this.lblGaussRValue.AutoSize = true;
+			this.lblGaussRValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.lblGaussRValue.Location = new System.Drawing.Point(357, 193);
+			this.lblGaussRValue.Name = "lblGaussRValue";
+			this.lblGaussRValue.Size = new System.Drawing.Size(167, 22);
+			this.lblGaussRValue.TabIndex = 17;
+			this.lblGaussRValue.Text = "lblGaussR_Deger";
+			// 
+			// txtSphereRadius
+			// 
+			this.txtSphereRadius.Location = new System.Drawing.Point(680, 105);
+			this.txtSphereRadius.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtSphereRadius.Name = "txtSphereRadius";
+			this.txtSphereRadius.Size = new System.Drawing.Size(131, 22);
+			this.txtSphereRadius.TabIndex = 15;
+			// 
+			// txtTotalChargeOrDensity
+			// 
+			this.txtTotalChargeOrDensity.Location = new System.Drawing.Point(680, 70);
+			this.txtTotalChargeOrDensity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtTotalChargeOrDensity.Name = "txtTotalChargeOrDensity";
+			this.txtTotalChargeOrDensity.Size = new System.Drawing.Size(131, 22);
+			this.txtTotalChargeOrDensity.TabIndex = 14;
+			// 
+			// btnCalculateGauss
+			// 
+			this.btnCalculateGauss.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateGauss.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateGauss.Location = new System.Drawing.Point(361, 223);
+			this.btnCalculateGauss.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateGauss.Name = "btnCalculateGauss";
+			this.btnCalculateGauss.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateGauss.TabIndex = 12;
+			this.btnCalculateGauss.Text = "Calculate";
+			this.btnCalculateGauss.UseVisualStyleBackColor = false;
+			this.btnCalculateGauss.Click += new System.EventHandler(this.btnCalculateGauss_Click);
+			// 
+			// lblChargeOrDensity
+			// 
+			this.lblChargeOrDensity.AutoSize = true;
+			this.lblChargeOrDensity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.lblChargeOrDensity.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.lblChargeOrDensity.Location = new System.Drawing.Point(371, 71);
+			this.lblChargeOrDensity.Name = "lblChargeOrDensity";
+			this.lblChargeOrDensity.Size = new System.Drawing.Size(321, 22);
+			this.lblChargeOrDensity.TabIndex = 11;
+			this.lblChargeOrDensity.Text = "Toplam Yük / Yoğunluk [$\\mu C$]: ";
+			// 
+			// label36
+			// 
+			this.label36.AutoSize = true;
+			this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label36.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label36.Location = new System.Drawing.Point(371, 106);
+			this.label36.Name = "label36";
+			this.label36.Size = new System.Drawing.Size(306, 22);
+			this.label36.TabIndex = 10;
+			this.label36.Text = "(küreyse)Cismin Yarıçapı (R) [m]:";
+			// 
+			// label37
+			// 
+			this.label37.AutoSize = true;
+			this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label37.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label37.Location = new System.Drawing.Point(371, 34);
+			this.label37.Name = "label37";
+			this.label37.Size = new System.Drawing.Size(294, 22);
+			this.label37.TabIndex = 9;
+			this.label37.Text = "Sistem Geometrisi (ComboBox):";
+			// 
+			// pnlElectricForce
+			// 
+			this.pnlElectricForce.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlElectricForce.Controls.Add(this.lblEForceNature);
+			this.pnlElectricForce.Controls.Add(this.rtbElectricalForce);
+			this.pnlElectricForce.Controls.Add(this.txtEForceCharge2);
+			this.pnlElectricForce.Controls.Add(this.txtEForceDistance);
+			this.pnlElectricForce.Controls.Add(this.plotElectricalForce);
+			this.pnlElectricForce.Controls.Add(this.txtEForceCharge1);
+			this.pnlElectricForce.Controls.Add(this.btnCalculateEForce);
+			this.pnlElectricForce.Controls.Add(this.label62);
+			this.pnlElectricForce.Controls.Add(this.label63);
+			this.pnlElectricForce.Controls.Add(this.label64);
+			this.pnlElectricForce.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlElectricForce.Location = new System.Drawing.Point(0, 0);
+			this.pnlElectricForce.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlElectricForce.Name = "pnlElectricForce";
+			this.pnlElectricForce.Size = new System.Drawing.Size(1283, 753);
+			this.pnlElectricForce.TabIndex = 32;
+			this.pnlElectricForce.TabStop = true;
+			// 
+			// lblEForceNature
+			// 
+			this.lblEForceNature.AutoSize = true;
+			this.lblEForceNature.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.lblEForceNature.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.lblEForceNature.Location = new System.Drawing.Point(915, 331);
+			this.lblEForceNature.Name = "lblEForceNature";
+			this.lblEForceNature.Size = new System.Drawing.Size(28, 22);
+			this.lblEForceNature.TabIndex = 50;
+			this.lblEForceNature.Text = "...";
+			// 
+			// rtbElectricalForce
+			// 
+			this.rtbElectricalForce.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbElectricalForce.Location = new System.Drawing.Point(798, 16);
+			this.rtbElectricalForce.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbElectricalForce.Name = "rtbElectricalForce";
+			this.rtbElectricalForce.ReadOnly = true;
+			this.rtbElectricalForce.Size = new System.Drawing.Size(484, 304);
+			this.rtbElectricalForce.TabIndex = 49;
+			this.rtbElectricalForce.Text = "";
+			// 
+			// txtEForceCharge2
+			// 
+			this.txtEForceCharge2.Location = new System.Drawing.Point(586, 74);
+			this.txtEForceCharge2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtEForceCharge2.Name = "txtEForceCharge2";
+			this.txtEForceCharge2.Size = new System.Drawing.Size(131, 22);
+			this.txtEForceCharge2.TabIndex = 21;
+			// 
+			// txtEForceDistance
+			// 
+			this.txtEForceDistance.Location = new System.Drawing.Point(661, 109);
+			this.txtEForceDistance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtEForceDistance.Name = "txtEForceDistance";
+			this.txtEForceDistance.Size = new System.Drawing.Size(131, 22);
+			this.txtEForceDistance.TabIndex = 20;
+			// 
+			// plotElectricalForce
+			// 
+			this.plotElectricalForce.BackColor = System.Drawing.Color.Crimson;
+			this.plotElectricalForce.Location = new System.Drawing.Point(310, 329);
+			this.plotElectricalForce.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.plotElectricalForce.Name = "plotElectricalForce";
+			this.plotElectricalForce.Size = new System.Drawing.Size(552, 375);
+			this.plotElectricalForce.TabIndex = 19;
+			// 
+			// txtEForceCharge1
+			// 
+			this.txtEForceCharge1.Location = new System.Drawing.Point(585, 34);
+			this.txtEForceCharge1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtEForceCharge1.Name = "txtEForceCharge1";
+			this.txtEForceCharge1.Size = new System.Drawing.Size(131, 22);
+			this.txtEForceCharge1.TabIndex = 15;
+			// 
+			// btnCalculateEForce
+			// 
+			this.btnCalculateEForce.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateEForce.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateEForce.Location = new System.Drawing.Point(373, 222);
+			this.btnCalculateEForce.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateEForce.Name = "btnCalculateEForce";
+			this.btnCalculateEForce.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateEForce.TabIndex = 12;
+			this.btnCalculateEForce.Text = "Calculate";
+			this.btnCalculateEForce.UseVisualStyleBackColor = false;
+			this.btnCalculateEForce.Click += new System.EventHandler(this.btnCalculateEForce_Click);
+			// 
+			// label62
+			// 
+			this.label62.AutoSize = true;
+			this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label62.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label62.Location = new System.Drawing.Point(371, 71);
+			this.label62.Name = "label62";
+			this.label62.Size = new System.Drawing.Size(172, 22);
+			this.label62.TabIndex = 11;
+			this.label62.Text = "\"2. Yük (Q₂) [μC]:\"";
+			// 
+			// label63
+			// 
+			this.label63.AutoSize = true;
+			this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label63.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label63.Location = new System.Drawing.Point(371, 106);
+			this.label63.Name = "label63";
+			this.label63.Size = new System.Drawing.Size(269, 22);
+			this.label63.TabIndex = 10;
+			this.label63.Text = "\"Yükler Arası Mesafe (r) [m]:\"";
+			// 
+			// label64
+			// 
+			this.label64.AutoSize = true;
+			this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label64.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label64.Location = new System.Drawing.Point(371, 34);
+			this.label64.Name = "label64";
+			this.label64.Size = new System.Drawing.Size(172, 22);
+			this.label64.TabIndex = 9;
+			this.label64.Text = "\"1. Yük (Q₁) [μC]:\"";
+			// 
+			// pnlElectricField
+			// 
+			this.pnlElectricField.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlElectricField.Controls.Add(this.rtbEField);
+			this.pnlElectricField.Controls.Add(this.txtEFieldDistance);
+			this.pnlElectricField.Controls.Add(this.plotElectricField);
+			this.pnlElectricField.Controls.Add(this.txtElektrikX1);
+			this.pnlElectricField.Controls.Add(this.txtEFieldSourceCharge);
+			this.pnlElectricField.Controls.Add(this.btnCalculateElectricField);
+			this.pnlElectricField.Controls.Add(this.label29);
+			this.pnlElectricField.Controls.Add(this.label31);
+			this.pnlElectricField.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlElectricField.Location = new System.Drawing.Point(0, 0);
+			this.pnlElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlElectricField.Name = "pnlElectricField";
+			this.pnlElectricField.Size = new System.Drawing.Size(1283, 753);
+			this.pnlElectricField.TabIndex = 31;
+			this.pnlElectricField.TabStop = true;
+			// 
+			// rtbEField
+			// 
+			this.rtbEField.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbEField.Location = new System.Drawing.Point(766, 19);
+			this.rtbEField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbEField.Name = "rtbEField";
+			this.rtbEField.ReadOnly = true;
+			this.rtbEField.Size = new System.Drawing.Size(484, 318);
+			this.rtbEField.TabIndex = 39;
+			this.rtbEField.Text = "";
+			// 
+			// txtEFieldDistance
+			// 
+			this.txtEFieldDistance.Location = new System.Drawing.Point(605, 71);
+			this.txtEFieldDistance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtEFieldDistance.Name = "txtEFieldDistance";
+			this.txtEFieldDistance.Size = new System.Drawing.Size(131, 22);
+			this.txtEFieldDistance.TabIndex = 14;
+			// 
+			// plotElectricField
+			// 
+			this.plotElectricField.BackColor = System.Drawing.Color.Crimson;
+			this.plotElectricField.Location = new System.Drawing.Point(387, 331);
+			this.plotElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.plotElectricField.Name = "plotElectricField";
+			this.plotElectricField.Size = new System.Drawing.Size(552, 375);
+			this.plotElectricField.TabIndex = 19;
+			// 
+			// txtElektrikX1
+			// 
+			this.txtElektrikX1.Location = new System.Drawing.Point(605, 71);
+			this.txtElektrikX1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtElektrikX1.Name = "txtElektrikX1";
+			this.txtElektrikX1.Size = new System.Drawing.Size(131, 22);
+			this.txtElektrikX1.TabIndex = 14;
+			// 
+			// txtEFieldSourceCharge
+			// 
+			this.txtEFieldSourceCharge.Location = new System.Drawing.Point(605, 38);
+			this.txtEFieldSourceCharge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtEFieldSourceCharge.Name = "txtEFieldSourceCharge";
+			this.txtEFieldSourceCharge.Size = new System.Drawing.Size(131, 22);
+			this.txtEFieldSourceCharge.TabIndex = 13;
+			// 
+			// btnCalculateElectricField
+			// 
+			this.btnCalculateElectricField.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateElectricField.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateElectricField.Location = new System.Drawing.Point(373, 222);
+			this.btnCalculateElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateElectricField.Name = "btnCalculateElectricField";
+			this.btnCalculateElectricField.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateElectricField.TabIndex = 12;
+			this.btnCalculateElectricField.Text = "Calculate";
+			this.btnCalculateElectricField.UseVisualStyleBackColor = false;
+			this.btnCalculateElectricField.Click += new System.EventHandler(this.btnCalculateElectricField_Click);
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label29.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label29.Location = new System.Drawing.Point(371, 71);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(154, 22);
+			this.label29.TabIndex = 11;
+			this.label29.Text = "\"Mesafe (r) [m]:\"";
+			// 
+			// label31
+			// 
+			this.label31.AutoSize = true;
+			this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label31.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label31.Location = new System.Drawing.Point(341, 38);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(214, 22);
+			this.label31.TabIndex = 9;
+			this.label31.Text = "\"Kaynak Yük (Q) [μC]:\"";
+			// 
+			// pnlOscillations
+			// 
+			this.pnlOscillations.BackColor = System.Drawing.Color.SlateGray;
+			this.pnlOscillations.Controls.Add(this.rtbOscillationReport);
+			this.pnlOscillations.Controls.Add(this.tabOscillation);
+			this.pnlOscillations.Controls.Add(this.btnCalculateOscillation);
+			this.pnlOscillations.Controls.Add(this.plotOscillation);
+			this.pnlOscillations.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlOscillations.Location = new System.Drawing.Point(0, 0);
+			this.pnlOscillations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pnlOscillations.Name = "pnlOscillations";
+			this.pnlOscillations.Size = new System.Drawing.Size(1283, 753);
+			this.pnlOscillations.TabIndex = 30;
+			this.pnlOscillations.TabStop = true;
+			// 
+			// rtbOscillationReport
+			// 
+			this.rtbOscillationReport.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbOscillationReport.Location = new System.Drawing.Point(766, 16);
+			this.rtbOscillationReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbOscillationReport.Name = "rtbOscillationReport";
+			this.rtbOscillationReport.ReadOnly = true;
+			this.rtbOscillationReport.Size = new System.Drawing.Size(484, 318);
+			this.rtbOscillationReport.TabIndex = 48;
+			this.rtbOscillationReport.Text = "";
+			// 
+			// tabOscillation
+			// 
+			this.tabOscillation.Controls.Add(this.tabSpringPage);
+			this.tabOscillation.Controls.Add(this.tabPendulumPage);
+			this.tabOscillation.Location = new System.Drawing.Point(306, 3);
+			this.tabOscillation.Name = "tabOscillation";
+			this.tabOscillation.SelectedIndex = 0;
+			this.tabOscillation.Size = new System.Drawing.Size(430, 268);
+			this.tabOscillation.TabIndex = 47;
+			// 
+			// tabSpringPage
+			// 
+			this.tabSpringPage.BackColor = System.Drawing.Color.SlateGray;
+			this.tabSpringPage.Controls.Add(this.txtSpringConstant);
+			this.tabSpringPage.Controls.Add(this.Genlik);
+			this.tabSpringPage.Controls.Add(this.txtSpringMass);
+			this.tabSpringPage.Controls.Add(this.txtSpringTimeLimit);
+			this.tabSpringPage.Controls.Add(this.txtSpringAmplitude);
+			this.tabSpringPage.Controls.Add(this.txtSpringDamping);
+			this.tabSpringPage.Controls.Add(this.label17);
+			this.tabSpringPage.Controls.Add(this.label14);
+			this.tabSpringPage.Controls.Add(this.label18);
+			this.tabSpringPage.Controls.Add(this.label16);
+			this.tabSpringPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.tabSpringPage.Location = new System.Drawing.Point(4, 25);
+			this.tabSpringPage.Name = "tabSpringPage";
+			this.tabSpringPage.Padding = new System.Windows.Forms.Padding(3);
+			this.tabSpringPage.Size = new System.Drawing.Size(422, 239);
+			this.tabSpringPage.TabIndex = 0;
+			this.tabSpringPage.Text = "Yay-Kütle Sistemi";
+			// 
+			// txtSpringConstant
+			// 
+			this.txtSpringConstant.Location = new System.Drawing.Point(183, 117);
+			this.txtSpringConstant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtSpringConstant.Name = "txtSpringConstant";
+			this.txtSpringConstant.Size = new System.Drawing.Size(131, 30);
+			this.txtSpringConstant.TabIndex = 46;
+			// 
+			// Genlik
+			// 
+			this.Genlik.AutoSize = true;
+			this.Genlik.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.Genlik.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.Genlik.Location = new System.Drawing.Point(13, 119);
+			this.Genlik.Name = "Genlik";
+			this.Genlik.Size = new System.Drawing.Size(101, 22);
+			this.Genlik.TabIndex = 45;
+			this.Genlik.Text = "Yay Sabiti";
+			// 
+			// txtSpringMass
+			// 
+			this.txtSpringMass.Location = new System.Drawing.Point(174, 9);
+			this.txtSpringMass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtSpringMass.Name = "txtSpringMass";
+			this.txtSpringMass.Size = new System.Drawing.Size(131, 30);
+			this.txtSpringMass.TabIndex = 40;
+			// 
+			// txtSpringTimeLimit
+			// 
+			this.txtSpringTimeLimit.Location = new System.Drawing.Point(174, 42);
+			this.txtSpringTimeLimit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtSpringTimeLimit.Name = "txtSpringTimeLimit";
+			this.txtSpringTimeLimit.Size = new System.Drawing.Size(131, 30);
+			this.txtSpringTimeLimit.TabIndex = 41;
+			// 
+			// txtSpringAmplitude
+			// 
+			this.txtSpringAmplitude.Location = new System.Drawing.Point(174, 76);
+			this.txtSpringAmplitude.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtSpringAmplitude.Name = "txtSpringAmplitude";
+			this.txtSpringAmplitude.Size = new System.Drawing.Size(131, 30);
+			this.txtSpringAmplitude.TabIndex = 44;
+			// 
+			// txtSpringDamping
+			// 
+			this.txtSpringDamping.Location = new System.Drawing.Point(183, 143);
+			this.txtSpringDamping.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtSpringDamping.Name = "txtSpringDamping";
+			this.txtSpringDamping.Size = new System.Drawing.Size(131, 30);
+			this.txtSpringDamping.TabIndex = 39;
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label17.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label17.Location = new System.Drawing.Point(13, 47);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(70, 22);
+			this.label17.TabIndex = 36;
+			this.label17.Text = "Zaman";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label14.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label14.Location = new System.Drawing.Point(15, 78);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(73, 22);
+			this.label14.TabIndex = 43;
+			this.label14.Text = "Genlik:";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label18.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label18.Location = new System.Drawing.Point(13, 141);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(164, 22);
+			this.label18.TabIndex = 35;
+			this.label18.Text = "Sönüm Katsayısı:";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label16.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label16.Location = new System.Drawing.Point(14, 13);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(62, 22);
+			this.label16.TabIndex = 37;
+			this.label16.Text = "Kütle ";
+			// 
+			// tabPendulumPage
+			// 
+			this.tabPendulumPage.BackColor = System.Drawing.Color.SlateGray;
+			this.tabPendulumPage.Controls.Add(this.txtPendulumLength);
+			this.tabPendulumPage.Controls.Add(this.label27);
+			this.tabPendulumPage.Controls.Add(this.txtPendulumMass);
+			this.tabPendulumPage.Controls.Add(this.txtPendulumTimeLimit);
+			this.tabPendulumPage.Controls.Add(this.txtPendulumAmplitude);
+			this.tabPendulumPage.Controls.Add(this.txtPendulumDamping);
+			this.tabPendulumPage.Controls.Add(this.label38);
+			this.tabPendulumPage.Controls.Add(this.label45);
+			this.tabPendulumPage.Controls.Add(this.label46);
+			this.tabPendulumPage.Controls.Add(this.label56);
+			this.tabPendulumPage.Location = new System.Drawing.Point(4, 25);
+			this.tabPendulumPage.Name = "tabPendulumPage";
+			this.tabPendulumPage.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPendulumPage.Size = new System.Drawing.Size(422, 239);
+			this.tabPendulumPage.TabIndex = 1;
+			this.tabPendulumPage.Text = "Basit Sarkaç";
+			// 
+			// txtPendulumLength
+			// 
+			this.txtPendulumLength.Location = new System.Drawing.Point(185, 130);
+			this.txtPendulumLength.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtPendulumLength.Name = "txtPendulumLength";
+			this.txtPendulumLength.Size = new System.Drawing.Size(131, 22);
+			this.txtPendulumLength.TabIndex = 56;
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label27.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label27.Location = new System.Drawing.Point(15, 132);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(115, 22);
+			this.label27.TabIndex = 55;
+			this.label27.Text = "İp Uzunluğu";
+			// 
+			// txtPendulumMass
+			// 
+			this.txtPendulumMass.Location = new System.Drawing.Point(176, 22);
+			this.txtPendulumMass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtPendulumMass.Name = "txtPendulumMass";
+			this.txtPendulumMass.Size = new System.Drawing.Size(131, 22);
+			this.txtPendulumMass.TabIndex = 51;
+			// 
+			// txtPendulumTimeLimit
+			// 
+			this.txtPendulumTimeLimit.Location = new System.Drawing.Point(176, 55);
+			this.txtPendulumTimeLimit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtPendulumTimeLimit.Name = "txtPendulumTimeLimit";
+			this.txtPendulumTimeLimit.Size = new System.Drawing.Size(131, 22);
+			this.txtPendulumTimeLimit.TabIndex = 52;
+			// 
+			// txtPendulumAmplitude
+			// 
+			this.txtPendulumAmplitude.Location = new System.Drawing.Point(176, 89);
+			this.txtPendulumAmplitude.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtPendulumAmplitude.Name = "txtPendulumAmplitude";
+			this.txtPendulumAmplitude.Size = new System.Drawing.Size(131, 22);
+			this.txtPendulumAmplitude.TabIndex = 54;
+			// 
+			// txtPendulumDamping
+			// 
+			this.txtPendulumDamping.Location = new System.Drawing.Point(185, 156);
+			this.txtPendulumDamping.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtPendulumDamping.Name = "txtPendulumDamping";
+			this.txtPendulumDamping.Size = new System.Drawing.Size(131, 22);
+			this.txtPendulumDamping.TabIndex = 50;
+			// 
+			// label38
+			// 
+			this.label38.AutoSize = true;
+			this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label38.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label38.Location = new System.Drawing.Point(15, 60);
+			this.label38.Name = "label38";
+			this.label38.Size = new System.Drawing.Size(70, 22);
+			this.label38.TabIndex = 48;
+			this.label38.Text = "Zaman";
+			// 
+			// label45
+			// 
+			this.label45.AutoSize = true;
+			this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label45.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label45.Location = new System.Drawing.Point(17, 91);
+			this.label45.Name = "label45";
+			this.label45.Size = new System.Drawing.Size(73, 22);
+			this.label45.TabIndex = 53;
+			this.label45.Text = "Genlik:";
+			// 
+			// label46
+			// 
+			this.label46.AutoSize = true;
+			this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label46.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label46.Location = new System.Drawing.Point(15, 154);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(164, 22);
+			this.label46.TabIndex = 47;
+			this.label46.Text = "Sönüm Katsayısı:";
+			// 
+			// label56
+			// 
+			this.label56.AutoSize = true;
+			this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label56.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label56.Location = new System.Drawing.Point(16, 26);
+			this.label56.Name = "label56";
+			this.label56.Size = new System.Drawing.Size(62, 22);
+			this.label56.TabIndex = 49;
+			this.label56.Text = "Kütle ";
+			// 
+			// btnCalculateOscillation
+			// 
+			this.btnCalculateOscillation.BackColor = System.Drawing.Color.Pink;
+			this.btnCalculateOscillation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.btnCalculateOscillation.Location = new System.Drawing.Point(1002, 423);
+			this.btnCalculateOscillation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnCalculateOscillation.Name = "btnCalculateOscillation";
+			this.btnCalculateOscillation.Size = new System.Drawing.Size(117, 34);
+			this.btnCalculateOscillation.TabIndex = 38;
+			this.btnCalculateOscillation.Text = "Calculate";
+			this.btnCalculateOscillation.UseVisualStyleBackColor = false;
+			this.btnCalculateOscillation.Click += new System.EventHandler(this.btnCalculateOscillation_Click);
+			// 
+			// plotOscillation
+			// 
+			this.plotOscillation.BackColor = System.Drawing.Color.Crimson;
+			this.plotOscillation.Location = new System.Drawing.Point(336, 393);
+			this.plotOscillation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.plotOscillation.Name = "plotOscillation";
+			this.plotOscillation.Size = new System.Drawing.Size(533, 338);
+			this.plotOscillation.TabIndex = 19;
 			// 
 			// pnlRotational
 			// 
@@ -742,6 +1461,36 @@
 			this.pnlRotational.Size = new System.Drawing.Size(1283, 753);
 			this.pnlRotational.TabIndex = 6;
 			this.pnlRotational.TabStop = true;
+			// 
+			// txtDragCoefRot
+			// 
+			this.txtDragCoefRot.Location = new System.Drawing.Point(564, 200);
+			this.txtDragCoefRot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtDragCoefRot.Name = "txtDragCoefRot";
+			this.txtDragCoefRot.Size = new System.Drawing.Size(131, 22);
+			this.txtDragCoefRot.TabIndex = 40;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.label25.ForeColor = System.Drawing.SystemColors.HighlightText;
+			this.label25.Location = new System.Drawing.Point(331, 197);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(149, 22);
+			this.label25.TabIndex = 39;
+			this.label25.Text = "DragCoefficient\r\n";
+			// 
+			// rtbRotationalResults
+			// 
+			this.rtbRotationalResults.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.rtbRotationalResults.Location = new System.Drawing.Point(765, 19);
+			this.rtbRotationalResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbRotationalResults.Name = "rtbRotationalResults";
+			this.rtbRotationalResults.ReadOnly = true;
+			this.rtbRotationalResults.Size = new System.Drawing.Size(484, 318);
+			this.rtbRotationalResults.TabIndex = 38;
+			this.rtbRotationalResults.Text = "";
 			// 
 			// cmbGeometry
 			// 
@@ -2041,459 +2790,6 @@
 			this.label61.TabIndex = 9;
 			this.label61.Text = "Bobin Sarım Sayısı (N):";
 			// 
-			// pnlElectricGauss
-			// 
-			this.pnlElectricGauss.BackColor = System.Drawing.Color.SlateGray;
-			this.pnlElectricGauss.Controls.Add(this.label19);
-			this.pnlElectricGauss.Controls.Add(this.tbGaussYaricap);
-			this.pnlElectricGauss.Controls.Add(this.cmbGaussTip);
-			this.pnlElectricGauss.Controls.Add(this.lblGaussSonuc);
-			this.pnlElectricGauss.Controls.Add(this.lblGaussR_Deger);
-			this.pnlElectricGauss.Controls.Add(this.label34);
-			this.pnlElectricGauss.Controls.Add(this.txtGaussR_Cisim);
-			this.pnlElectricGauss.Controls.Add(this.txtGaussQ);
-			this.pnlElectricGauss.Controls.Add(this.button12);
-			this.pnlElectricGauss.Controls.Add(this.label35);
-			this.pnlElectricGauss.Controls.Add(this.label36);
-			this.pnlElectricGauss.Controls.Add(this.label37);
-			this.pnlElectricGauss.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlElectricGauss.Location = new System.Drawing.Point(0, 0);
-			this.pnlElectricGauss.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.pnlElectricGauss.Name = "pnlElectricGauss";
-			this.pnlElectricGauss.Size = new System.Drawing.Size(1283, 753);
-			this.pnlElectricGauss.TabIndex = 32;
-			this.pnlElectricGauss.TabStop = true;
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label19.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label19.Location = new System.Drawing.Point(361, 146);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(338, 22);
-			this.label19.TabIndex = 22;
-			this.label19.Text = "Gauss Yüzeyi Kaydırıcısı (TrackBar):";
-			// 
-			// tbGaussYaricap
-			// 
-			this.tbGaussYaricap.Location = new System.Drawing.Point(705, 140);
-			this.tbGaussYaricap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.tbGaussYaricap.Maximum = 100;
-			this.tbGaussYaricap.Minimum = 1;
-			this.tbGaussYaricap.Name = "tbGaussYaricap";
-			this.tbGaussYaricap.Size = new System.Drawing.Size(104, 56);
-			this.tbGaussYaricap.TabIndex = 21;
-			this.tbGaussYaricap.Value = 1;
-			this.tbGaussYaricap.Scroll += new System.EventHandler(this.tbGaussYaricap_Scroll);
-			// 
-			// cmbGaussTip
-			// 
-			this.cmbGaussTip.FormattingEnabled = true;
-			this.cmbGaussTip.Items.AddRange(new object[] {
-            "Yalıtkan Küre",
-            "Çizgisel Yük",
-            "Noktasal Yük"});
-			this.cmbGaussTip.Location = new System.Drawing.Point(671, 33);
-			this.cmbGaussTip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.cmbGaussTip.Name = "cmbGaussTip";
-			this.cmbGaussTip.Size = new System.Drawing.Size(121, 24);
-			this.cmbGaussTip.TabIndex = 20;
-			// 
-			// lblGaussSonuc
-			// 
-			this.lblGaussSonuc.AutoSize = true;
-			this.lblGaussSonuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblGaussSonuc.Location = new System.Drawing.Point(851, 14);
-			this.lblGaussSonuc.Name = "lblGaussSonuc";
-			this.lblGaussSonuc.Size = new System.Drawing.Size(116, 22);
-			this.lblGaussSonuc.TabIndex = 18;
-			this.lblGaussSonuc.Text = "Max Range:";
-			// 
-			// lblGaussR_Deger
-			// 
-			this.lblGaussR_Deger.AutoSize = true;
-			this.lblGaussR_Deger.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblGaussR_Deger.Location = new System.Drawing.Point(357, 193);
-			this.lblGaussR_Deger.Name = "lblGaussR_Deger";
-			this.lblGaussR_Deger.Size = new System.Drawing.Size(167, 22);
-			this.lblGaussR_Deger.TabIndex = 17;
-			this.lblGaussR_Deger.Text = "lblGaussR_Deger";
-			// 
-			// label34
-			// 
-			this.label34.AutoSize = true;
-			this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label34.Location = new System.Drawing.Point(803, 90);
-			this.label34.Name = "label34";
-			this.label34.Size = new System.Drawing.Size(139, 22);
-			this.label34.TabIndex = 16;
-			this.label34.Text = "Time of Filght:";
-			// 
-			// txtGaussR_Cisim
-			// 
-			this.txtGaussR_Cisim.Location = new System.Drawing.Point(680, 105);
-			this.txtGaussR_Cisim.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtGaussR_Cisim.Name = "txtGaussR_Cisim";
-			this.txtGaussR_Cisim.Size = new System.Drawing.Size(131, 22);
-			this.txtGaussR_Cisim.TabIndex = 15;
-			// 
-			// txtGaussQ
-			// 
-			this.txtGaussQ.Location = new System.Drawing.Point(680, 70);
-			this.txtGaussQ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtGaussQ.Name = "txtGaussQ";
-			this.txtGaussQ.Size = new System.Drawing.Size(131, 22);
-			this.txtGaussQ.TabIndex = 14;
-			// 
-			// button12
-			// 
-			this.button12.BackColor = System.Drawing.Color.Pink;
-			this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.button12.Location = new System.Drawing.Point(371, 327);
-			this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.button12.Name = "button12";
-			this.button12.Size = new System.Drawing.Size(117, 34);
-			this.button12.TabIndex = 12;
-			this.button12.Text = "Calculate";
-			this.button12.UseVisualStyleBackColor = false;
-			// 
-			// label35
-			// 
-			this.label35.AutoSize = true;
-			this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label35.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label35.Location = new System.Drawing.Point(371, 71);
-			this.label35.Name = "label35";
-			this.label35.Size = new System.Drawing.Size(321, 22);
-			this.label35.TabIndex = 11;
-			this.label35.Text = "Toplam Yük / Yoğunluk [$\\mu C$]: ";
-			// 
-			// label36
-			// 
-			this.label36.AutoSize = true;
-			this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label36.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label36.Location = new System.Drawing.Point(371, 106);
-			this.label36.Name = "label36";
-			this.label36.Size = new System.Drawing.Size(306, 22);
-			this.label36.TabIndex = 10;
-			this.label36.Text = "(küreyse)Cismin Yarıçapı (R) [m]:";
-			// 
-			// label37
-			// 
-			this.label37.AutoSize = true;
-			this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label37.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label37.Location = new System.Drawing.Point(371, 34);
-			this.label37.Name = "label37";
-			this.label37.Size = new System.Drawing.Size(294, 22);
-			this.label37.TabIndex = 9;
-			this.label37.Text = "Sistem Geometrisi (ComboBox):";
-			// 
-			// pnlElectricField
-			// 
-			this.pnlElectricField.BackColor = System.Drawing.Color.SlateGray;
-			this.pnlElectricField.Controls.Add(this.txtTasinanQ);
-			this.pnlElectricField.Controls.Add(this.label15);
-			this.pnlElectricField.Controls.Add(this.formsPlotElektrikIntegral);
-			this.pnlElectricField.Controls.Add(this.lblElektrikIntegralSonuc);
-			this.pnlElectricField.Controls.Add(this.txtElektrikX2);
-			this.pnlElectricField.Controls.Add(this.txtElektrikX1);
-			this.pnlElectricField.Controls.Add(this.txtEx);
-			this.pnlElectricField.Controls.Add(this.btnElektrikIntegral);
-			this.pnlElectricField.Controls.Add(this.label29);
-			this.pnlElectricField.Controls.Add(this.label30);
-			this.pnlElectricField.Controls.Add(this.label31);
-			this.pnlElectricField.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlElectricField.Location = new System.Drawing.Point(0, 0);
-			this.pnlElectricField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.pnlElectricField.Name = "pnlElectricField";
-			this.pnlElectricField.Size = new System.Drawing.Size(1283, 753);
-			this.pnlElectricField.TabIndex = 31;
-			this.pnlElectricField.TabStop = true;
-			// 
-			// txtTasinanQ
-			// 
-			this.txtTasinanQ.Location = new System.Drawing.Point(644, 150);
-			this.txtTasinanQ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtTasinanQ.Name = "txtTasinanQ";
-			this.txtTasinanQ.Size = new System.Drawing.Size(131, 22);
-			this.txtTasinanQ.TabIndex = 21;
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label15.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label15.Location = new System.Drawing.Point(371, 148);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(251, 22);
-			this.label15.TabIndex = 20;
-			this.label15.Text = "Taşınan Yük (q) [$\\mu C$]:";
-			// 
-			// formsPlotElektrikIntegral
-			// 
-			this.formsPlotElektrikIntegral.BackColor = System.Drawing.Color.Crimson;
-			this.formsPlotElektrikIntegral.Location = new System.Drawing.Point(735, 334);
-			this.formsPlotElektrikIntegral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.formsPlotElektrikIntegral.Name = "formsPlotElektrikIntegral";
-			this.formsPlotElektrikIntegral.Size = new System.Drawing.Size(552, 375);
-			this.formsPlotElektrikIntegral.TabIndex = 19;
-			// 
-			// lblElektrikIntegralSonuc
-			// 
-			this.lblElektrikIntegralSonuc.AutoSize = true;
-			this.lblElektrikIntegralSonuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblElektrikIntegralSonuc.Location = new System.Drawing.Point(803, 33);
-			this.lblElektrikIntegralSonuc.Name = "lblElektrikIntegralSonuc";
-			this.lblElektrikIntegralSonuc.Size = new System.Drawing.Size(116, 22);
-			this.lblElektrikIntegralSonuc.TabIndex = 18;
-			this.lblElektrikIntegralSonuc.Text = "Max Range:";
-			// 
-			// txtElektrikX2
-			// 
-			this.txtElektrikX2.Location = new System.Drawing.Point(605, 106);
-			this.txtElektrikX2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtElektrikX2.Name = "txtElektrikX2";
-			this.txtElektrikX2.Size = new System.Drawing.Size(131, 22);
-			this.txtElektrikX2.TabIndex = 15;
-			// 
-			// txtElektrikX1
-			// 
-			this.txtElektrikX1.Location = new System.Drawing.Point(605, 71);
-			this.txtElektrikX1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtElektrikX1.Name = "txtElektrikX1";
-			this.txtElektrikX1.Size = new System.Drawing.Size(131, 22);
-			this.txtElektrikX1.TabIndex = 14;
-			// 
-			// txtEx
-			// 
-			this.txtEx.Location = new System.Drawing.Point(605, 38);
-			this.txtEx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtEx.Name = "txtEx";
-			this.txtEx.Size = new System.Drawing.Size(131, 22);
-			this.txtEx.TabIndex = 13;
-			// 
-			// btnElektrikIntegral
-			// 
-			this.btnElektrikIntegral.BackColor = System.Drawing.Color.Pink;
-			this.btnElektrikIntegral.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.btnElektrikIntegral.Location = new System.Drawing.Point(373, 222);
-			this.btnElektrikIntegral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnElektrikIntegral.Name = "btnElektrikIntegral";
-			this.btnElektrikIntegral.Size = new System.Drawing.Size(117, 34);
-			this.btnElektrikIntegral.TabIndex = 12;
-			this.btnElektrikIntegral.Text = "Calculate";
-			this.btnElektrikIntegral.UseVisualStyleBackColor = false;
-			this.btnElektrikIntegral.Click += new System.EventHandler(this.btnElektrikIntegral_Click);
-			// 
-			// label29
-			// 
-			this.label29.AutoSize = true;
-			this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label29.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label29.Location = new System.Drawing.Point(371, 71);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(217, 22);
-			this.label29.TabIndex = 11;
-			this.label29.Text = "Başlangıç Noktası (x1):";
-			// 
-			// label30
-			// 
-			this.label30.AutoSize = true;
-			this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label30.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label30.Location = new System.Drawing.Point(371, 106);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(169, 22);
-			this.label30.TabIndex = 10;
-			this.label30.Text = "Bitiş Noktası (x2):";
-			// 
-			// label31
-			// 
-			this.label31.AutoSize = true;
-			this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label31.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label31.Location = new System.Drawing.Point(371, 34);
-			this.label31.Name = "label31";
-			this.label31.Size = new System.Drawing.Size(274, 22);
-			this.label31.TabIndex = 9;
-			this.label31.Text = "Elektrik Alan Fonksiyonu E(x)";
-			// 
-			// pnlOscillations
-			// 
-			this.pnlOscillations.BackColor = System.Drawing.Color.SlateGray;
-			this.pnlOscillations.Controls.Add(this.cmbHarmonikTip);
-			this.pnlOscillations.Controls.Add(this.txtHarmonikA);
-			this.pnlOscillations.Controls.Add(this.label14);
-			this.pnlOscillations.Controls.Add(this.lblHarmonikSonuc);
-			this.pnlOscillations.Controls.Add(this.txtHarmonikK_G);
-			this.pnlOscillations.Controls.Add(this.txtHarmonikM_L);
-			this.pnlOscillations.Controls.Add(this.txtHarmonikSonum);
-			this.pnlOscillations.Controls.Add(this.btnHarmonikHesapla);
-			this.pnlOscillations.Controls.Add(this.label16);
-			this.pnlOscillations.Controls.Add(this.label17);
-			this.pnlOscillations.Controls.Add(this.label18);
-			this.pnlOscillations.Controls.Add(this.formsPlotHarmonik);
-			this.pnlOscillations.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlOscillations.Location = new System.Drawing.Point(0, 0);
-			this.pnlOscillations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.pnlOscillations.Name = "pnlOscillations";
-			this.pnlOscillations.Size = new System.Drawing.Size(1283, 753);
-			this.pnlOscillations.TabIndex = 30;
-			this.pnlOscillations.TabStop = true;
-			// 
-			// cmbHarmonikTip
-			// 
-			this.cmbHarmonikTip.FormattingEnabled = true;
-			this.cmbHarmonikTip.Items.AddRange(new object[] {
-            "Yay-Kütle Sistemi",
-            "Basit Sarkaç"});
-			this.cmbHarmonikTip.Location = new System.Drawing.Point(368, 33);
-			this.cmbHarmonikTip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.cmbHarmonikTip.Name = "cmbHarmonikTip";
-			this.cmbHarmonikTip.Size = new System.Drawing.Size(221, 24);
-			this.cmbHarmonikTip.TabIndex = 45;
-			// 
-			// txtHarmonikA
-			// 
-			this.txtHarmonikA.Location = new System.Drawing.Point(597, 137);
-			this.txtHarmonikA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtHarmonikA.Name = "txtHarmonikA";
-			this.txtHarmonikA.Size = new System.Drawing.Size(131, 22);
-			this.txtHarmonikA.TabIndex = 44;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label14.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label14.Location = new System.Drawing.Point(364, 139);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(73, 22);
-			this.label14.TabIndex = 43;
-			this.label14.Text = "Genlik:";
-			// 
-			// lblHarmonikSonuc
-			// 
-			this.lblHarmonikSonuc.AutoSize = true;
-			this.lblHarmonikSonuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lblHarmonikSonuc.Location = new System.Drawing.Point(781, 36);
-			this.lblHarmonikSonuc.Name = "lblHarmonikSonuc";
-			this.lblHarmonikSonuc.Size = new System.Drawing.Size(116, 22);
-			this.lblHarmonikSonuc.TabIndex = 42;
-			this.lblHarmonikSonuc.Text = "Max Range:";
-			// 
-			// txtHarmonikK_G
-			// 
-			this.txtHarmonikK_G.Location = new System.Drawing.Point(597, 110);
-			this.txtHarmonikK_G.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtHarmonikK_G.Name = "txtHarmonikK_G";
-			this.txtHarmonikK_G.Size = new System.Drawing.Size(131, 22);
-			this.txtHarmonikK_G.TabIndex = 41;
-			// 
-			// txtHarmonikM_L
-			// 
-			this.txtHarmonikM_L.Location = new System.Drawing.Point(597, 75);
-			this.txtHarmonikM_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtHarmonikM_L.Name = "txtHarmonikM_L";
-			this.txtHarmonikM_L.Size = new System.Drawing.Size(131, 22);
-			this.txtHarmonikM_L.TabIndex = 40;
-			// 
-			// txtHarmonikSonum
-			// 
-			this.txtHarmonikSonum.Location = new System.Drawing.Point(595, 174);
-			this.txtHarmonikSonum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtHarmonikSonum.Name = "txtHarmonikSonum";
-			this.txtHarmonikSonum.Size = new System.Drawing.Size(131, 22);
-			this.txtHarmonikSonum.TabIndex = 39;
-			// 
-			// btnHarmonikHesapla
-			// 
-			this.btnHarmonikHesapla.BackColor = System.Drawing.Color.Pink;
-			this.btnHarmonikHesapla.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.btnHarmonikHesapla.Location = new System.Drawing.Point(368, 222);
-			this.btnHarmonikHesapla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnHarmonikHesapla.Name = "btnHarmonikHesapla";
-			this.btnHarmonikHesapla.Size = new System.Drawing.Size(117, 34);
-			this.btnHarmonikHesapla.TabIndex = 38;
-			this.btnHarmonikHesapla.Text = "Calculate";
-			this.btnHarmonikHesapla.UseVisualStyleBackColor = false;
-			this.btnHarmonikHesapla.Click += new System.EventHandler(this.btnHarmonikHesapla_Click);
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label16.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label16.Location = new System.Drawing.Point(364, 75);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(187, 22);
-			this.label16.TabIndex = 37;
-			this.label16.Text = "Kütle veya Uzunluk:";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label17.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label17.Location = new System.Drawing.Point(364, 110);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(248, 22);
-			this.label17.TabIndex = 36;
-			this.label17.Text = "Yay Sabiti veya Yerçekimi:";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label18.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label18.Location = new System.Drawing.Point(361, 170);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(164, 22);
-			this.label18.TabIndex = 35;
-			this.label18.Text = "Sönüm Katsayısı:";
-			// 
-			// formsPlotHarmonik
-			// 
-			this.formsPlotHarmonik.BackColor = System.Drawing.Color.Crimson;
-			this.formsPlotHarmonik.Location = new System.Drawing.Point(705, 295);
-			this.formsPlotHarmonik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.formsPlotHarmonik.Name = "formsPlotHarmonik";
-			this.formsPlotHarmonik.Size = new System.Drawing.Size(533, 338);
-			this.formsPlotHarmonik.TabIndex = 19;
-			// 
-			// rtbRotationalResults
-			// 
-			this.rtbRotationalResults.BackColor = System.Drawing.SystemColors.InactiveCaption;
-			this.rtbRotationalResults.Location = new System.Drawing.Point(765, 19);
-			this.rtbRotationalResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.rtbRotationalResults.Name = "rtbRotationalResults";
-			this.rtbRotationalResults.ReadOnly = true;
-			this.rtbRotationalResults.Size = new System.Drawing.Size(484, 318);
-			this.rtbRotationalResults.TabIndex = 38;
-			this.rtbRotationalResults.Text = "";
-			// 
-			// txtDragCoefRot
-			// 
-			this.txtDragCoefRot.Location = new System.Drawing.Point(564, 200);
-			this.txtDragCoefRot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtDragCoefRot.Name = "txtDragCoefRot";
-			this.txtDragCoefRot.Size = new System.Drawing.Size(131, 22);
-			this.txtDragCoefRot.TabIndex = 40;
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.label25.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.label25.Location = new System.Drawing.Point(331, 197);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(149, 22);
-			this.label25.TabIndex = 39;
-			this.label25.Text = "DragCoefficient\r\n";
-			// 
 			// TemelFizikForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2517,6 +2813,19 @@
 			this.pnlProjectileMotion.ResumeLayout(false);
 			this.pnlProjectileMotion.PerformLayout();
 			this.pnlMainFizik.ResumeLayout(false);
+			this.pnlGaussLaw.ResumeLayout(false);
+			this.pnlGaussLaw.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbGaussSurface)).EndInit();
+			this.pnlElectricForce.ResumeLayout(false);
+			this.pnlElectricForce.PerformLayout();
+			this.pnlElectricField.ResumeLayout(false);
+			this.pnlElectricField.PerformLayout();
+			this.pnlOscillations.ResumeLayout(false);
+			this.tabOscillation.ResumeLayout(false);
+			this.tabSpringPage.ResumeLayout(false);
+			this.tabSpringPage.PerformLayout();
+			this.tabPendulumPage.ResumeLayout(false);
+			this.tabPendulumPage.PerformLayout();
 			this.pnlRotational.ResumeLayout(false);
 			this.pnlRotational.PerformLayout();
 			this.pnlCollision.ResumeLayout(false);
@@ -2535,13 +2844,6 @@
 			this.pnlMagneticFields.PerformLayout();
 			this.pnlFaraday.ResumeLayout(false);
 			this.pnlFaraday.PerformLayout();
-			this.pnlElectricGauss.ResumeLayout(false);
-			this.pnlElectricGauss.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tbGaussYaricap)).EndInit();
-			this.pnlElectricField.ResumeLayout(false);
-			this.pnlElectricField.PerformLayout();
-			this.pnlOscillations.ResumeLayout(false);
-			this.pnlOscillations.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -2568,8 +2870,8 @@
 		private System.Windows.Forms.Panel pnlMainFizik;
 		private ScottPlot.WinForms.FormsPlot formPlotEgikatıs;
 		private System.Windows.Forms.Button btnWorkEnergy;
-		private System.Windows.Forms.Button btnElectricGauss;
-		private System.Windows.Forms.Button btnElectricField;
+		private System.Windows.Forms.Button btnMenuGaussLaw;
+		private System.Windows.Forms.Button btnMenuElectricField;
 		private System.Windows.Forms.Button btnOscillation;
 		private System.Windows.Forms.Button btnRotational;
 		private System.Windows.Forms.Button btnImpulse;
@@ -2578,7 +2880,7 @@
 		private System.Windows.Forms.Button btnCapacitance;
 		private System.Windows.Forms.Button btnInductance;
 		private System.Windows.Forms.Panel pnlOscillations;
-		private ScottPlot.WinForms.FormsPlot formsPlotHarmonik;
+		private ScottPlot.WinForms.FormsPlot plotOscillation;
 		private System.Windows.Forms.Panel pnlRotational;
 		private ScottPlot.WinForms.FormsPlot plotRotational;
 		private System.Windows.Forms.Panel pnlInductance;
@@ -2631,25 +2933,19 @@
 		private System.Windows.Forms.Label label41;
 		private System.Windows.Forms.Label label42;
 		private System.Windows.Forms.Label label43;
-		private System.Windows.Forms.Panel pnlElectricGauss;
-		private System.Windows.Forms.Label lblGaussSonuc;
-		private System.Windows.Forms.Label lblGaussR_Deger;
-		private System.Windows.Forms.Label label34;
-		private System.Windows.Forms.TextBox txtGaussR_Cisim;
-		private System.Windows.Forms.TextBox txtGaussQ;
-		private System.Windows.Forms.Button button12;
-		private System.Windows.Forms.Label label35;
+		private System.Windows.Forms.Panel pnlGaussLaw;
+		private System.Windows.Forms.Label lblGaussRValue;
+		private System.Windows.Forms.TextBox txtSphereRadius;
+		private System.Windows.Forms.TextBox txtTotalChargeOrDensity;
+		private System.Windows.Forms.Button btnCalculateGauss;
+		private System.Windows.Forms.Label lblChargeOrDensity;
 		private System.Windows.Forms.Label label36;
 		private System.Windows.Forms.Label label37;
 		private System.Windows.Forms.Panel pnlElectricField;
-		private ScottPlot.WinForms.FormsPlot formsPlotElektrikIntegral;
-		private System.Windows.Forms.Label lblElektrikIntegralSonuc;
-		private System.Windows.Forms.TextBox txtElektrikX2;
+		private ScottPlot.WinForms.FormsPlot plotElectricField;
 		private System.Windows.Forms.TextBox txtElektrikX1;
-		private System.Windows.Forms.TextBox txtEx;
-		private System.Windows.Forms.Button btnElektrikIntegral;
+		private System.Windows.Forms.Button btnCalculateElectricField;
 		private System.Windows.Forms.Label label29;
-		private System.Windows.Forms.Label label30;
 		private System.Windows.Forms.Label label31;
 		private System.Windows.Forms.Panel pnlImpulse;
 		private ScottPlot.WinForms.FormsPlot plotImpulse;
@@ -2690,22 +2986,18 @@
 		private System.Windows.Forms.Label label81;
 		private System.Windows.Forms.Label label82;
 		private System.Windows.Forms.Label label83;
-		private System.Windows.Forms.ComboBox cmbHarmonikTip;
-		private System.Windows.Forms.TextBox txtHarmonikA;
+		private System.Windows.Forms.TextBox txtSpringAmplitude;
 		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.Label lblHarmonikSonuc;
-		private System.Windows.Forms.TextBox txtHarmonikK_G;
-		private System.Windows.Forms.TextBox txtHarmonikM_L;
-		private System.Windows.Forms.TextBox txtHarmonikSonum;
-		private System.Windows.Forms.Button btnHarmonikHesapla;
+		private System.Windows.Forms.TextBox txtSpringTimeLimit;
+		private System.Windows.Forms.TextBox txtSpringMass;
+		private System.Windows.Forms.TextBox txtSpringDamping;
+		private System.Windows.Forms.Button btnCalculateOscillation;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.TextBox txtTasinanQ;
-		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.TrackBar tbGaussYaricap;
-		private System.Windows.Forms.ComboBox cmbGaussTip;
+		private System.Windows.Forms.TrackBar tbGaussSurface;
+		private System.Windows.Forms.ComboBox cmbSystemGeometry;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.ComboBox cmbDielektrik;
 		private System.Windows.Forms.TextBox txtFaradayV;
@@ -2746,5 +3038,39 @@
 		private System.Windows.Forms.RichTextBox rtbRotationalResults;
 		private System.Windows.Forms.TextBox txtDragCoefRot;
 		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.TabControl tabOscillation;
+		private System.Windows.Forms.TabPage tabSpringPage;
+		private System.Windows.Forms.TabPage tabPendulumPage;
+		private System.Windows.Forms.TextBox txtSpringConstant;
+		private System.Windows.Forms.Label Genlik;
+		private System.Windows.Forms.TextBox txtPendulumLength;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.TextBox txtPendulumMass;
+		private System.Windows.Forms.TextBox txtPendulumTimeLimit;
+		private System.Windows.Forms.TextBox txtPendulumAmplitude;
+		private System.Windows.Forms.TextBox txtPendulumDamping;
+		private System.Windows.Forms.Label label38;
+		private System.Windows.Forms.Label label45;
+		private System.Windows.Forms.Label label46;
+		private System.Windows.Forms.Label label56;
+		private System.Windows.Forms.RichTextBox rtbOscillationReport;
+		private System.Windows.Forms.Button btnMenuElectricForce;
+		private System.Windows.Forms.Panel pnlElectricForce;
+		private ScottPlot.WinForms.FormsPlot plotElectricalForce;
+		private System.Windows.Forms.TextBox txtEForceCharge1;
+		private System.Windows.Forms.Button btnCalculateEForce;
+		private System.Windows.Forms.Label label63;
+		private System.Windows.Forms.TextBox txtEFieldSourceCharge;
+		private System.Windows.Forms.TextBox txtEFieldDistance;
+		private System.Windows.Forms.Label label62;
+		private System.Windows.Forms.Label label64;
+		private System.Windows.Forms.RichTextBox rtbEField;
+		private System.Windows.Forms.RichTextBox rtbElectricalForce;
+		private System.Windows.Forms.TextBox txtEForceCharge2;
+		private System.Windows.Forms.TextBox txtEForceDistance;
+		private System.Windows.Forms.Label lblEForceNature;
+		private System.Windows.Forms.RichTextBox rtbGaussResult;
+		private ScottPlot.WinForms.FormsPlot chartGaussLaw;
+		private System.Windows.Forms.Label lblGaussRegion;
 	}
 }

@@ -208,8 +208,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Calculators\CollisionEngine.cs" />
+    <Compile Include="Core\Calculators\ElectricFieldEngine.cs" />
+    <Compile Include="Core\Calculators\ElectricForceEngine.cs" />
+    <Compile Include="Core\Calculators\GaussLawEngine.cs" />
     <Compile Include="Core\Calculators\ImpulseMomentumEngine.cs" />
     <Compile Include="Core\Calculators\RotationalMotionEngine.cs" />
+    <Compile Include="Core\Calculators\SimplePendulumEngine.cs" />
+    <Compile Include="Core\Calculators\SpringMassEngine.cs" />
     <Compile Include="Core\Forms\BirimDönüştürmeForm.cs">
       <SubType>Form</SubType>
     </Compile>
