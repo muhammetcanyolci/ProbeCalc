@@ -207,11 +207,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Calculators\CapacitanceEngine.cs" />
     <Compile Include="Core\Calculators\CollisionEngine.cs" />
     <Compile Include="Core\Calculators\ElectricFieldEngine.cs" />
     <Compile Include="Core\Calculators\ElectricForceEngine.cs" />
+    <Compile Include="Core\Calculators\FaradayEngine.cs" />
     <Compile Include="Core\Calculators\GaussLawEngine.cs" />
     <Compile Include="Core\Calculators\ImpulseMomentumEngine.cs" />
+    <Compile Include="Core\Calculators\InductanceEngine.cs" />
+    <Compile Include="Core\Calculators\MagneticFieldEngine.cs" />
+    <Compile Include="Core\Calculators\MagneticForceEngine.cs" />
     <Compile Include="Core\Calculators\RotationalMotionEngine.cs" />
     <Compile Include="Core\Calculators\SimplePendulumEngine.cs" />
     <Compile Include="Core\Calculators\SpringMassEngine.cs" />

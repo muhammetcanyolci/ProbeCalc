@@ -13,8 +13,18 @@ namespace ProbeCalc.Core.Calculators
 		public Func<double, double> ForceFunction { get; set; }
 		public Func<double, double> MassFunction { get; set; }
 
-	
-		public double StepSize { get; set; } = 0.001;
+
+		private double _stepSize = 0.001;
+		public double StepSize
+		{
+			get => _stepSize;
+			set
+			{
+				if (value <= 0)
+					throw new ArgumentOutOfRangeException(nameof(StepSize), "Hata: Adım boyutu (StepSize) sıfır veya negatif olamaz. Sonsuz döngü riski!");
+				_stepSize = value;
+			}
+		}
 
 		// 2. KURAL UYGULANDI: Çizimler için standart array çıktıları
 		public double[] ChartX { get; private set; }

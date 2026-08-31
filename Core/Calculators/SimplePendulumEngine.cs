@@ -9,7 +9,7 @@ using ProbeCalc.Core.Base;
 
 namespace ProbeCalc.Core.Calculators
 {
-	internal class SimplePendulumEngine: MechanicsEngine
+	public class SimplePendulumEngine: MechanicsEngine
 	{// --- KULLANICIDAN ALINACAK VERİLER ---
 		public double Amplitude { get; set; } // Genlik (Radyan)
 		public double DampingCoefficient { get; set; } // Sönüm Katsayısı (b)

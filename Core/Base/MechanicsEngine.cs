@@ -17,8 +17,10 @@ namespace ProbeCalc.Core.Base
 			set
 			{
 				if (!IsInputPositive(value))
-
-				{ throw new ArgumentOutOfRangeException("ilk hız sıfır veya pozitif olmalıdır."); }
+				{
+					throw new ArgumentOutOfRangeException(nameof(InitialVelocity),
+						"İlk hız sıfır veya pozitif olmalıdır.");
+				}
 				_InitialVelocity = value;
 
 
@@ -30,7 +32,7 @@ namespace ProbeCalc.Core.Base
 		{ get => mass;
 		set 
 			{ if(!IsInputPositive(value))
-				{ throw new ArgumentOutOfRangeException(" kütle sıfırdan küçük olamaz"); }
+				{ throw new ArgumentOutOfRangeException(nameof(Mass), "Kütle sıfırdan küçük olamaz"); }
 				mass = value;	
 			}
 		}

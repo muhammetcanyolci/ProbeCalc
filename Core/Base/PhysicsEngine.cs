@@ -33,10 +33,13 @@ namespace ProbeCalc.Core.Base
 		/// <summary>
 		/// Arayüzden gelen metinlerdeki virgül/nokta krizini çözer ve güvenle double'a çevirir.
 		/// </summary>
-		
-    
-		
-		
+		protected void ThrowIfNegativeOrZero(string paramName, string turkishLabel)
+		{
+				throw new ArgumentOutOfRangeException(paramName, turkishLabel + " sıfırdan küçük olama");
+		}
+
+
+
 		public string SolutionSteps { get; protected set; }
 
 		// Alt sınıflar kendi kısa sonucunu vermek zorunda

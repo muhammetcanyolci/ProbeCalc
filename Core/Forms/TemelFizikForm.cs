@@ -13,6 +13,7 @@ using NCalc;
 using ScottPlot;
 using ProbeCalc.Core.Utilities;
 using ProbeCalc.Core.Base;
+using MathNet.Numerics;
 
 
 namespace ProbeCalc
@@ -21,15 +22,22 @@ namespace ProbeCalc
 
 	{
 		private readonly OneDimensionalKinematicsEngine kinematicsEngine = new OneDimensionalKinematicsEngine();
-		private readonly WorkEnergyEngine workEngine = new WorkEnergyEngine();
-		private readonly WorkEnergyEngine energyEngine = new WorkEnergyEngine();
+		private readonly WorkEnergyEngine workEnergyEngine = new WorkEnergyEngine();
 		private readonly ImpulseMomentumEngine impulseEngine = new ImpulseMomentumEngine();
+		private readonly CollisionEngine collisionEngine = new CollisionEngine();
 		private readonly RotationalMotionEngine rotationalEngine = new RotationalMotionEngine();
 		private readonly SpringMassEngine springEngine = new SpringMassEngine();
 		private readonly SimplePendulumEngine pendulumEngine = new SimplePendulumEngine();
 		private readonly ElectricFieldEngine _electricFieldEngine = new ElectricFieldEngine();
 		private readonly ElectricForceEngine _electricForceEngine = new ElectricForceEngine();
 		private readonly GaussLawEngine _gaussLawEngine = new GaussLawEngine();
+		private readonly CapacitanceEngine capacitanceEngine= new CapacitanceEngine();
+		
+		private readonly MagneticForceEngine magneticForceEngine = new MagneticForceEngine();
+		private readonly MagneticFieldEngine magneticFieldEngine = new MagneticFieldEngine();
+		private readonly FaradayEngine faradayEngine = new FaradayEngine();
+		private readonly InductanceEngine _inductanceEngine = new InductanceEngine();
+
 
 
 
@@ -45,15 +53,16 @@ namespace ProbeCalc
 
 
 			InitializeComponent();
-
-
-			// Kutuları ve listeyi manuel olarak Canlı Hesaplama motoruna bağlıyoruz
-			txtKapasitansA.TextChanged += KapasitansCanliHesapla;
-			txtKapasitansD.TextChanged += KapasitansCanliHesapla;
-			txtKapasitansV.TextChanged += KapasitansCanliHesapla;
-			cmbDielektrik.SelectedIndexChanged += KapasitansCanliHesapla;
+			
 
 		}
+		private void hvclikgridon_Click(object sender, EventArgs e)
+		{
+			Application.OpenForms["formProbeCalc"].Show();
+			this.Close();
+
+		}
+
 		/// <summary>
 		/// Tüm hesaplama adımlarını güvenli bir try-catch çemberinde çalıştıran merkezi kalkan metodu.
 		/// </summary>
@@ -96,7 +105,7 @@ namespace ProbeCalc
 		}
 		private void btnImpulse_Click_1(object sender, EventArgs e)
 		{
-			ShowingPanel.ShowPanel(pnlImpulse);
+			ShowingPanel.ShowPanel(pnlImpulse);	
 		}
 		private void btnCollision_Click(object sender, EventArgs e)
 		{
@@ -126,12 +135,14 @@ namespace ProbeCalc
 		{
 			ShowingPanel.ShowPanel(pnlGaussLaw);
 		}
-
 		private void btnCapacitance_Click(object sender, EventArgs e)
 		{
 			ShowingPanel.ShowPanel(pnlCapacitance);
 		}
-
+		private void btnMenuMagneticForce_Click(object sender, EventArgs e)
+		{
+			ShowingPanel.ShowPanel(pnlMagneticForce);
+		}
 		private void btnMagneticFields_Click(object sender, EventArgs e)
 		{
 			ShowingPanel.ShowPanel(pnlMagneticFields);
@@ -205,25 +216,25 @@ namespace ProbeCalc
 		{
 			SafeExecute(() =>
 			{
-				energyEngine.Reset();
+				workEnergyEngine.Reset();
 
-				energyEngine.InitialVelocity = InputParser.ParseSafe(txtEnergyInitialVelocity.Text);
-				energyEngine.FirstHeight = InputParser.ParseSafe(txtEnergyFirstHeight.Text);
-				energyEngine.FinalHeight = InputParser.ParseSafe(txtEnergyFinalHeight.Text);
-				energyEngine.Mass = InputParser.ParseSafe(txtEnergyMass.Text);
+				workEnergyEngine.InitialVelocity = InputParser.ParseSafe(txtEnergyInitialVelocity.Text);
+				workEnergyEngine.FirstHeight = InputParser.ParseSafe(txtEnergyFirstHeight.Text);
+				workEnergyEngine.FinalHeight = InputParser.ParseSafe(txtEnergyFinalHeight.Text);
+				workEnergyEngine.Mass = InputParser.ParseSafe(txtEnergyMass.Text);
 
-				energyEngine.Calculate();
+				workEnergyEngine.Calculate();
 
 				// Sonuçları yazdır
-				rtbWorkEnergyResults.Text = energyEngine.GetFinalReport(chkShowSteps.Checked);
+				rtbWorkEnergyResults.Text = workEnergyEngine.GetFinalReport(chkShowSteps.Checked);
 
 				// Çoklu Enerji Grafiğini Çizdir!
 				ProbeCalc.Core.Visualization.ChartEngine.DrawEnergyChart(
 					plotWorkEnergy,
-					energyEngine.ChartX,
-					energyEngine.ChartY_Kinetic,
-					energyEngine.ChartY_Potential,
-					energyEngine.ChartY_Total
+					workEnergyEngine.ChartX,
+					workEnergyEngine.ChartY_Kinetic,
+					workEnergyEngine.ChartY_Potential,
+					workEnergyEngine.ChartY_Total
 				);
 			});
 
@@ -235,29 +246,27 @@ namespace ProbeCalc
 
 			SafeExecute(() =>
 			{
-				workEngine.Reset();
+				workEnergyEngine.Reset();
 				// 1. Kullanıcının arayüze yazdığı "2x^3 + 5x" gibi metni TextBox'tan alıyoruz
 				string rawFunction = txtWorkFunction.Text;
 
 				// 2. BAĞLANTIYI KURUYORUZ: Motorumuz o metni alıp x değerine göre çözecek!
-				workEngine.ForceFunction = (x) =>
+				workEnergyEngine.ForceFunction = (x) =>
 				{
 					return ProbeCalc.Core.Utilities.MathParser.Evaluate(rawFunction, x);
 				};
 
 
-				workEngine.StartX = InputParser.ParseSafe(txtWorkStartX.Text);
-				workEngine.EndX = InputParser.ParseSafe(txtWorkEndX.Text);
+				workEnergyEngine.StartX = InputParser.ParseSafe(txtWorkStartX.Text);
+				workEnergyEngine.EndX = InputParser.ParseSafe(txtWorkEndX.Text);
 
 
-				workEngine.Calculate();
-
-				rtbWorkEnergyResults.Text = workEngine.GetFinalReport(chkShowSteps.Checked);
-
+				workEnergyEngine.Calculate();
+				rtbWorkEnergyResults.Text = workEnergyEngine.GetFinalReport(chkShowSteps.Checked);
 				ProbeCalc.Core.Visualization.ChartEngine.Draw2DChart(
 					plotWorkEnergy,
-					workEngine.ChartX,
-					workEngine.ChartY_Total,
+					workEnergyEngine.ChartX,
+					workEnergyEngine.ChartY_Total,
 					"Kuvvet - Konum Grafiği",
 					"Konum (Metre)",
 					"Kuvvet (Newton)"
@@ -284,9 +293,6 @@ namespace ProbeCalc
 				impulseEngine.TimeLimit = InputParser.ParseSafe(txtTimeLimitImpulse.Text);
 				impulseEngine.InitialVelocity = InputParser.ParseSafe(txtImpulseInitialVel.Text);
 				impulseEngine.Calculate();
-				// 4.Hesapla ve Raporu Al(GetFinalReport ana sınıftan gelir)
-
-				impulseEngine.Calculate();
 				rtbImpulseResults.Text = impulseEngine.GetFinalReport(chkShowSteps.Checked);
 				ChartEngine.Draw2DChart(plotImpulse,
 				impulseEngine.ChartX,
@@ -302,8 +308,21 @@ namespace ProbeCalc
 			SafeExecute(() =>
 			{
 				rotationalEngine.Reset();
-				// 1. Verileri Okuma (Kutulardaki Text özelliklerini al)
-				rotationalEngine.GeometryType = cmbGeometry.SelectedItem?.ToString() ?? "İçi Dolu Silindir";
+				string secim = cmbGeometry.SelectedItem?.ToString();
+
+				switch (secim)
+				{
+					case "İnce Çember veya Halka":
+						rotationalEngine.GeometryType = RotorGeometryType.HoopOrRing;
+						break;
+					case "Küre":
+						rotationalEngine.GeometryType = RotorGeometryType.Sphere;
+						break;
+					case "İçi Dolu Silindir":
+					default:
+						rotationalEngine.GeometryType = RotorGeometryType.SolidCylinderOrDisk;
+						break;
+				}
 				rotationalEngine.Mass = InputParser.ParseSafe(txtRotMass.Text);
 				rotationalEngine.Radius = InputParser.ParseSafe(txtRotRadius.Text);
 				rotationalEngine.AppliedForce = InputParser.ParseSafe(txtRotForce.Text);
@@ -335,195 +354,35 @@ namespace ProbeCalc
 
 		// --- KUTULARA YAZDIKÇA ÇALIŞAN CANLI HESAPLAMA MOTORU ---
 		private void KapasitansCanliHesapla(object sender, EventArgs e)
-		{
-			if (double.TryParse(txtKapasitansA.Text, out double A_cm2) &&
-				double.TryParse(txtKapasitansD.Text, out double d_mm) &&
-				double.TryParse(txtKapasitansV.Text, out double V))
-			{
-				if (A_cm2 <= 0 || d_mm <= 0) return;
-
-				string malzeme = cmbDielektrik.SelectedItem?.ToString() ?? "Boşluk/Hava";
-				double kappa = 1.0;
-				if (malzeme.Contains("Teflon")) kappa = 2.1;
-				else if (malzeme.Contains("Kağıt")) kappa = 3.7;
-				else if (malzeme.Contains("Cam")) kappa = 4.7;
-				else if (malzeme.Contains("Su")) kappa = 80.0;
-
-				try
-				{
-					var sonuc = FizikEngines.KapasitansHesapla(A_cm2, d_mm, kappa, V);
-
-					lblKapasitansSonuc.Text = $"--- KAPASİTANS VE ENERJİ ANALİZİ ---\n\n" +
-											  $"Sığa (C): {sonuc.C_pF:F2} pF\n" +
-											  $"Depolanan Yük (Q): {sonuc.Q_pC:F2} pC\n" +
-											  $"Elektrik Alan (E): {sonuc.E_Vm:F2} V/m\n" +
-											  $"Depolanan Enerji (U): {sonuc.U_pJ:F2} pJ";
-
-
-				}
-				catch { }
-			}
-		}
-
+		{}
 		private void btnFaradayHesapla_Click(object sender, EventArgs e)
-		{
-
-			string fonksiyon = txtBx.Text;
-
-			if (double.TryParse(txtFaradayL.Text, out double L) &&
-				double.TryParse(txtFaradayX1.Text, out double x1) &&
-				double.TryParse(txtFaradayX2.Text, out double x2))
-			{
-				// Hız (v) opsiyoneldir. Boş veya hatalıysa 0 kabul edilir.
-				double v = double.TryParse(txtFaradayV.Text, out double hiz) ? hiz : 0;
-
-				// İntegral sınırları mantıklı olmalı
-				if (x1 >= x2)
-				{
-					MessageBox.Show("Başlangıç konumu (x1), Bitiş konumundan (x2) küçük olmalıdır!", "Hata");
-					return;
-				}
-
-				try
-				{
-					// 1. Fizik Motoru
-					var sonuc = FizikEngines.FaradayIntegralHesapla(fonksiyon, L, x1, x2, v);
-
-					// 2. Ekrana Yazdır
-					lblFaradaySonuc.Text = $"--- MANYETİK AKI VE İNDÜKSİYON ---\n\n" +
-										   $"Toplam Akı (Φ_B): {sonuc.Aki:F3} Weber (Wb)\n";
-
-					if (v != 0)
-					{
-						lblFaradaySonuc.Text += $"Çerçeve Hızı (v): {v:F2} m/s\n" +
-												$"İndüklenen Voltaj (ε): {sonuc.EMF:F3} Volt";
-					}
-
-					// 3. Grafik Motoru
-					GrafikMotoru.FaradayGrafigiCiz(formsPlotFaraday, fonksiyon, x1, x2);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Matematiksel bir hata oluştu. Lütfen B(x) alanına düzgün bir formül yazın (Örn: 2*x veya x*x).\n\nDetay: " + ex.Message, "Hata");
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen tüm zorunlu alanlara geçerli sayılar girin!", "Uyarı");
-			}
-		}
-
-		private void hvclikgridon_Click(object sender, EventArgs e)
-		{
-			Application.OpenForms["formProbeCalc"].Show();
-			this.Close();
-
-		}
-
-
+		{}
 		private void btnRL_Hesapla_Click(object sender, EventArgs e)
-		{
-			if (double.TryParse(txtRL_V.Text, out double V) &&
-				double.TryParse(txtRL_R.Text, out double R) &&
-				double.TryParse(txtRL_L.Text, out double L))
-			{
-				if (R <= 0 || L <= 0)
-				{
-					MessageBox.Show("Direnç ve İndüktans 0'dan büyük olmalıdır!", "Hata");
-					return;
-				}
-
-				string durum = cmbRL_Durum.SelectedItem?.ToString() ?? "Şarj";
-
-				try
-				{
-					// 1. Motoru Çalıştır
-					var sonuc = FizikEngines.RLDevresiHesapla(V, R, L);
-
-					// 2. Ekrana Sayısal Verileri Yaz
-					lblRL_Sonuc.Text = $"--- RL DEVRESİ ANALİZİ ---\n\n" +
-									   $"Zaman Sabiti (τ): {sonuc.tau:F4} Saniye\n" +
-									   $"Maksimum Akım (I_max): {sonuc.I_max:F2} Amper\n" +
-									   $"Depolanan Max Enerji: {sonuc.U_max:F3} Joule";
-
-					// 3. Eksponansiyel Grafikleri Çiz
-					GrafikMotoru.RLGrafigiCiz(formsPlotRL, V, R, L, durum);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Hesaplama Hatası: " + ex.Message);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen alanlara geçerli sayılar girin!", "Uyarı");
-			}
-
-		}
-
+		{}
 		private void btnFaradayHesapla2_Click(object sender, EventArgs e)
-		{
-
-			if (int.TryParse(txtFaradayN.Text, out int N) &&
-				double.TryParse(txtFaradayR.Text, out double r_cm) &&
-				double.TryParse(txtFaradayV2.Text, out double v))
-			{
-				if (N <= 0 || r_cm <= 0 || v <= 0)
-				{
-					MessageBox.Show("Lütfen tüm değerleri sıfırdan büyük girin!", "Uyarı");
-					return;
-				}
-
-				try
-				{
-					// 1. Fizik Motoru
-					var sonuc = FizikEngines.FaradayJeneratorHesapla(N, r_cm, v);
-
-					// 2. Analiz Panosu
-					lblFaradaySonuc2.Text = $"--- JENERATÖR VE FARADAY ANALİZİ ---\n\n" +
-										   $"Maksimum Akı Geçişi: {sonuc.maxAki_Wb * 1000:F2} miliWeber\n" +
-										   $"Üretilen Pik Voltaj (±): {sonuc.pikEMK_V:F2} Volt";
-
-					// 3. Grafik Motoru
-					GrafikMotoru.FaradayGrafigiCiz(formsPlotFaraday2, N, r_cm, v);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Hesaplama Hatası: " + ex.Message);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Lütfen alanlara geçerli sayılar girin!", "Hata");
-			}
-		}
-
+		{}
 		private void btnCalculateCollision_Click(object sender, EventArgs e)
 		{
 			SafeExecute(() =>
-			{
-				CollisionEngine engine = new CollisionEngine();
+			{	// 1. Kutulardan vektörel değerleri al
+				collisionEngine.Mass1 = InputParser.ParseSafe(txtMass1Collision.Text);
+				collisionEngine.Vel1_X = InputParser.ParseSafe(txtVel1XCollision.Text);
+				collisionEngine.Vel1_Y = InputParser.ParseSafe(txtVel1YCollision.Text);
 
-				// 1. Kutulardan vektörel değerleri al
-				engine.Mass1 = InputParser.ParseSafe(txtMass1Collision.Text);
-				engine.Vel1_X = InputParser.ParseSafe(txtVel1XCollision.Text);
-				engine.Vel1_Y = InputParser.ParseSafe(txtVel1YCollision.Text);
+				collisionEngine.Mass2 = InputParser.ParseSafe(txtMass2Collision.Text);
+				collisionEngine.Vel2_X = InputParser.ParseSafe(txtVel2XCollision.Text);
+				collisionEngine.Vel2_Y = InputParser.ParseSafe(txtVel2YCollision.Text);
 
-				engine.Mass2 = InputParser.ParseSafe(txtMass2Collision.Text);
-				engine.Vel2_X = InputParser.ParseSafe(txtVel2XCollision.Text);
-				engine.Vel2_Y = InputParser.ParseSafe(txtVel2YCollision.Text);
-
-				engine.Restitution = InputParser.ParseSafe(txtRestitution.Text);
-
+				collisionEngine.Restitution = InputParser.ParseSafe(txtRestitution.Text);
 				// 2. Motoru Çalıştır
-				engine.Calculate();
-				rtbCollisionResults.Text = engine.GetFinalReport(chkShowSteps.Checked);
+				collisionEngine.Calculate();
+				rtbCollisionResults.Text = collisionEngine.GetFinalReport(chkShowSteps.Checked);
 
 				// 3. Görselleştir
 				ProbeCalc.Core.Visualization.ChartEngine.DrawCollision2DChart(
 					plotCollision,
-					engine.ChartPos_X1, engine.ChartPos_Y1,
-					engine.ChartPos_X2, engine.ChartPos_Y2
+					collisionEngine.ChartPos_X1, collisionEngine.ChartPos_Y1,
+					collisionEngine.ChartPos_X2, collisionEngine.ChartPos_Y2
 				);
 			});
 		}
@@ -547,9 +406,8 @@ namespace ProbeCalc
 			});
 		}
 		private void RunSpringSimulation()
-		{
-
-
+			{
+			springEngine.Reset();
 			// Yay kutularından verileri okuma (Tamamen İngilizce adlandırmalar)
 			springEngine.Mass = InputParser.ParseSafe(txtSpringMass.Text);
 			springEngine.TimeLimit = InputParser.ParseSafe(txtSpringTimeLimit.Text);
@@ -564,7 +422,7 @@ namespace ProbeCalc
 		private void RunPendulumSimulation()
 		{
 
-
+			pendulumEngine.Reset();	
 			// Sarkaç kutularından verileri okuma
 			pendulumEngine.Mass = InputParser.ParseSafe(txtPendulumMass.Text);
 			pendulumEngine.TimeLimit = InputParser.ParseSafe(txtPendulumTimeLimit.Text);
@@ -654,14 +512,7 @@ namespace ProbeCalc
 			var geometry = (GaussGeometryType)cmbSystemGeometry.SelectedIndex;
 
 			lblChargeOrDensity.Text = GaussLawEngine.GetChargeLabelText(geometry);
-			txtSphereRadius.Enabled = GaussLawEngine.RequiresSphereRadius(geometry);
-		}
-
-		// ========================================================================
-		// YARDIMCI: TrackBar'ın temsil ettiği gerçek menzili (metre) belirler.
-		// Küre modlarında girilmiş R varsa R*5, yoksa/diğer modlarda sabit varsayılan.
-		// ========================================================================
-
+			txtSphereRadius.Enabled = GaussLawEngine.RequiresSphereRadius(geometry);}
 
 		// ========================================================================
 		// TRACKBAR HAREKET ETTİKÇE — canlı önizleme. Hata olursa sessizce yutulur;
@@ -698,17 +549,8 @@ namespace ProbeCalc
 					"Elektrik Alan (E)  [N/C]");
 			}
 			catch
-			{
-				// Sürükleme sırasında sessizce yut
-			}
-		}
-
-
-			 // ========================================================================
-			 // HESAPLA BUTONU — tam doğrulama burada (SafeExecute içinde)
-			 // ========================================================================
-
-
+			{}
+		} 
 		private void btnCalculateGauss_Click(object sender, EventArgs e)
 		{
 			SafeExecute(() =>
@@ -746,6 +588,249 @@ namespace ProbeCalc
 					" Elektrik Alan vs Uzaklık Grafiği",
 					"Mesafe (r)  [m]",
 					"Elektrik Alan (E)  [N/C]");
+			});
+		}
+
+		private void btnCapacitanceCalculate_Click(object sender, EventArgs e)
+		{ SafeExecute(()=>
+		{ 
+			// 1. Temizlik
+			capacitanceEngine.Reset();
+
+			// 2. Veri Ataması
+			// ComboBox Items'ı CapacitancePermittivity enum'uyla AYNI SIRADA
+			// doldurulmalı (Designer -> Items -> Collection editöründen):
+			//   0 -> Vakum   1 -> Su   2 -> Cam   3 -> Kağıt   4 -> Teflon
+			capacitanceEngine.Permittivity = (CapacitancePermittivity)cmbCapacitanceMaterial.SelectedIndex;
+
+			capacitanceEngine.Area = InputParser.ParseRequired(txtCapacitanceArea.Text, "Plaka Alanı (A)");
+			capacitanceEngine.Distance = InputParser.ParseRequired(txtCapacitanceDistance.Text, "Plakalar Arası Mesafe (d)");
+			capacitanceEngine.Voltage = InputParser.ParseSafe(txtCapacitanceVoltage.Text); // 0V fiziksel olarak geçerli, ParseSafe yeterli
+
+			// 3. İşlem
+			capacitanceEngine.Calculate();
+			// 4. Çıktı — rapor
+			rtbCapacitance.Text =
+				capacitanceEngine.GetFinalReport(chkShowSteps.Checked);
+		});
+		}
+
+		private void btnFaradayCalculate_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				faradayEngine.Reset();
+
+				var mode = (FaradayMode)tabFaradayMode.SelectedIndex;
+				faradayEngine.Mode = mode;
+
+				switch (mode)
+				{
+					case FaradayMode.FixedLoopChangingField:
+						faradayEngine.Turns = InputParser.ParseRequired(txtFL_Turns.Text, "Sarım Sayısı (N)");
+						faradayEngine.Area = InputParser.ParseRequired(txtFL_Area.Text, "Alan (A)");
+						faradayEngine.AngleDegrees = InputParser.ParseSafe(txtFL_Angle.Text); // boşsa 0°
+						faradayEngine.InitialMagneticField = InputParser.ParseSafe(txtFL_B1.Text);
+						faradayEngine.FinalMagneticField = InputParser.ParseSafe(txtFL_B2.Text);
+						faradayEngine.DeltaTime = InputParser.ParseRequired(txtFL_DeltaT.Text, "Geçen Süre (Δt)");
+						break;
+
+					case FaradayMode.MotionalEMF:
+						faradayEngine.ConstantMagneticField = InputParser.ParseRequired(txtME_ConstB.Text, "Manyetik Alan (B)");
+						faradayEngine.RodLength = InputParser.ParseRequired(txtME_RodLength.Text, "Çubuk Uzunluğu (L)");
+						faradayEngine.Velocity = InputParser.ParseRequired(txtME_Velocity.Text, "Hız (v)");
+						break;
+
+					case FaradayMode.RotatingGenerator:
+						faradayEngine.Turns = InputParser.ParseRequired(txtRG_Turns.Text, "Sarım Sayısı (N)");
+						faradayEngine.Area = InputParser.ParseRequired(txtRG_Area.Text, "Alan (A)");
+						faradayEngine.ConstantMagneticField = InputParser.ParseRequired(txtRG_ConstB.Text, "Manyetik Alan (B)");
+						faradayEngine.Frequency = InputParser.ParseRequired(txtRG_Frequency.Text, "Frekans (f)");
+						break;
+				}
+
+				faradayEngine.Calculate();
+				rtbFaradayResult.Text = faradayEngine.GetFinalReport(chkShowSteps.Checked);
+				lblFaradayLenz.Text = faradayEngine.LenzDirectionNote;
+
+				string xLabel = mode == FaradayMode.MotionalEMF ? "Hız (v)  [m/s]" : "Zaman (t)  [s]";
+				string yLabel = mode == FaradayMode.FixedLoopChangingField ? "Manyetik Akı (Φ)  [Weber]" : "İndüklenen EMK (ε)  [Volt]";
+				string title;
+				if (mode == FaradayMode.MotionalEMF)
+					title = "EMK - Hız Grafiği";
+				else if (mode == FaradayMode.RotatingGenerator)
+					title = "AC Gerilim - Zaman Grafiği (Sinüzoidal)";
+				else
+					title = "Manyetik Akı - Zaman Grafiği";
+
+				ChartEngine.Draw2DChart(plotFaraday, faradayEngine.ChartX, faradayEngine.ChartY, title, xLabel, yLabel);
+			});
+
+		}
+
+		private void btnMagForceCalculate_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				magneticForceEngine.Reset();
+
+				var mode = (MagneticForceMode)tabMagForceMode.SelectedIndex;
+				magneticForceEngine.Mode = mode;
+
+				bool usesFunction;
+
+				if (mode == MagneticForceMode.MovingCharge)
+				{
+					magneticForceEngine.Charge = InputParser.ParseRequired(txtMC_Charge.Text, "Yük (q)");
+
+					bool vIsFunction = MathParser.TryParseConstantOrFunction(txtMC_Velocity.Text,
+						out double vConst, out Func<double, double> vFunc);
+					magneticForceEngine.Velocity = vConst;
+					magneticForceEngine.VelocityFunction = vFunc;
+
+					bool bIsFunction = MathParser.TryParseConstantOrFunction(txtMC_BField.Text,
+						out double bConst, out Func<double, double> bFunc);
+					magneticForceEngine.MagneticField = bConst;
+					magneticForceEngine.MagneticFieldFunction = bFunc;
+
+					magneticForceEngine.AngleDegrees = string.IsNullOrWhiteSpace(txtMC_Angle.Text)
+						? 90
+						: InputParser.ParseSafe(txtMC_Angle.Text);
+
+					usesFunction = vIsFunction || bIsFunction;
+
+					if (usesFunction)
+					{
+						magneticForceEngine.DeltaTime = InputParser.ParseRequired(txtMC_DeltaTime.Text, "Geçen Süre (Δt)");
+					}
+				}
+				else // CurrentCarryingWire
+				{
+					bool iIsFunction = MathParser.TryParseConstantOrFunction(txtCW_Current.Text,
+						out double iConst, out Func<double, double> iFunc);
+					magneticForceEngine.Current = iConst;
+					magneticForceEngine.CurrentFunction = iFunc;
+
+					magneticForceEngine.WireLength = InputParser.ParseRequired(txtCW_WireLength.Text, "Tel Uzunluğu (L)");
+
+					bool bIsFunction = MathParser.TryParseConstantOrFunction(txtCW_BField.Text,
+						out double bConst, out Func<double, double> bFunc);
+					magneticForceEngine.MagneticField = bConst;
+					magneticForceEngine.MagneticFieldFunction = bFunc;
+
+					magneticForceEngine.AngleDegrees = string.IsNullOrWhiteSpace(txtCW_Angle.Text)
+						? 90
+						: InputParser.ParseSafe(txtCW_Angle.Text);
+
+					usesFunction = iIsFunction || bIsFunction;
+
+					if (usesFunction)
+					{
+						magneticForceEngine.DeltaTime = InputParser.ParseRequired(txtCW_DeltaTime.Text, "Geçen Süre (Δt)");
+					}
+				}
+
+				magneticForceEngine.Calculate();
+				rtbMagForceResult.Text = magneticForceEngine.GetFinalReport(chkShowSteps.Checked);
+
+				if (magneticForceEngine.IsFunctionMode)
+				{
+					ChartEngine.Draw2DChart(
+						chartMagForce,
+						magneticForceEngine.ChartX_Time,
+						magneticForceEngine.ChartY_Force,
+						"Manyetik Kuvvet - Zaman Grafiği",
+						"Zaman (t)  [s]",
+						"Kuvvet (F)  [N]");
+				}
+				else
+				{
+					chartMagForce.Plot.Clear();
+					chartMagForce.Refresh();
+				}
+			});
+		}
+
+		private void btnMagFieldcalculate_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				magneticFieldEngine.Reset();
+
+				var source = (MagneticFieldSource)tabMagFieldSource.SelectedIndex;
+				magneticFieldEngine.Source = source;
+
+				if (source == MagneticFieldSource.LongStraightWire)
+				{
+					magneticFieldEngine.Current = InputParser.ParseRequired(txtWire_Current.Text, "Akım (I)");
+					magneticFieldEngine.DistanceFromWire = InputParser.ParseRequired(txtWire_Distance.Text, "Telden Uzaklık (r)");
+				}
+				else // Solenoid
+				{
+					magneticFieldEngine.Current = InputParser.ParseRequired(txtSol_Current.Text, "Akım (I)");
+					magneticFieldEngine.TotalTurns = InputParser.ParseRequired(txtSol_Turns.Text, "Toplam Sarım Sayısı (N)");
+					magneticFieldEngine.SolenoidLength = InputParser.ParseRequired(txtSol_Length.Text, "Solenoid Uzunluğu (L)");
+				}
+
+				magneticFieldEngine.Calculate();
+
+				rtbMagFieldResult.Text = magneticFieldEngine.GetFinalReport(chkShowSteps.Checked);
+
+				string xLabel = source == MagneticFieldSource.LongStraightWire ? "Telden Uzaklık (r)  [m]" : "Akım (I)  [A]";
+				string title = source == MagneticFieldSource.LongStraightWire
+					? "Manyetik Alan - Uzaklık Grafiği"
+					: "Manyetik Alan - Akım Grafiği (Solenoid İçi)";
+
+				ChartEngine.Draw2DChart(
+					chartMagField,
+					magneticFieldEngine.ChartX,
+					magneticFieldEngine.ChartY_Field,
+					title,
+					xLabel,
+					"Manyetik Alan (B)  [Tesla]");
+			});
+		}
+
+		private void btnInductanceCalculate_Click(object sender, EventArgs e)
+		{
+			SafeExecute(() =>
+			{
+				_inductanceEngine.Reset();
+
+				var mode = (InductanceMode)tabInductanceMode.SelectedIndex;
+				_inductanceEngine.Mode = mode;
+
+				if (mode == InductanceMode.SelfInductance)
+				{
+					_inductanceEngine.Turns1 = InputParser.ParseRequired(txtSelf_Turns.Text, "Sarım Sayısı (N)");
+					_inductanceEngine.Area = InputParser.ParseRequired(txtSelf_Area.Text, "Kesit Alanı (A)");
+					_inductanceEngine.Length = InputParser.ParseRequired(txtSelf_Length.Text, "Uzunluk (l)");
+					_inductanceEngine.InitialCurrent = InputParser.ParseSafe(txtSelf_I1.Text);
+					_inductanceEngine.FinalCurrent = InputParser.ParseSafe(txtSelf_I2.Text);
+					_inductanceEngine.DeltaTime = InputParser.ParseRequired(txtSelf_DeltaT.Text, "Geçen Süre (Δt)");
+				}
+				else // MutualInductance
+				{
+					_inductanceEngine.Turns1 = InputParser.ParseRequired(txtMutual_Turns1.Text, "Sarım Sayısı (N1)");
+					_inductanceEngine.Turns2 = InputParser.ParseRequired(txtMutual_Turns2.Text, "Sarım Sayısı (N2)");
+					_inductanceEngine.Area = InputParser.ParseRequired(txtMutual_Area.Text, "Kesit Alanı (A)");
+					_inductanceEngine.Length = InputParser.ParseRequired(txtMutual_Length.Text, "Uzunluk (l)");
+					_inductanceEngine.InitialCurrent = InputParser.ParseSafe(txtMutual_I1.Text);
+					_inductanceEngine.FinalCurrent = InputParser.ParseSafe(txtMutual_I2.Text);
+					_inductanceEngine.DeltaTime = InputParser.ParseRequired(txtMutual_DeltaT.Text, "Geçen Süre (Δt)");
+				}
+
+				_inductanceEngine.Calculate();
+
+				rtbInductanceResult.Text = _inductanceEngine.GetFinalReport(chkShowSteps.Checked);
+
+				ChartEngine.Draw2DChart(
+					chartInductance,
+					_inductanceEngine.ChartX_Time,
+					_inductanceEngine.ChartY_Current,
+					"Akım - Zaman Grafiği",
+					"Zaman (t)  [s]",
+					"Akım (I)  [A]");
 			});
 		}
 	}

@@ -130,37 +130,43 @@ namespace ProbeCalc.Core.Visualization
 
 			plotControl.Refresh();
 		}
-	
-	public static void DrawRotationalTelemetryChart(FormsPlot plotControl, double[] timeData, double[] rpmData, double[] energyData)
+
+		public static void DrawRotationalTelemetryChart(FormsPlot plotControl, double[] timeData, double[] rpmData, double[] energyData)
 		{
 			plotControl.Plot.Clear();
+
+			// ÖNEMLİ SIRA DEĞİŞİKLİĞİ: ApplyDarkTheme artık İKİ EKSEN RENGİNİ
+			// AYARLAMADAN ÖNCE çağrılıyor. Eskiden sonda çağrılıyordu ve içindeki
+			// Axes.Color(LightGray) satırı, birazdan aşağıda özel olarak
+			// verdiğimiz sol/sağ eksen renklerini (mavi/turuncu) sessizce
+			// LightGray'e eziyordu — çift renkli eksen tasarımı görünürde hiç
+			// çalışmıyordu. Tema artık ÖNCE uygulanıyor, özel renkler EN SON
+			// (dolayısıyla kazanan) veriliyor.
+			ApplyDarkTheme(plotControl);
 
 			// 1. Line: RPM (Left Axis - Y1)
 			var sigRpm = plotControl.Plot.Add.Scatter(timeData, rpmData);
 			sigRpm.Color = ScottPlot.Color.FromHex("#00BFFF");
 			sigRpm.LineWidth = 3;
-			sigRpm.LegendText = "Rotor Speed (RPM)";
-			plotControl.Plot.Axes.Left.Label.Text = "Speed (RPM)";
+			sigRpm.LegendText = "Rotor Hızı (RPM)";
+			plotControl.Plot.Axes.Left.Label.Text = "Hız (RPM)";
 			plotControl.Plot.Axes.Left.Label.ForeColor = sigRpm.Color;
 
 			// 2. Line: Kinetic Energy (Right Axis - Y2)
 			var sigEnergy = plotControl.Plot.Add.Scatter(timeData, energyData);
 			sigEnergy.Color = ScottPlot.Color.FromHex("#FF8C00");
 			sigEnergy.LineWidth = 3;
-			sigEnergy.LegendText = "Kinetic Energy (Joule)";
+			sigEnergy.LegendText = "Kinetik Enerji (Joule)";
 
 			// Attach 2nd line to Right Axis
 			sigEnergy.Axes.YAxis = plotControl.Plot.Axes.Right;
-			plotControl.Plot.Axes.Right.Label.Text = "Energy (J)";
+			plotControl.Plot.Axes.Right.Label.Text = "Enerji (J)";
 			plotControl.Plot.Axes.Right.Label.ForeColor = sigEnergy.Color;
 
 			// Common Settings
-			plotControl.Plot.Title("Rotor Telemetry & Terminal Velocity Curve");
-			plotControl.Plot.XLabel("Time (seconds)");
+			plotControl.Plot.Title("Rotor Telemetrisi ve Terminal Hız Eğrisi");
+			plotControl.Plot.XLabel("Zaman (saniye)");
 			plotControl.Plot.ShowLegend(ScottPlot.Alignment.LowerRight);
-
-			// Koyu Tema Ayarları
-			ApplyDarkTheme(plotControl);
 
 			plotControl.Plot.Axes.AutoScale();
 			plotControl.Refresh();

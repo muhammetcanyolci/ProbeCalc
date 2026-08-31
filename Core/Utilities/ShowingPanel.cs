@@ -7,10 +7,21 @@ using System.Windows.Forms;
 
 namespace ProbeCalc.Core.Utilities
 {
-	internal class ShowingPanel
+	internal static class ShowingPanel
 	{
-		public static void ShowPanel( Panel thePanel) 
-		{ thePanel.BringToFront();
-	} 
+		public static void ShowPanel( Panel thePanel)
+		{
+			if (thePanel.Parent != null)
+			{
+				foreach (Control sibling in thePanel.Parent.Controls)
+				{
+					if (sibling is Panel siblingPanel && siblingPanel != thePanel)
+						siblingPanel.Visible = false;
+				}
+			}
+
+			thePanel.Visible = true;
+			thePanel.BringToFront();
+		} 
 	}
 }

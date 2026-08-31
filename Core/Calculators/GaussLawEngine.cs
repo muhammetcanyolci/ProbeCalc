@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MathNet.Numerics;
+
 using ProbeCalc.Core.Base;
 
 namespace ProbeCalc.Core.Calculators

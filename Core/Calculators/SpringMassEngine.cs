@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 using ProbeCalc.Core.Base;
 namespace ProbeCalc.Core.Calculators
 {
-	internal class SpringMassEngine : MechanicsEngine
+	public class SpringMassEngine : MechanicsEngine
 	{// --- KULLANICIDAN ALINACAK VERİLER ---
 		public double Amplitude { get; set; } // Genlik (m)
 		public double DampingCoefficient { get; set; } // Sönüm Katsayısı (b)
-		public double SpringConstant { get; set; } // Yay Sabiti (k)
+		private double _springConstant;
+		public double SpringConstant
+		{
+			get => _springConstant;
+			set
+			{
+				if (value <= 0)
+					throw new ArgumentOutOfRangeException(nameof(SpringConstant), "Hata: Yay sabiti (k) sıfır veya negatif olamaz.");
+				_springConstant = value;
+			}
+		}
 
 		// --- HESAPLANACAK SONUÇLAR ---
 		public double AngularFrequency { get; private set; }

@@ -7,14 +7,7 @@ using System.Threading.Tasks;
 namespace ProbeCalc.Core.Base
 {
 	public abstract class ElectricalEngine: PhysicsEngine
-	{
-		// evrensel sabitler
-		protected const double EpsilonZero = 8.85418782e-12;// elektriksel geçirgenlik
-	
-
-
-
-		// 1. FİZİKSEL SABİTLER
+	{ // 1. FİZİKSEL SABİTLER
 		// Coulomb sabiti k = 1 / (4 * pi * epsilon0)  [N*m^2 / C^2]
 		protected const double CoulombConstant = 8.9875517923e9;
 		// Boşluğun elektriksel geçirgenliği (epsilon0) [F/m]
@@ -45,6 +38,7 @@ namespace ProbeCalc.Core.Base
 		/// "sıfır değil mi" kontrolü yapılır — sıfır yük fiziksel olarak anlamsızdır.
 		/// </summary>
 		protected bool IsChargeNonZero(double charge) => charge != 0;
+		
 		public double Distance
 		{
 			get => _distance;

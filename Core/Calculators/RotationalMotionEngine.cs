@@ -7,11 +7,18 @@ using ProbeCalc.Core.Base;
 
 namespace ProbeCalc.Core.Calculators
 {
-	internal class RotationalMotionEngine :MechanicsEngine
+	public enum RotorGeometryType
+	{
+		SolidCylinderOrDisk, // İçi Dolu Silindir / Disk
+		HoopOrRing,          // Çember / Halka
+		Sphere               // Küre
+	}
+	public class RotationalMotionEngine :MechanicsEngine
 	{
 		// 1. Kullanıcı Girdileri
 
-		public string GeometryType { get; set; } = "İçi Dolu Silindir";
+		public RotorGeometryType GeometryType { get; set; } = RotorGeometryType.SolidCylinderOrDisk;
+
 		public double Radius { get; set; }          // Yarıçap (r) [m]
 		public double AppliedForce { get; set; }    // Teğetsel Kuvvet (F) [N]
 	    
@@ -40,18 +47,23 @@ namespace ProbeCalc.Core.Calculators
 
 		public override void Calculate()
 		{
-			if (Radius <= 0 || Mass <= 0 || TimeLimit <= 0)
-				throw new InvalidOperationException("Hata: Kütle, yarıçap ve süre 0'dan büyük olmalıdır.");
-
-			// 1. Geometriye Göre Eylemsizlik Momenti (I) Ataması (Arayüz metinleri Türkçe)
-			if (GeometryType.Contains("Silindir") || GeometryType.Contains("Disk"))
-				MomentOfInertia = 0.5 * Mass * Math.Pow(Radius, 2);
-			else if (GeometryType.Contains("Çember") || GeometryType.Contains("Halka"))
-				MomentOfInertia = Mass * Math.Pow(Radius, 2);
-			else if (GeometryType.Contains("Küre"))
-				MomentOfInertia = (2.0 / 5.0) * Mass * Math.Pow(Radius, 2);
-			else
-				MomentOfInertia = 0.5 * Mass * Math.Pow(Radius, 2); // Varsayılan
+			string iFormula = "";
+			switch (GeometryType)
+			{
+				case RotorGeometryType.HoopOrRing:
+					MomentOfInertia = Mass * Math.Pow(Radius, 2);
+					iFormula = "I = m * r²";
+					break;
+				case RotorGeometryType.Sphere:
+					MomentOfInertia = (2.0 / 5.0) * Mass * Math.Pow(Radius, 2);
+					iFormula = "I = (2/5) * m * r²";
+					break;
+				case RotorGeometryType.SolidCylinderOrDisk:
+				default:
+					MomentOfInertia = 0.5 * Mass * Math.Pow(Radius, 2);
+					iFormula = "I = (1/2) * m * r²";
+					break;
+			}
 
 			// 2. Euler Sayısal İntegrasyonu (Gerçekçi Rotor Simülasyonu)
 			double currentOmega = 0;
@@ -102,14 +114,6 @@ namespace ProbeCalc.Core.Calculators
 
 			// 3. Kullanıcıya Gösterilecek Türkçe Telemetri Raporu ve Formüller
 			StringBuilder steps = new StringBuilder();
-
-			// Dinamik Eylemsizlik Momenti Formülü Belirleme
-			string iFormula = "I = (1/2) * m * r²";
-			if (GeometryType.Contains("Çember") || GeometryType.Contains("Halka"))
-				iFormula = "I = m * r²";
-			else if (GeometryType.Contains("Küre"))
-				iFormula = "I = (2/5) * m * r²";
-
 			steps.AppendLine("========================================================");
 			steps.AppendLine("        ✈️ ROTOR VE AERODİNAMİK ANALİZİ ✈️       ");
 			steps.AppendLine("========================================================");
